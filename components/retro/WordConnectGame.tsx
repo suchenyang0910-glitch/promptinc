@@ -36,8 +36,6 @@ export default function WordConnectGame({ game }: { game: GameConfig }) {
   const dragRef = useRef(false);
 
   const targetSet = useMemo(() => new Set(TARGETS.map((w) => w.toUpperCase())), []);
-  const allFound = useMemo(() => found.size >= targetSet.size, [found, targetSet.size]);
-
   const reset = useCallback(() => {
     setRunning(false);
     setGameOver(false);
@@ -64,13 +62,6 @@ export default function WordConnectGame({ game }: { game: GameConfig }) {
     }, 1000);
     return () => window.clearInterval(t);
   }, [gameOver, running, timeLeft]);
-
-  useEffect(() => {
-    if (!allFound || gameOver) return;
-    setScore((s) => s + timeLeft * 8);
-    setRunning(false);
-    setGameOver(true);
-  }, [allFound, gameOver, timeLeft]);
 
   const currentWord = useMemo(() => path.map((p) => GRID[p.y]![p.x]!).join(""), [path]);
   const selectedKeys = useMemo(() => new Set(path.map(keyOf)), [path]);
@@ -103,16 +94,25 @@ export default function WordConnectGame({ game }: { game: GameConfig }) {
     dragRef.current = false;
     const word = currentWord.toUpperCase();
     if (word.length >= 2 && targetSet.has(word)) {
+      let completed = false;
       setFound((prev) => {
         if (prev.has(word)) return prev;
         const next = new Set(prev);
         next.add(word);
+        if (next.size >= targetSet.size) completed = true;
         return next;
       });
-      setScore((s) => s + 120 + Math.max(0, word.length - 2) * 25);
+      const base = 120 + Math.max(0, word.length - 2) * 25;
+      if (completed) {
+        setScore((s) => s + base + timeLeft * 8);
+        setRunning(false);
+        setGameOver(true);
+      } else {
+        setScore((s) => s + base);
+      }
     }
     setPath([]);
-  }, [currentWord, targetSet]);
+  }, [currentWord, targetSet, timeLeft]);
 
   const primaryLabel = running ? "Pause" : game.clickButtonText;
 
@@ -179,4 +179,3 @@ export default function WordConnectGame({ game }: { game: GameConfig }) {
     </RetroShell>
   );
 }
-

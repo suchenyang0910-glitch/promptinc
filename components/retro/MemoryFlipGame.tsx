@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import RetroShell from "@/components/retro/RetroShell";
 import type { GameConfig } from "@/types/game";
@@ -26,7 +26,7 @@ export default function MemoryFlipGame({ game }: { game: GameConfig }) {
 
   const [tiles, setTiles] = useState<string[]>(() => {
     const base = Array.from({ length: PAIRS }, (_, i) => String.fromCharCode(65 + i));
-    return shuffle([...base, ...base]);
+    return [...base, ...base];
   });
   const [revealed, setRevealed] = useState<number[]>([]);
   const [matched, setMatched] = useState<Set<number>>(() => new Set());
@@ -46,8 +46,6 @@ export default function MemoryFlipGame({ game }: { game: GameConfig }) {
     setTimeLeft(75);
     lockRef.current = false;
   }, []);
-
-  const done = useMemo(() => matched.size === PAIRS * 2, [matched.size]);
 
   useEffect(() => {
     if (!running || gameOver) return;

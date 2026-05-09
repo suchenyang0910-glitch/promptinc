@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import RetroShell from "@/components/retro/RetroShell";
 import type { GameConfig } from "@/types/game";
@@ -59,6 +59,7 @@ export default function ReactionTapGame({ game }: { game: GameConfig }) {
         if (next <= 0) {
           setRunning(false);
           setGameOver(true);
+          setTarget(null);
           return 0;
         }
         return next;
@@ -79,11 +80,6 @@ export default function ReactionTapGame({ game }: { game: GameConfig }) {
     }, 700);
     return () => window.clearInterval(t);
   }, [gameOver, running, spawn]);
-
-  useEffect(() => {
-    if (!gameOver) return;
-    setTarget(null);
-  }, [gameOver]);
 
   const hit = useCallback(() => {
     if (!running || gameOver) return;
@@ -146,4 +142,3 @@ export default function ReactionTapGame({ game }: { game: GameConfig }) {
     </RetroShell>
   );
 }
-

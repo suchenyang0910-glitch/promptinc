@@ -121,7 +121,12 @@ function tileClass(v: number) {
 export default function NumberMergeGame({ game }: { game: GameConfig }) {
   const [running, setRunning] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [grid, setGrid] = useState<number[][]>(() => spawn(spawn(emptyGrid())));
+  const [grid, setGrid] = useState<number[][]>(() => {
+    const g = emptyGrid();
+    g[0]![0] = 2;
+    g[0]![1] = 2;
+    return g;
+  });
   const [score, setScore] = useState(0);
   const dragRef = useRef<{ x: number; y: number } | null>(null);
 
@@ -236,4 +241,3 @@ export default function NumberMergeGame({ game }: { game: GameConfig }) {
     </RetroShell>
   );
 }
-

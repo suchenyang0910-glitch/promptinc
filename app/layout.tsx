@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import MicrosoftClarity from "@/components/MicrosoftClarity";
+
 function resolveBaseUrl() {
   const fromEnv = process.env.NEXT_PUBLIC_SITE_URL;
   if (fromEnv) return fromEnv;
@@ -31,8 +34,8 @@ export const metadata: Metadata = {
   description:
     "Play PromptInc online for free. Build your AI startup, hire AI workers, upgrade GPU servers, and grow your digital empire.",
   icons: {
-    icon: "/logo.jpg",
-    apple: "/logo.jpg",
+    icon: [{ url: "/favicon.ico", type: "image/x-icon" }, { url: "/logo.jpg", type: "image/jpeg" }],
+    apple: [{ url: "/logo.jpg", type: "image/jpeg" }],
   },
   alternates: {
     canonical: "/",
@@ -51,6 +54,9 @@ export const metadata: Metadata = {
       "Play PromptInc online for free. Build your AI startup, hire AI workers, upgrade GPU servers, and grow your digital empire.",
     images: ["/logo.jpg"],
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
 };
 
 export default function RootLayout({
@@ -63,7 +69,11 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-slate-950 text-white">{children}</body>
+      <body className="min-h-full bg-slate-950 text-white">
+        <GoogleAnalytics />
+        <MicrosoftClarity />
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import RetroShell from "@/components/retro/RetroShell";
 import type { GameConfig } from "@/types/game";
@@ -9,6 +9,14 @@ type Color = "red" | "blue" | "green" | "yellow";
 type Tube = Color[];
 
 const CAP = 4;
+
+const START_TUBES: Tube[] = [
+  ["red", "blue", "green", "yellow"],
+  ["blue", "green", "yellow", "red"],
+  ["green", "yellow", "red", "blue"],
+  ["yellow", "red", "blue", "green"],
+  [],
+];
 
 const COLORS: Record<Color, { bg: string; label: string }> = {
   red: { bg: "bg-rose-500", label: "R" },
@@ -56,14 +64,12 @@ function makeStart() {
 export default function ColorSortGame({ game }: { game: GameConfig }) {
   const [running, setRunning] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [tubes, setTubes] = useState<Tube[]>(() => makeStart());
+  const [tubes, setTubes] = useState<Tube[]>(() => START_TUBES.map((t) => t.slice()));
   const [selected, setSelected] = useState<number | null>(null);
   const [moves, setMoves] = useState(0);
   const [timeLeft, setTimeLeft] = useState(180);
   const [score, setScore] = useState(0);
   const movesRef = useRef(0);
-
-  const solved = useMemo(() => isSolved(tubes), [tubes]);
 
   const reset = useCallback(() => {
     setRunning(false);
