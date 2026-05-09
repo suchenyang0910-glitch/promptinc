@@ -174,14 +174,16 @@ export default function BrickBreakerGame({ game }: { game: GameConfig }) {
       onReset={reset}
       hint="Desktop: move mouse. Mobile: drag or tap buttons."
     >
-      <canvas
-        ref={canvasRef}
-        width={CW}
-        height={CH}
-        onMouseMove={(e) => movePaddleTo(e.clientX)}
-        onTouchMove={(e) => movePaddleTo(e.touches[0]?.clientX ?? 0)}
-        className="mx-auto border border-slate-700 rounded-xl touch-none"
-      />
+      <div className="mx-auto w-full max-w-[360px] overflow-hidden rounded-xl border border-slate-700">
+        <canvas
+          ref={canvasRef}
+          width={CW}
+          height={CH}
+          onMouseMove={(e) => movePaddleTo(e.clientX)}
+          onTouchMove={(e) => movePaddleTo(e.touches[0]?.clientX ?? 0)}
+          className="block w-full h-auto touch-none"
+        />
+      </div>
 
       <div className="flex gap-3 max-w-xs mx-auto">
         <button

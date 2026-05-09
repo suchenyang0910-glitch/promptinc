@@ -217,12 +217,14 @@ export default function SnakeGame({ game }: { game: GameConfig }) {
           {running ? "Pause" : game.clickButtonText}
         </button>
 
-        <canvas
-          ref={canvasRef}
-          width={GRID_SIZE * CELL_SIZE}
-          height={GRID_SIZE * CELL_SIZE}
-          className="mx-auto border border-slate-700 rounded-xl"
-        />
+        <div className="mx-auto w-full max-w-[360px] overflow-hidden rounded-xl border border-slate-700">
+          <canvas
+            ref={canvasRef}
+            width={GRID_SIZE * CELL_SIZE}
+            height={GRID_SIZE * CELL_SIZE}
+            className="block w-full h-auto"
+          />
+        </div>
 
         <div className="grid grid-cols-3 gap-3 max-w-xs mx-auto">
           <div />

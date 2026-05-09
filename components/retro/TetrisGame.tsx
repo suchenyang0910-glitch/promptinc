@@ -159,12 +159,9 @@ export default function TetrisGame({ game }: { game: GameConfig }) {
       onReset={doReset}
       hint="Desktop: arrows + space. Mobile: use buttons."
     >
-      <canvas
-        ref={canvasRef}
-        width={W * CELL}
-        height={H * CELL}
-        className="mx-auto border border-slate-700 rounded-xl"
-      />
+      <div className="mx-auto w-full max-w-[360px] overflow-hidden rounded-xl border border-slate-700">
+        <canvas ref={canvasRef} width={W * CELL} height={H * CELL} className="block w-full h-auto" />
+      </div>
 
       <div className="grid grid-cols-5 gap-2 max-w-sm mx-auto">
         <button

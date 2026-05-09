@@ -56,7 +56,7 @@ export default function RetroShell({
           </button>
         </div>
 
-        <div className="space-y-4">{children}</div>
+        <div className="space-y-4 overflow-hidden">{children}</div>
 
         {hint ? <p className="text-slate-400">{hint}</p> : null}
 

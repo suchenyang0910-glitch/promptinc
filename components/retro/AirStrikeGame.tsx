@@ -271,7 +271,9 @@ export default function AirStrikeGame({ game }: { game: GameConfig }) {
       onReset={reset}
       hint="Move to dodge enemies. Shooting is automatic."
     >
-      <canvas ref={canvasRef} width={CW} height={CH} className="mx-auto border border-slate-700 rounded-xl" />
+      <div className="mx-auto w-full max-w-[360px] overflow-hidden rounded-xl border border-slate-700">
+        <canvas ref={canvasRef} width={CW} height={CH} className="block w-full h-auto touch-none" />
+      </div>
 
       <div className="grid grid-cols-3 gap-3 max-w-xs mx-auto">
         <div />

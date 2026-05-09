@@ -177,14 +177,16 @@ export default function CoinCatcherGame({ game }: { game: GameConfig }) {
       onReset={reset}
       hint="Catch coins. Miss 5 times and it’s over."
     >
-      <canvas
-        ref={canvasRef}
-        width={CW}
-        height={CH}
-        onMouseMove={(e) => moveTo(e.clientX)}
-        onTouchMove={(e) => moveTo(e.touches[0]?.clientX ?? 0)}
-        className="mx-auto border border-slate-700 rounded-xl touch-none"
-      />
+      <div className="mx-auto w-full max-w-[360px] overflow-hidden rounded-xl border border-slate-700">
+        <canvas
+          ref={canvasRef}
+          width={CW}
+          height={CH}
+          onMouseMove={(e) => moveTo(e.clientX)}
+          onTouchMove={(e) => moveTo(e.touches[0]?.clientX ?? 0)}
+          className="block w-full h-auto touch-none"
+        />
+      </div>
 
       <div className="grid grid-cols-2 gap-3 max-w-xs mx-auto">
         <button
