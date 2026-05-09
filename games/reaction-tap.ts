@@ -8,6 +8,7 @@ export const reactionTap: GameConfig = {
     "Test your reflexes. Tap targets as fast as you can before they disappear and set a new high score.",
   shortDescription: "Tap the target quickly. Faster taps, higher score.",
   category: "Arcade",
+  tags: ["Arcade", "Reflex", "Casual"],
   emoji: "⚡",
   currencyName: "Score",
   clickButtonText: "Start Game",
@@ -24,4 +25,3 @@ export const reactionTap: GameConfig = {
   ],
   upgrades: [],
 };
-

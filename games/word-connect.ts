@@ -8,6 +8,7 @@ export const wordConnect: GameConfig = {
     "Connect adjacent letters to form hidden words. Swipe across the grid to find all targets before the timer ends.",
   shortDescription: "Swipe letters to form words and clear the list.",
   category: "Word",
+  tags: ["Word", "Puzzle", "Spelling"],
   emoji: "🔤",
   currencyName: "Score",
   clickButtonText: "Start Game",
@@ -24,4 +25,3 @@ export const wordConnect: GameConfig = {
   ],
   upgrades: [],
 };
-

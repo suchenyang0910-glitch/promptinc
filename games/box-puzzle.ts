@@ -7,6 +7,7 @@ export const boxPuzzle: GameConfig = {
   description: "Solve classic box puzzles online. Push boxes onto targets with simple controls.",
   shortDescription: "Sokoban-style box pushing puzzle with quick levels.",
   category: "Retro Arcade",
+  tags: ["Puzzle", "Logic", "Sokoban"],
   emoji: "📦",
   currencyName: "Score",
   clickButtonText: "Start",
@@ -23,4 +24,3 @@ export const boxPuzzle: GameConfig = {
   ],
   upgrades: [],
 };
-

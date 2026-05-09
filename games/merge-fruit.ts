@@ -7,6 +7,7 @@ export const mergeFruit: GameConfig = {
   description: "Play a merge-style fruit puzzle online. Swipe to combine fruits and reach the biggest one.",
   shortDescription: "2048-style fruit merges with satisfying combos.",
   category: "Retro Arcade",
+  tags: ["Puzzle", "Merge", "Casual"],
   emoji: "🍉",
   currencyName: "Score",
   clickButtonText: "Start",
@@ -23,4 +24,3 @@ export const mergeFruit: GameConfig = {
   ],
   upgrades: [],
 };
-

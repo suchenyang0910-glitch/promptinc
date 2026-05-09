@@ -7,6 +7,7 @@ export const classicMines: GameConfig = {
   description: "Play classic mines online. Reveal safe tiles, avoid mines, and clear the board for a high score.",
   shortDescription: "Retro mines puzzle with tap-to-reveal controls.",
   category: "Retro Arcade",
+  tags: ["Puzzle", "Minesweeper", "Logic"],
   emoji: "💣",
   currencyName: "Score",
   clickButtonText: "New Game",
@@ -23,4 +24,3 @@ export const classicMines: GameConfig = {
   ],
   upgrades: [],
 };
-

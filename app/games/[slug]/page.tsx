@@ -6,6 +6,8 @@ import type { ReactElement } from "react";
 
 import AdSlot from "@/components/AdSlot";
 import Footer from "@/components/Footer";
+import GamePageStats from "@/components/GamePageStats";
+import GameSeoContent from "@/components/GameSeoContent";
 import GameEngine from "@/components/GameEngine";
 import SnakeGame from "@/components/SnakeGame";
 import AirStrikeGame from "@/components/retro/AirStrikeGame";
@@ -23,6 +25,8 @@ import TetrisGame from "@/components/retro/TetrisGame";
 import TileMatchGame from "@/components/retro/TileMatchGame";
 import WordConnectGame from "@/components/retro/WordConnectGame";
 import { games } from "@/games";
+import { categoryToSlug } from "@/lib/categories";
+import { tagToSlug } from "@/lib/tags";
 import type { FAQItem, GameType } from "@/types/game";
 
 type PageProps = {
@@ -41,24 +45,27 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const title = game.seo?.title ?? `${game.gameName} - Free Online ${game.category} Game`;
+  const description = game.seo?.description ?? game.description;
+
   return {
-    title: `${game.gameName} - Free Online ${game.category} Game`,
-    description: game.description,
+    title,
+    description,
     alternates: {
       canonical: `/games/${game.slug}`,
     },
     openGraph: {
       type: "website",
-      title: `${game.gameName} - Free Online ${game.category} Game`,
-      description: game.description,
+      title,
+      description,
       url: `/games/${game.slug}`,
-      images: [{ url: "/logo.jpg" }],
+      images: [{ url: `/games/${game.slug}/opengraph-image` }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${game.gameName} - Free Online ${game.category} Game`,
-      description: game.description,
-      images: ["/logo.jpg"],
+      title,
+      description,
+      images: [`/games/${game.slug}/opengraph-image`],
     },
   };
 }
@@ -67,6 +74,24 @@ export default async function GameSlugPage({ params }: PageProps) {
   const { slug } = await params;
   const game = games[slug];
   if (!game) notFound();
+
+  const related = (() => {
+    const all = Object.values(games).filter((g) => g.slug !== game.slug);
+    const baseTags = new Set((game.tags ?? []).map((t) => t.toLowerCase()));
+
+    function scoreCandidate(g: (typeof all)[number]) {
+      let score = 0;
+      if (g.category === game.category) score += 100;
+      for (const t of g.tags ?? []) if (baseTags.has(t.toLowerCase())) score += 10;
+      return score;
+    }
+
+    return all
+      .map((g) => ({ g, s: scoreCandidate(g) }))
+      .sort((a, b) => (b.s !== a.s ? b.s - a.s : a.g.gameName.localeCompare(b.g.gameName)))
+      .map((x) => x.g)
+      .slice(0, 6);
+  })();
 
   const renderers: Record<GameType, ReactElement> = {
     idle: <GameEngine game={game} />,
@@ -119,6 +144,23 @@ export default async function GameSlugPage({ params }: PageProps) {
     },
   };
 
+  const jsonLdSoftwareApplication = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: game.gameName,
+    description: game.description,
+    applicationCategory: "GameApplication",
+    operatingSystem: "Web Browser",
+    url: `/games/${game.slug}`,
+    image: "/logo.jpg",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+  };
+
   const jsonLdBreadcrumbs = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -151,6 +193,10 @@ export default async function GameSlugPage({ params }: PageProps) {
         />
         <script
           type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSoftwareApplication) }}
+        />
+        <script
+          type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumbs) }}
         />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
@@ -168,7 +214,19 @@ export default async function GameSlugPage({ params }: PageProps) {
             <span>PromptInc</span>
           </Link>
 
-          <div className="flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-4 text-sm flex-wrap justify-end">
+            <Link href={`/categories/${categoryToSlug(game.category)}`} className="text-slate-400 hover:text-white">
+              {game.category}
+            </Link>
+            <Link href="/categories" className="text-slate-400 hover:text-white">
+              Categories
+            </Link>
+            <Link href="/tags" className="text-slate-400 hover:text-white">
+              Tags
+            </Link>
+            <Link href="/top" className="text-slate-400 hover:text-white">
+              Top
+            </Link>
             <Link href="/games" className="text-slate-400 hover:text-white">
               Games
             </Link>
@@ -178,16 +236,81 @@ export default async function GameSlugPage({ params }: PageProps) {
           </div>
         </nav>
 
-        <AdSlot />
+        <AdSlot variant="banner" slot={`${game.slug}-top`} />
+
+        <GamePageStats
+          currentSlug={game.slug}
+          allGames={Object.values(games).map((g) => ({
+            slug: g.slug,
+            gameName: g.gameName,
+            category: g.category,
+            emoji: g.emoji,
+          }))}
+        />
 
         {renderers[game.gameType]}
 
-        <AdSlot />
+        <AdSlot variant="banner" slot={`${game.slug}-bottom`} />
 
         <section className="bg-slate-900 rounded-2xl p-6 space-y-4">
           <h2 className="text-2xl font-bold">About {game.gameName}</h2>
           <p className="text-slate-300">{game.description}</p>
+          <div className="flex flex-wrap gap-2 pt-2">
+            <Link
+              href={`/games/${game.slug}/guide`}
+              className="rounded-xl bg-slate-800 hover:bg-slate-700 px-4 py-2 font-semibold"
+            >
+              Read guide
+            </Link>
+            <Link
+              href={`/games/${game.slug}/leaderboard`}
+              className="rounded-xl bg-slate-800 hover:bg-slate-700 px-4 py-2 font-semibold"
+            >
+              Leaderboard
+            </Link>
+          </div>
+
+          {game.tags && game.tags.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {game.tags.map((t) => (
+                <Link
+                  key={t}
+                  href={`/tags/${tagToSlug(t)}`}
+                  className="rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-2 text-sm"
+                >
+                  #{t}
+                </Link>
+              ))}
+            </div>
+          ) : null}
         </section>
+
+        <GameSeoContent game={game} />
+
+        <section className="bg-slate-900 rounded-2xl p-6 space-y-4">
+          <div className="flex items-center justify-between flex-wrap gap-3">
+            <h2 className="text-2xl font-bold">Related Games</h2>
+            <Link href="/games" className="text-slate-400 hover:text-white">
+              Browse all
+            </Link>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            {related.map((g) => (
+                <Link
+                  key={g.slug}
+                  href={`/games/${g.slug}`}
+                  className="rounded-2xl border border-slate-800 bg-slate-950/20 hover:bg-slate-800 p-5"
+                >
+                  <div className="text-3xl">{g.emoji}</div>
+                  <div className="mt-2 font-bold">{g.gameName}</div>
+                  <div className="mt-1 text-sm text-slate-400">{g.shortDescription}</div>
+                </Link>
+              ))}
+          </div>
+        </section>
+
+        <AdSlot variant="inline" slot={`${game.slug}-after-related`} />
 
         <section className="bg-slate-900 rounded-2xl p-6 space-y-4">
           <h2 className="text-2xl font-bold">FAQ</h2>

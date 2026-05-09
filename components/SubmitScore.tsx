@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { supabase } from "@/lib/supabase";
+import { track } from "@/lib/analytics";
 
 export default function SubmitScore({
   gameSlug,
@@ -13,7 +14,13 @@ export default function SubmitScore({
   score: number;
   onSubmitted: () => void;
 }) {
-  const [playerName, setPlayerName] = useState("");
+  const [playerName, setPlayerName] = useState(() => {
+    try {
+      return window.localStorage.getItem("player_name") ?? "";
+    } catch {
+      return "";
+    }
+  });
   const [message, setMessage] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -29,7 +36,7 @@ export default function SubmitScore({
     setSubmitting(true);
     setMessage(null);
 
-    const { error } = await supabase.from("leaderboard_scores").insert({
+    const { error } = await supabase.from("game_scores").insert({
       game_slug: gameSlug,
       player_name: name,
       score: Math.floor(score),
@@ -42,8 +49,14 @@ export default function SubmitScore({
     }
 
     setPlayerName("");
+    try {
+      window.localStorage.setItem("player_name", name);
+    } catch {
+      return;
+    }
     setSubmitting(false);
     setMessage("Score submitted!");
+    track("score_submit", { game_slug: gameSlug, score: Math.floor(score) });
     onSubmitted();
   }
 

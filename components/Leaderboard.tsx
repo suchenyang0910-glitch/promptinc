@@ -9,6 +9,14 @@ type ScoreRow = {
   game_slug: string;
   player_name: string;
   score: number;
+  created_at?: string;
+};
+
+type TotalScoreViewRow = {
+  game_slug: string;
+  player_name: string;
+  score: number;
+  created_at: string | null;
 };
 
 export default function Leaderboard({
@@ -27,8 +35,8 @@ export default function Leaderboard({
     async function loadScores() {
       setStatus("loading");
       const { data, error } = await supabase
-        .from("leaderboard_scores")
-        .select("id, game_slug, player_name, score")
+        .from("total_scores")
+        .select("game_slug, player_name, score, created_at")
         .eq("game_slug", gameSlug)
         .order("score", { ascending: false })
         .limit(10);
@@ -40,7 +48,16 @@ export default function Leaderboard({
         return;
       }
 
-      setScores((data ?? []).map((row) => ({ ...row, score: Number(row.score) })));
+      const rows = (data ?? []) as TotalScoreViewRow[];
+      setScores(
+        rows.map((row) => ({
+          id: `${row.game_slug}:${row.player_name}`,
+          game_slug: row.game_slug,
+          player_name: row.player_name,
+          score: Number(row.score),
+          created_at: row.created_at ?? undefined,
+        }))
+      );
       setStatus("idle");
     }
 

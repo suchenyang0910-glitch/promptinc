@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import Footer from "@/components/Footer";
 import { games } from "@/games";
+import { categoryToSlug } from "@/lib/categories";
 
 export const metadata: Metadata = {
   title: "Free Online Simulator Games - PromptInc",
@@ -13,8 +14,28 @@ export const metadata: Metadata = {
   },
 };
 
-export default function GamesPage() {
-  const gameList = Object.values(games);
+type PageProps = {
+  searchParams?: Promise<{ q?: string; category?: string }>;
+};
+
+export default async function GamesPage({ searchParams }: PageProps) {
+  const sp = (await searchParams) ?? {};
+  const q = (sp.q ?? "").trim().toLowerCase();
+  const category = (sp.category ?? "").trim();
+
+  const allGames = Object.values(games);
+  const categories = Array.from(new Set(allGames.map((g) => g.category))).sort();
+
+  const gameList = allGames.filter((g) => {
+    const matchQ =
+      !q ||
+      g.gameName.toLowerCase().includes(q) ||
+      g.shortDescription.toLowerCase().includes(q) ||
+      g.category.toLowerCase().includes(q) ||
+      g.slug.includes(q);
+    const matchCategory = !category || g.category === category;
+    return matchQ && matchCategory;
+  });
 
   const jsonLdCollection = {
     "@context": "https://schema.org",
@@ -28,7 +49,7 @@ export default function GamesPage() {
       name: "PromptInc",
       url: "/",
     },
-    hasPart: gameList.map((g) => ({
+    hasPart: allGames.map((g) => ({
       "@type": "CreativeWork",
       name: g.gameName,
       url: `/games/${g.slug}`,
@@ -51,6 +72,63 @@ export default function GamesPage() {
           </p>
         </div>
 
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <Link
+            href="/categories"
+            className="rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 px-4 py-2 text-sm"
+          >
+            Browse categories
+          </Link>
+          {categories.slice(0, 8).map((c) => (
+            <Link
+              key={c}
+              href={`/categories/${categoryToSlug(c)}`}
+              className="rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 px-4 py-2 text-sm"
+            >
+              {c}
+            </Link>
+          ))}
+        </div>
+
+        <form className="flex flex-col gap-3 md:flex-row md:items-end" action="/games">
+          <div className="flex-1">
+            <label className="block text-sm text-slate-400">Search</label>
+            <input
+              name="q"
+              defaultValue={sp.q ?? ""}
+              placeholder="Search games"
+              className="mt-2 w-full rounded-xl p-3 bg-slate-900 border border-slate-800"
+            />
+          </div>
+
+          <div className="md:w-64">
+            <label className="block text-sm text-slate-400">Category</label>
+            <select
+              name="category"
+              defaultValue={sp.category ?? ""}
+              className="mt-2 w-full rounded-xl p-3 bg-slate-900 border border-slate-800"
+            >
+              <option value="">All</option>
+              {categories.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <button type="submit" className="bg-blue-600 hover:bg-blue-500 rounded-xl px-5 py-3 font-bold">
+            Apply
+          </button>
+
+          <Link
+            href="/games"
+            className="text-slate-400 hover:text-white md:pb-3 md:pl-2"
+          >
+            Clear
+          </Link>
+        </form>
+
         <div className="grid md:grid-cols-2 gap-6">
           {gameList.map((game) => (
             <Link
@@ -71,6 +149,10 @@ export default function GamesPage() {
             </Link>
           ))}
         </div>
+
+        {gameList.length === 0 ? (
+          <div className="text-center text-slate-400">No games found.</div>
+        ) : null}
       </section>
 
       <Footer />

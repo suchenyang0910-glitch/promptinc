@@ -8,6 +8,7 @@ export const memoryFlip: GameConfig = {
     "Flip cards to find matching pairs. Remember positions, beat the clock, and climb the leaderboard.",
   shortDescription: "Flip cards, match pairs, and finish fast.",
   category: "Memory",
+  tags: ["Memory", "Puzzle", "Match"],
   emoji: "🧠",
   currencyName: "Score",
   clickButtonText: "Start Game",
@@ -24,4 +25,3 @@ export const memoryFlip: GameConfig = {
   ],
   upgrades: [],
 };
-

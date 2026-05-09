@@ -1,0 +1,11 @@
+{
+  "slug": "best-idle-games",
+  "title": "Best Idle Games",
+  "description": "Play the best free idle games online. Earn while you are away, upgrade faster, and climb the leaderboards.",
+  "keywords": ["best idle games", "free idle games", "browser idle game"],
+  "rules": {
+    "gameTypes": ["idle"],
+    "tagsAny": ["Idle"]
+  }
+}
+

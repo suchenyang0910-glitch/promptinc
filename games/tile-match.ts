@@ -7,6 +7,7 @@ export const tileMatch: GameConfig = {
   description: "Play tile match online. Flip tiles, find pairs, and clear the board as fast as you can.",
   shortDescription: "Memory-style tile matching with quick rounds.",
   category: "Retro Arcade",
+  tags: ["Puzzle", "Memory", "Match"],
   emoji: "🧩",
   currencyName: "Score",
   clickButtonText: "Start",
@@ -23,4 +24,3 @@ export const tileMatch: GameConfig = {
   ],
   upgrades: [],
 };
-

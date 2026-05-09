@@ -3,8 +3,10 @@
 import { useEffect, useMemo, useReducer, useRef, useState } from "react";
 
 import Leaderboard from "@/components/Leaderboard";
+import DailyBonus from "@/components/DailyBonus";
 import ShareButton from "@/components/ShareButton";
 import SubmitScore from "@/components/SubmitScore";
+import { track } from "@/lib/analytics";
 import {
   buildHydratedState,
   calcIncomePerSecond,
@@ -35,6 +37,7 @@ export default function GameClient({ config }: { config: GameConfig }) {
   const [incomeMultiplier, setIncomeMultiplier] = useState(1);
   const incomeMultiplierRef = useRef(1);
   const clearLuckTimerRef = useRef<number | null>(null);
+  const startedRef = useRef(false);
 
   const incomePerSecond = useMemo(() => calcIncomePerSecond(state.upgrades), [state.upgrades]);
   const effectiveIncomePerSecond = useMemo(
@@ -67,6 +70,10 @@ export default function GameClient({ config }: { config: GameConfig }) {
     const saved = tryParseSave(localStorage.getItem(saveKey));
     dispatch({ type: "hydrate", payload: buildHydratedState(config, saved) });
   }, [config, saveKey]);
+
+  useEffect(() => {
+    track("game_view", { game_slug: config.slug, game_type: config.gameType, category: config.category });
+  }, [config.category, config.gameType, config.slug]);
 
   useEffect(() => {
     const timer = window.setInterval(
@@ -111,6 +118,10 @@ export default function GameClient({ config }: { config: GameConfig }) {
   }
 
   function handleClick() {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      track("game_start", { game_slug: config.slug });
+    }
     const clickPower = state.clickPower;
     let reward = clickPower;
     const luck = config.luck;
@@ -156,6 +167,7 @@ export default function GameClient({ config }: { config: GameConfig }) {
 
   function resetGame() {
     localStorage.removeItem(saveKey);
+    track("game_reset", { game_slug: config.slug });
     dispatch({ type: "reset" });
   }
 
@@ -163,7 +175,9 @@ export default function GameClient({ config }: { config: GameConfig }) {
     <section className="space-y-6">
       <section className="bg-slate-900 rounded-2xl p-6 text-center space-y-4">
         <div className="text-sm font-semibold tracking-wide text-slate-400">{config.currencyName.toUpperCase()}</div>
-        <div className="text-5xl font-bold">${formatMoney(state.money)}</div>
+        <div className="text-5xl font-bold" data-testid="idle-money">
+          ${formatMoney(state.money)}
+        </div>
         <div className="text-slate-400">Revenue: ${formatMoney(effectiveIncomePerSecond)} / sec</div>
 
         {incomeMultiplier > 1 ? (
@@ -181,6 +195,7 @@ export default function GameClient({ config }: { config: GameConfig }) {
         <button
           type="button"
           onClick={handleClick}
+          data-testid="idle-click"
           className="w-full bg-blue-600 hover:bg-blue-500 rounded-xl py-4 text-xl font-bold"
         >
           {config.clickButtonText} +${state.clickPower}
@@ -203,6 +218,13 @@ export default function GameClient({ config }: { config: GameConfig }) {
         gameSlug={config.slug}
         score={state.money}
         onSubmitted={() => setLeaderboardRefreshKey((v) => v + 1)}
+      />
+
+      <DailyBonus
+        gameSlug={config.slug}
+        onClaim={(reward) => {
+          dispatch({ type: "add_money", amount: reward });
+        }}
       />
 
       <Leaderboard gameSlug={config.slug} refreshKey={leaderboardRefreshKey} />

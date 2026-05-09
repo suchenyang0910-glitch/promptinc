@@ -4,8 +4,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import Leaderboard from "@/components/Leaderboard";
 import AdSlot from "@/components/AdSlot";
+import InterstitialAd from "@/components/InterstitialAd";
 import ShareButton from "@/components/ShareButton";
 import SubmitScore from "@/components/SubmitScore";
+import { canShowInterstitial, markInterstitialShown } from "@/lib/ads/policy";
+import { track } from "@/lib/analytics";
 import type { GameConfig } from "@/types/game";
 
 type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT";
@@ -44,6 +47,8 @@ export default function SnakeGame({ game }: { game: GameConfig }) {
   const [gameOver, setGameOver] = useState(false);
   const [running, setRunning] = useState(false);
   const [leaderboardRefreshKey, setLeaderboardRefreshKey] = useState(0);
+  const [interstitialVisible, setInterstitialVisible] = useState(false);
+  const startedRef = useRef(false);
 
   useEffect(() => {
     directionRef.current = direction;
@@ -60,6 +65,22 @@ export default function SnakeGame({ game }: { game: GameConfig }) {
   useEffect(() => {
     gameOverRef.current = gameOver;
   }, [gameOver]);
+
+  useEffect(() => {
+    track("game_view", { game_slug: game.slug, game_type: game.gameType, category: game.category });
+  }, [game.category, game.gameType, game.slug]);
+
+  useEffect(() => {
+    if (!gameOver) return;
+    try {
+      const key = `best_score:${game.slug}`;
+      const prev = Number(window.localStorage.getItem(key) ?? "0");
+      const next = Math.max(prev, Math.floor(score));
+      window.localStorage.setItem(key, String(next));
+    } catch {
+      return;
+    }
+  }, [game.slug, gameOver, score]);
 
   useEffect(() => {
     runningRef.current = running;
@@ -99,14 +120,23 @@ export default function SnakeGame({ game }: { game: GameConfig }) {
     directionRef.current = "RIGHT";
     gameOverRef.current = false;
     runningRef.current = false;
-  }, []);
+
+    track("game_reset", { game_slug: game.slug });
+  }, [game.slug]);
 
   const endGame = useCallback(() => {
     setGameOver(true);
     setRunning(false);
     gameOverRef.current = true;
     runningRef.current = false;
-  }, []);
+
+    track("game_over", { game_slug: game.slug, score: Math.floor(score) });
+    if (canShowInterstitial()) {
+      markInterstitialShown();
+      track("ad_interstitial_shown", { game_slug: game.slug, slot: `${game.slug}-interstitial` });
+      setInterstitialVisible(true);
+    }
+  }, [game.slug, score]);
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
@@ -200,6 +230,9 @@ export default function SnakeGame({ game }: { game: GameConfig }) {
 
   return (
     <div className="space-y-6">
+      {interstitialVisible ? (
+        <InterstitialAd onClose={() => setInterstitialVisible(false)} slot={`${game.slug}-interstitial`} />
+      ) : null}
       <section className="bg-slate-900 rounded-2xl p-6 text-center space-y-4">
         <div className="text-sm font-semibold tracking-wide text-slate-400">{game.currencyName.toUpperCase()}</div>
         <div className="text-4xl font-bold">
@@ -210,8 +243,17 @@ export default function SnakeGame({ game }: { game: GameConfig }) {
           type="button"
           onClick={() => {
             if (gameOverRef.current) resetGame();
-            setRunning((v) => !v);
+            setRunning((v) => {
+              const next = !v;
+              if (next && !startedRef.current) {
+                startedRef.current = true;
+                track("game_start", { game_slug: game.slug });
+              }
+              if (!next && v && !gameOverRef.current) track("game_pause", { game_slug: game.slug });
+              return next;
+            });
           }}
+          data-testid="snake-primary"
           className="w-full bg-blue-600 hover:bg-blue-500 rounded-xl py-3 font-bold"
         >
           {running ? "Pause" : game.clickButtonText}
@@ -279,7 +321,7 @@ export default function SnakeGame({ game }: { game: GameConfig }) {
         <p className="text-slate-400">Use arrow keys on desktop or tap the buttons on mobile.</p>
 
         {gameOver ? (
-          <div className="bg-red-950 border border-red-800 rounded-2xl p-4 space-y-3">
+          <div className="bg-red-950 border border-red-800 rounded-2xl p-4 space-y-3" data-testid="snake-gameover">
             <h2 className="text-2xl font-bold">Game Over</h2>
             <p className="text-slate-300">Final Score: {score}</p>
             <button
@@ -291,7 +333,7 @@ export default function SnakeGame({ game }: { game: GameConfig }) {
             </button>
 
             <div className="pt-2">
-              <AdSlot />
+              <AdSlot variant="gameover" slot={`${game.slug}-gameover-modal`} />
             </div>
           </div>
         ) : null}
@@ -307,7 +349,7 @@ export default function SnakeGame({ game }: { game: GameConfig }) {
         />
       ) : null}
 
-      {gameOver ? <AdSlot /> : null}
+      {gameOver ? <AdSlot variant="banner" slot={`${game.slug}-gameover-after-submit`} /> : null}
 
       <Leaderboard gameSlug={game.slug} refreshKey={leaderboardRefreshKey} />
 

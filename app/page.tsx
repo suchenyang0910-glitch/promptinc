@@ -13,6 +13,15 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  const jsonLdWebSite = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "PromptInc",
+    url: "/",
+    description:
+      "Free online games you can play instantly in your browser: idle, retro arcade, puzzle, and more.",
+  };
+
   const featured = [
     games["promptinc"],
     games["retro-snake"],
@@ -24,6 +33,8 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }} />
+
       <section className="max-w-4xl mx-auto px-6 py-20 text-center space-y-6">
         <div className="flex justify-center">
           <Image
@@ -55,10 +66,24 @@ export default function HomePage() {
             Browse Games
           </Link>
         </div>
+
+        <div className="flex items-center justify-center gap-4 text-sm text-slate-400">
+          <Link href="/categories" className="hover:text-white">
+            Categories
+          </Link>
+          <span className="text-slate-700">•</span>
+          <Link href="/top" className="hover:text-white">
+            Top
+          </Link>
+          <span className="text-slate-700">•</span>
+          <Link href="/leaderboards" className="hover:text-white">
+            Leaderboards
+          </Link>
+        </div>
       </section>
 
       <section className="max-w-4xl mx-auto px-6 pb-12">
-        <AdSlot />
+        <AdSlot variant="banner" slot="home-top" />
       </section>
 
       <section className="max-w-4xl mx-auto px-6 py-12 space-y-6">
@@ -169,7 +194,7 @@ export default function HomePage() {
       </section>
 
       <section className="max-w-4xl mx-auto px-6 py-12">
-        <AdSlot />
+        <AdSlot variant="banner" slot="home-bottom" />
       </section>
 
       <Footer />

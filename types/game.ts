@@ -35,6 +35,11 @@ export type LuckConfig = {
   luckyNames: string[];
 };
 
+export type SeoConfig = {
+  title: string;
+  description: string;
+};
+
 export type GameConfig = {
   slug: string;
   gameType: GameType;
@@ -42,10 +47,12 @@ export type GameConfig = {
   description: string;
   shortDescription: string;
   category: string;
+  tags?: string[];
   emoji: string;
   currencyName: string;
   clickButtonText: string;
   faq?: FAQItem[];
+  seo?: SeoConfig;
   luck?: LuckConfig;
   milestones: {
     money: number;

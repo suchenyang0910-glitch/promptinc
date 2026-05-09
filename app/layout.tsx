@@ -45,14 +45,14 @@ export const metadata: Metadata = {
     title: "PromptInc",
     description:
       "Play PromptInc online for free. Build your AI startup, hire AI workers, upgrade GPU servers, and grow your digital empire.",
-    images: [{ url: "/logo.jpg" }],
+    images: [{ url: "/opengraph-image" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "PromptInc",
     description:
       "Play PromptInc online for free. Build your AI startup, hire AI workers, upgrade GPU servers, and grow your digital empire.",
-    images: ["/logo.jpg"],
+    images: ["/opengraph-image"],
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,

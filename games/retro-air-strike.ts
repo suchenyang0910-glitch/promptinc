@@ -8,6 +8,7 @@ export const retroAirStrike: GameConfig = {
     "Fly, shoot, and survive in this retro arcade space shooter. Dodge enemies, rack up points, and climb the leaderboard.",
   shortDescription: "Quick top-down shooter with high-score runs.",
   category: "Retro Arcade",
+  tags: ["Shooter", "Arcade", "Space"],
   emoji: "✈️",
   currencyName: "Score",
   clickButtonText: "Start",

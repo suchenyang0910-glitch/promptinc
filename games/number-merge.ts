@@ -8,6 +8,7 @@ export const numberMerge: GameConfig = {
     "Merge numbers on a 4x4 board to build bigger tiles. Swipe or use arrow controls to combine values and chase a new high score.",
   shortDescription: "Swipe to merge tiles and build the biggest number.",
   category: "Puzzle",
+  tags: ["Puzzle", "Merge", "Numbers"],
   emoji: "🔢",
   currencyName: "Score",
   clickButtonText: "Start Game",
@@ -24,4 +25,3 @@ export const numberMerge: GameConfig = {
   ],
   upgrades: [],
 };
-

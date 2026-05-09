@@ -8,6 +8,7 @@ export const brickBlockClassic: GameConfig = {
     "Play a classic block-stacking puzzle online. Stack falling blocks, clear lines, and chase a high score in this retro arcade game.",
   shortDescription: "Stack blocks, clear lines, and beat your high score.",
   category: "Retro Arcade",
+  tags: ["Retro", "Arcade", "Block Puzzle"],
   emoji: "🧱",
   currencyName: "Score",
   clickButtonText: "Start Game",

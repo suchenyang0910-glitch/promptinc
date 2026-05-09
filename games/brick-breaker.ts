@@ -8,6 +8,7 @@ export const brickBreaker: GameConfig = {
     "Play a classic brick breaker online for free. Bounce the ball, smash bricks, and set a new high score in this retro arcade game.",
   shortDescription: "Smash bricks with a paddle, rack up combos, and score big.",
   category: "Retro Arcade",
+  tags: ["Retro", "Arcade", "Brick Breaker"],
   emoji: "🏓",
   currencyName: "Score",
   clickButtonText: "Start Game",

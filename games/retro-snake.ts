@@ -7,6 +7,7 @@ export const retroSnake: GameConfig = {
   description: "Play the classic retro snake game online for free directly in your browser.",
   shortDescription: "Classic snake game playable online.",
   category: "Retro Arcade",
+  tags: ["Retro", "Arcade", "Snake"],
   emoji: "🐍",
   currencyName: "Score",
   clickButtonText: "Start Game",
@@ -18,4 +19,3 @@ export const retroSnake: GameConfig = {
   ],
   upgrades: [],
 };
-

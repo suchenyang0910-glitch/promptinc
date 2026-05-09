@@ -8,6 +8,7 @@ export const bubbleShooter: GameConfig = {
     "Play a bubble shooter-style game online for free. Pop matching bubbles, build combos, and climb the leaderboard in this relaxing retro arcade game.",
   shortDescription: "Pop bubble groups, build combos, and score big.",
   category: "Retro Arcade",
+  tags: ["Puzzle", "Bubble", "Arcade"],
   emoji: "🫧",
   currencyName: "Score",
   clickButtonText: "Start",

@@ -7,6 +7,7 @@ export const coinCatcher: GameConfig = {
   description: "Catch falling coins, dodge traps, and rack up points in this classic arcade-style game.",
   shortDescription: "Catch coins fast. Miss too many and it’s game over.",
   category: "Retro Arcade",
+  tags: ["Arcade", "Reflex", "Casual"],
   emoji: "🪙",
   currencyName: "Score",
   clickButtonText: "Start",
@@ -23,4 +24,3 @@ export const coinCatcher: GameConfig = {
   ],
   upgrades: [],
 };
-
