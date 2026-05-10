@@ -1,37 +1,41 @@
 import { expect, test, type Page, type Route } from "@playwright/test";
 
-function mockSupabaseLeaderboard(page: Page, gameSlug: string) {
+function mockLeaderboardApi(page: Page, gameSlug: string) {
   let submittedName = "Tester";
   let submittedScore = 123;
 
-  page.route("**/rest/v1/**", async (route: Route) => {
+  page.route("**/api/leaderboard/**", async (route: Route) => {
     const url = route.request().url();
     const method = route.request().method();
 
-    if (method === "POST" && url.includes("/rest/v1/game_scores")) {
+    if (method === "POST" && url.endsWith("/api/leaderboard/submit")) {
       try {
         const raw = route.request().postData() ?? "";
-        const body = JSON.parse(raw);
-        submittedName = String(body.player_name ?? submittedName);
-        submittedScore = Number(body.score ?? submittedScore);
+        const parsed = JSON.parse(raw);
+        const body = Array.isArray(parsed) ? parsed[0] : parsed;
+        if (body && typeof body === "object") {
+          submittedName = String((body as any).player_name ?? submittedName);
+          submittedScore = Number((body as any).score ?? submittedScore);
+        }
       } catch {
-        return;
+        // ignore
       }
 
       await route.fulfill({
         status: 201,
         contentType: "application/json",
-        body: JSON.stringify([{ id: "00000000-0000-0000-0000-000000000000" }]),
+        body: JSON.stringify({ id: 1, created_at: new Date().toISOString() }),
       });
       return;
     }
 
-    if (method === "GET" && url.includes("/rest/v1/total_scores") && url.includes(`game_slug=eq.${gameSlug}`)) {
+    if (method === "GET" && url.includes("/api/leaderboard/top") && url.includes(`game_slug=${encodeURIComponent(gameSlug)}`)) {
       await route.fulfill({
         status: 200,
         contentType: "application/json",
         body: JSON.stringify([
           {
+            id: 1,
             game_slug: gameSlug,
             player_name: submittedName,
             score: submittedScore,
@@ -42,19 +46,11 @@ function mockSupabaseLeaderboard(page: Page, gameSlug: string) {
       return;
     }
 
-    if (method === "GET" && url.includes("/rest/v1/daily_scores") && url.includes(`game_slug=eq.${gameSlug}`)) {
+    if (method === "GET" && url.includes("/api/leaderboard/my-best") && url.includes(`game_slug=${encodeURIComponent(gameSlug)}`)) {
       await route.fulfill({
         status: 200,
         contentType: "application/json",
-        body: JSON.stringify([
-          {
-            game_slug: gameSlug,
-            player_name: submittedName,
-            score: submittedScore,
-            created_at: new Date().toISOString(),
-            day: new Date().toISOString(),
-          },
-        ]),
+        body: JSON.stringify({ best: submittedScore }),
       });
       return;
     }
@@ -101,7 +97,7 @@ test("idle daily bonus can be claimed", async ({ page }) => {
 });
 
 test("game over -> submit score -> leaderboard updates (mocked)", async ({ page }) => {
-  mockSupabaseLeaderboard(page, "retro-snake");
+  mockLeaderboardApi(page, "retro-snake");
 
   await page.goto("/games/retro-snake");
   await page.getByTestId("snake-primary").click();
@@ -112,8 +108,13 @@ test("game over -> submit score -> leaderboard updates (mocked)", async ({ page 
   await expect(submitSection).toBeVisible();
 
   await submitSection.getByRole("textbox").fill("Tester");
+  const requestPromise = page.waitForRequest(
+    (req) => req.method() === "POST" && req.url().includes("/api/leaderboard/submit"),
+    { timeout: 15000 }
+  );
   await submitSection.getByRole("button", { name: /^Submit\s+/ }).click();
-  await expect(page.getByText("Score submitted!")).toBeVisible();
+  await requestPromise;
+  await expect(submitSection).toContainText("Score submitted!", { timeout: 15000 });
 
   await expect(page.getByText(/#1\s+Tester/)).toBeVisible();
 });

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 import AdSlot from "@/components/AdSlot";
 import Footer from "@/components/Footer";
-import GameLeaderboard from "@/components/GameLeaderboard";
+import GameLeaderboardClient from "@/components/GameLeaderboardClient";
 import { games } from "@/games";
 
 type PageProps = {
@@ -112,7 +112,7 @@ export default async function GameLeaderboardPage({ params }: PageProps) {
           <p className="text-slate-300">See the top scores and track your best run.</p>
         </header>
 
-        <GameLeaderboard gameSlug={game.slug} />
+        <GameLeaderboardClient gameSlug={game.slug} />
 
         <AdSlot variant="banner" slot={`${game.slug}-leaderboard-bottom`} />
       </div>
