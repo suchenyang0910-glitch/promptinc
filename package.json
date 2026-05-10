@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "prebuild": "node scripts/generateGameContentIndex.mjs && node scripts/generateTopContentIndex.mjs",
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
     "e2e": "playwright test",
