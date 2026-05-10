@@ -20,6 +20,10 @@ export type SubmitScoreResult =
 type SubmitScoreErrorBody = { error?: unknown };
 type SubmitScoreOkBody = { id: number; created_at: string };
 
+function isSubmitScoreErrorBody(v: unknown): v is SubmitScoreErrorBody {
+  return typeof v === "object" && v !== null && "error" in (v as Record<string, unknown>);
+}
+
 export async function submitScore(
   gameSlug: string,
   playerName: string,
@@ -38,7 +42,7 @@ export async function submitScore(
       data = null;
     }
     if (!res.ok) {
-      const msg = typeof data?.error === "string" ? data.error : `Submit failed (${res.status})`;
+      const msg = isSubmitScoreErrorBody(data) && typeof data.error === "string" ? data.error : `Submit failed (${res.status})`;
       return { ok: false, error: msg };
     }
     const okBody = data as SubmitScoreOkBody | null;
