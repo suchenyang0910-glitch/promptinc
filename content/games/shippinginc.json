@@ -1,0 +1,30 @@
+{
+  "slug": "shippinginc",
+  "gameType": "idle",
+  "gameName": "ShippingInc",
+  "description": "Manage routes, upgrade fleets, and build a global shipping empire.",
+  "shortDescription": "Build a global shipping empire.",
+  "category": "Logistics",
+  "tags": ["Logistics", "Shipping", "Business", "Tycoon", "Idle", "Clicker"],
+  "emoji": "🚢",
+  "currencyName": "Cash Flow",
+  "clickButtonText": "Dispatch Shipment",
+  "seo": {
+    "title": "ShippingInc - Free Logistics Tycoon Idle Game",
+    "description": "Play ShippingInc, a free logistics tycoon idle game. Dispatch shipments, upgrade fleets, and scale global routes in your browser."
+  },
+  "milestones": [
+    { "money": 1800, "title": "First Route" },
+    { "money": 18000, "title": "Fleet Operator" },
+    { "money": 180000, "title": "Port Network" },
+    { "money": 1800000, "title": "Global Logistics" }
+  ],
+  "upgrades": [
+    { "id": "cargo_van", "name": "Cargo Van", "baseCost": 65, "income": 1 },
+    { "id": "warehouse", "name": "Warehouse", "baseCost": 420, "income": 11 },
+    { "id": "freight_ship", "name": "Freight Ship", "baseCost": 2500, "income": 65 },
+    { "id": "port_contracts", "name": "Port Contracts", "baseCost": 18000, "income": 380 },
+    { "id": "global_routes", "name": "Global Routes", "baseCost": 120000, "income": 2500 }
+  ]
+}
+

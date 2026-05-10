@@ -15,7 +15,24 @@ export default function ContactPage() {
         <div className="mt-6 space-y-4 text-slate-300 leading-7">
           <p>For questions, feedback, or business inquiries, reach out by email.</p>
           <p>
-            Email: <span className="font-semibold text-slate-100">contact@yourdomain.com</span>
+            Email:{" "}
+            <a
+              className="font-semibold text-slate-100 hover:text-white underline"
+              href="mailto:suchenyang0910@gmail.com"
+            >
+              suchenyang0910@gmail.com
+            </a>
+          </p>
+          <p>
+            Telegram:{" "}
+            <a
+              className="font-semibold text-slate-100 hover:text-white underline"
+              href="https://t.me/GameCenterMini_bot"
+              target="_blank"
+              rel="noreferrer"
+            >
+              @GameCenterMini_bot
+            </a>
           </p>
         </div>
       </div>

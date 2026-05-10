@@ -1,0 +1,30 @@
+{
+  "slug": "saasinc",
+  "gameType": "idle",
+  "gameName": "SaaSInc",
+  "description": "Build a SaaS company, acquire customers, and scale monthly recurring revenue.",
+  "shortDescription": "Build and scale MRR.",
+  "category": "SaaS",
+  "tags": ["Business", "Startup", "SaaS", "Tycoon", "Idle", "Clicker"],
+  "emoji": "💻",
+  "currencyName": "MRR",
+  "clickButtonText": "Ship Feature",
+  "seo": {
+    "title": "SaaSInc - Free SaaS Business Idle Game",
+    "description": "Play SaaSInc, a free SaaS business idle game in your browser. Ship features, reduce churn, and grow your MRR like a startup tycoon."
+  },
+  "milestones": [
+    { "money": 500, "title": "First Customer" },
+    { "money": 5000, "title": "Product-Market Fit" },
+    { "money": 50000, "title": "Growth Team" },
+    { "money": 500000, "title": "Category Leader" }
+  ],
+  "upgrades": [
+    { "id": "landing_page", "name": "Landing Page", "baseCost": 40, "income": 1 },
+    { "id": "sales_calls", "name": "Sales Calls", "baseCost": 220, "income": 6 },
+    { "id": "onboarding", "name": "Onboarding Flow", "baseCost": 1400, "income": 40 },
+    { "id": "paid_ads", "name": "Paid Acquisition", "baseCost": 9000, "income": 260 },
+    { "id": "enterprise_plan", "name": "Enterprise Plan", "baseCost": 65000, "income": 1700 }
+  ]
+}
+

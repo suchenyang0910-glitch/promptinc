@@ -1,0 +1,30 @@
+{
+  "slug": "restaurantinc",
+  "gameType": "idle",
+  "gameName": "RestaurantInc",
+  "description": "Run a restaurant, upgrade the kitchen, and build a dining empire.",
+  "shortDescription": "Build a restaurant empire.",
+  "category": "Restaurant",
+  "tags": ["Food", "Restaurant", "Tycoon", "Idle", "Clicker"],
+  "emoji": "🍜",
+  "currencyName": "Profit",
+  "clickButtonText": "Serve Dish",
+  "seo": {
+    "title": "RestaurantInc - Free Restaurant Tycoon Idle Game",
+    "description": "Play RestaurantInc, a free restaurant tycoon idle game. Serve dishes, upgrade your kitchen, hire staff, and grow a food empire."
+  },
+  "milestones": [
+    { "money": 1200, "title": "Grand Opening" },
+    { "money": 12000, "title": "Full House" },
+    { "money": 120000, "title": "Chef Team" },
+    { "money": 1200000, "title": "Restaurant Group" }
+  ],
+  "upgrades": [
+    { "id": "basic_kitchen", "name": "Basic Kitchen", "baseCost": 55, "income": 1 },
+    { "id": "wait_staff", "name": "Wait Staff", "baseCost": 280, "income": 7 },
+    { "id": "menu_optimization", "name": "Menu Optimization", "baseCost": 1600, "income": 42 },
+    { "id": "delivery_channel", "name": "Delivery Channel", "baseCost": 9500, "income": 270 },
+    { "id": "second_restaurant", "name": "Second Restaurant", "baseCost": 52000, "income": 1600 }
+  ]
+}
+

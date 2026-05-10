@@ -1,0 +1,30 @@
+{
+  "slug": "airportinc",
+  "gameType": "idle",
+  "gameName": "AirportInc",
+  "description": "Manage an airport, upgrade terminals, and build an aviation business.",
+  "shortDescription": "Build an airport business.",
+  "category": "Aviation",
+  "tags": ["Airport", "Aviation", "Simulation", "Tycoon", "Idle", "Clicker"],
+  "emoji": "🛫",
+  "currencyName": "Revenue",
+  "clickButtonText": "Board Flight",
+  "seo": {
+    "title": "AirportInc - Free Airport Tycoon Idle Game",
+    "description": "Play AirportInc, a free airport tycoon idle game in your browser. Board flights, upgrade terminals, and scale your airport business."
+  },
+  "milestones": [
+    { "money": 1600, "title": "First Gate" },
+    { "money": 16000, "title": "Terminal Expansion" },
+    { "money": 160000, "title": "International Hub" },
+    { "money": 1600000, "title": "Aviation Empire" }
+  ],
+  "upgrades": [
+    { "id": "checkin_counter", "name": "Check-in Counter", "baseCost": 60, "income": 1 },
+    { "id": "security_lane", "name": "Security Lane", "baseCost": 380, "income": 10 },
+    { "id": "new_gates", "name": "New Gates", "baseCost": 2200, "income": 58 },
+    { "id": "airline_partners", "name": "Airline Partners", "baseCost": 14000, "income": 340 },
+    { "id": "cargo_terminal", "name": "Cargo Terminal", "baseCost": 95000, "income": 2200 }
+  ]
+}
+

@@ -1,5 +1,11 @@
 import { expect, test, type Page, type Route } from "@playwright/test";
 
+type ScoreSubmitBody = {
+  game_slug?: string;
+  player_name?: string;
+  score?: number;
+};
+
 function mockLeaderboardApi(page: Page, gameSlug: string) {
   let submittedName = "Tester";
   let submittedScore = 123;
@@ -11,12 +17,10 @@ function mockLeaderboardApi(page: Page, gameSlug: string) {
     if (method === "POST" && url.endsWith("/api/leaderboard/submit")) {
       try {
         const raw = route.request().postData() ?? "";
-        const parsed = JSON.parse(raw);
+        const parsed = JSON.parse(raw) as ScoreSubmitBody | ScoreSubmitBody[];
         const body = Array.isArray(parsed) ? parsed[0] : parsed;
-        if (body && typeof body === "object") {
-          submittedName = String((body as any).player_name ?? submittedName);
-          submittedScore = Number((body as any).score ?? submittedScore);
-        }
+        submittedName = String(body?.player_name ?? submittedName);
+        submittedScore = Number(body?.score ?? submittedScore);
       } catch {
         // ignore
       }
