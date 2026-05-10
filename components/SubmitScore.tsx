@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { supabase } from "@/lib/supabase";
+import { submitScore as submitScoreApi } from "@/lib/leaderboard";
 import { track } from "@/lib/analytics";
 
 export default function SubmitScore({
@@ -24,13 +24,8 @@ export default function SubmitScore({
   const [message, setMessage] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  async function submitScore() {
+  async function handleSubmit() {
     if (submitting) return;
-
-    if (!supabase) {
-      setMessage("Leaderboard is temporarily unavailable.");
-      return;
-    }
 
     const name = playerName.trim().slice(0, 20);
     if (!name) {
@@ -41,13 +36,9 @@ export default function SubmitScore({
     setSubmitting(true);
     setMessage(null);
 
-    const { error } = await supabase.from("game_scores").insert({
-      game_slug: gameSlug,
-      player_name: name,
-      score: Math.floor(score),
-    });
+    const result = await submitScoreApi(gameSlug, name, score);
 
-    if (error) {
+    if (!result) {
       setMessage("Submit failed.");
       setSubmitting(false);
       return;
@@ -57,7 +48,7 @@ export default function SubmitScore({
     try {
       window.localStorage.setItem("player_name", name);
     } catch {
-      return;
+      // ignore
     }
     setSubmitting(false);
     setMessage("Score submitted!");
@@ -78,7 +69,7 @@ export default function SubmitScore({
 
       <button
         type="button"
-        onClick={submitScore}
+        onClick={handleSubmit}
         disabled={submitting}
         className="w-full bg-blue-600 hover:bg-blue-500 disabled:bg-slate-700 rounded-xl py-3 font-bold"
       >

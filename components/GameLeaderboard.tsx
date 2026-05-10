@@ -2,59 +2,15 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import { supabase } from "@/lib/supabase";
+import { getTopScores, getMyBest } from "@/lib/leaderboard";
+import type { ScoreEntry } from "@/lib/leaderboard";
 
 type Period = "all" | "today" | "week";
 
-type ScoreRow = {
-  id: string;
-  game_slug: string;
-  player_name: string;
-  score: number;
-  created_at: string;
-};
-
-type TotalScoreViewRow = {
-  game_slug: string;
-  player_name: string;
-  score: number;
-  created_at: string | null;
-};
-
-type DailyScoreViewRow = {
-  game_slug: string;
-  player_name: string;
-  score: number;
-  created_at: string | null;
-  day: string;
-};
-
-function getPeriodSince(period: Period) {
-  const now = new Date();
-
-  if (period === "today") {
-    const d = new Date(now);
-    d.setHours(0, 0, 0, 0);
-    return d;
-  }
-
-  if (period === "week") {
-    const d = new Date(now);
-    d.setDate(d.getDate() - 6);
-    d.setHours(0, 0, 0, 0);
-    return d;
-  }
-
-  return null;
-}
-
 export default function GameLeaderboard({ gameSlug }: { gameSlug: string }) {
-  const unavailable = !supabase;
   const [period, setPeriod] = useState<Period>("all");
-  const [scores, setScores] = useState<ScoreRow[]>([]);
+  const [scores, setScores] = useState<ScoreEntry[]>([]);
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
-
-  const since = useMemo(() => getPeriodSince(period), [period]);
 
   const myBest = useMemo(() => {
     try {
@@ -67,70 +23,47 @@ export default function GameLeaderboard({ gameSlug }: { gameSlug: string }) {
     }
   }, [gameSlug]);
 
+  // simple client-side period filtering after loading
   useEffect(() => {
-    const client = supabase;
-    if (!client) return;
-
     let cancelled = false;
 
-    async function loadScores(client: NonNullable<typeof supabase>) {
+    async function load() {
       setStatus("loading");
-
-      let view: "total_scores" | "daily_scores" = "total_scores";
-      if (period === "today") view = "daily_scores";
-      if (period === "week") view = "daily_scores";
-
-      let query = client
-        .from(view)
-        .select(view === "daily_scores" ? "game_slug, player_name, score, created_at, day" : "game_slug, player_name, score, created_at")
-        .eq("game_slug", gameSlug)
-        .order("score", { ascending: false })
-        .limit(50);
-
-      if (view === "daily_scores" && since) {
-        query = query.gte("day", since.toISOString());
-      }
-
-      const { data, error } = await query;
+      let data = await getTopScores(gameSlug, 50);
       if (cancelled) return;
 
-      if (error) {
-        setStatus("error");
-        return;
+      if (period !== "all") {
+        const now = Date.now();
+        const ms = period === "today" ? 24 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000;
+        const cutoff = now - ms;
+        data = data.filter((s) => new Date(s.created_at).getTime() >= cutoff);
       }
 
-      if (view === "total_scores") {
-        const rows = (data ?? []) as unknown as TotalScoreViewRow[];
-        setScores(
-          rows.map((row) => ({
-            id: `${row.game_slug}:${row.player_name}:${row.created_at ?? ""}`,
-            game_slug: row.game_slug,
-            player_name: row.player_name,
-            score: Number(row.score),
-            created_at: row.created_at ?? new Date(0).toISOString(),
-          }))
-        );
-      } else {
-        const rows = (data ?? []) as unknown as DailyScoreViewRow[];
-        setScores(
-          rows.map((row) => ({
-            id: `${row.game_slug}:${row.player_name}:${row.day}`,
-            game_slug: row.game_slug,
-            player_name: row.player_name,
-            score: Number(row.score),
-            created_at: row.created_at ?? new Date(0).toISOString(),
-          }))
-        );
-      }
+      setScores(data);
       setStatus("idle");
     }
 
-    loadScores(client);
-
+    load();
     return () => {
       cancelled = true;
     };
-  }, [gameSlug, period, since]);
+  }, [gameSlug, period]);
+
+  // Re-fetch my best for the leaderboard submit refresh
+  useEffect(() => {
+    try {
+      const name = window.localStorage.getItem("player_name");
+      if (name) {
+        getMyBest(gameSlug, name).then((best) => {
+          if (best > 0) {
+            window.localStorage.setItem(`best_score:${gameSlug}`, String(best));
+          }
+        });
+      }
+    } catch {
+      // ignore
+    }
+  }, [gameSlug, scores]);
 
   return (
     <section className="bg-slate-900 rounded-2xl p-6 space-y-4 border border-slate-800">
@@ -172,8 +105,7 @@ export default function GameLeaderboard({ gameSlug }: { gameSlug: string }) {
       </div>
 
       {status === "loading" ? <p className="text-slate-400">Loading...</p> : null}
-      {unavailable ? <p className="text-slate-400">Leaderboard unavailable.</p> : null}
-      {status === "error" && !unavailable ? <p className="text-slate-400">Failed to load leaderboard.</p> : null}
+      {status === "error" ? <p className="text-slate-400">Failed to load leaderboard.</p> : null}
       {status === "idle" && scores.length === 0 ? <p className="text-slate-400">No scores yet.</p> : null}
 
       <div className="space-y-2">

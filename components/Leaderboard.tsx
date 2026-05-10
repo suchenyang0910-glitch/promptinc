@@ -2,64 +2,25 @@
 
 import { useEffect, useState } from "react";
 
-import { supabase } from "@/lib/supabase";
-
-type ScoreRow = {
-  id: string;
-  game_slug: string;
-  player_name: string;
-  score: number;
-  created_at?: string;
-};
-
-type TotalScoreViewRow = {
-  game_slug: string;
-  player_name: string;
-  score: number;
-  created_at: string | null;
-};
+import { getTopScores } from "@/lib/leaderboard";
+import type { ScoreEntry } from "@/lib/leaderboard";
 
 export default function Leaderboard({ gameSlug, refreshKey }: { gameSlug: string; refreshKey: number }) {
-  const unavailable = !supabase;
-  const [scores, setScores] = useState<ScoreRow[]>([]);
+  const [scores, setScores] = useState<ScoreEntry[]>([]);
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
 
   useEffect(() => {
-    const client = supabase;
-    if (!client) return;
-
     let cancelled = false;
 
-    async function loadScores(client: NonNullable<typeof supabase>) {
+    async function load() {
       setStatus("loading");
-      const { data, error } = await client
-        .from("total_scores")
-        .select("game_slug, player_name, score, created_at")
-        .eq("game_slug", gameSlug)
-        .order("score", { ascending: false })
-        .limit(10);
-
+      const data = await getTopScores(gameSlug, 10);
       if (cancelled) return;
-
-      if (error) {
-        setStatus("error");
-        return;
-      }
-
-      const rows = (data ?? []) as TotalScoreViewRow[];
-      setScores(
-        rows.map((row) => ({
-          id: `${row.game_slug}:${row.player_name}`,
-          game_slug: row.game_slug,
-          player_name: row.player_name,
-          score: Number(row.score),
-          created_at: row.created_at ?? undefined,
-        }))
-      );
+      setScores(data);
       setStatus("idle");
     }
 
-    loadScores(client);
+    load();
     return () => {
       cancelled = true;
     };
@@ -70,8 +31,7 @@ export default function Leaderboard({ gameSlug, refreshKey }: { gameSlug: string
       <h2 className="text-2xl font-bold">Leaderboard</h2>
 
       {status === "loading" ? <p className="text-slate-400">Loading...</p> : null}
-      {unavailable ? <p className="text-slate-400">Leaderboard unavailable.</p> : null}
-      {status === "error" && !unavailable ? <p className="text-slate-400">Failed to load leaderboard.</p> : null}
+      {status === "error" ? <p className="text-slate-400">Failed to load leaderboard.</p> : null}
       {status === "idle" && scores.length === 0 ? <p className="text-slate-400">No scores yet.</p> : null}
 
       <div className="space-y-2">
