@@ -27,6 +27,11 @@ export default function SubmitScore({
   async function submitScore() {
     if (submitting) return;
 
+    if (!supabase) {
+      setMessage("Leaderboard is temporarily unavailable.");
+      return;
+    }
+
     const name = playerName.trim().slice(0, 20);
     if (!name) {
       setMessage("Please enter your name.");

@@ -49,6 +49,7 @@ function getPeriodSince(period: Period) {
 }
 
 export default function GameLeaderboard({ gameSlug }: { gameSlug: string }) {
+  const unavailable = !supabase;
   const [period, setPeriod] = useState<Period>("all");
   const [scores, setScores] = useState<ScoreRow[]>([]);
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
@@ -67,16 +68,19 @@ export default function GameLeaderboard({ gameSlug }: { gameSlug: string }) {
   }, [gameSlug]);
 
   useEffect(() => {
+    const client = supabase;
+    if (!client) return;
+
     let cancelled = false;
 
-    async function loadScores() {
+    async function loadScores(client: NonNullable<typeof supabase>) {
       setStatus("loading");
 
       let view: "total_scores" | "daily_scores" = "total_scores";
       if (period === "today") view = "daily_scores";
       if (period === "week") view = "daily_scores";
 
-      let query = supabase
+      let query = client
         .from(view)
         .select(view === "daily_scores" ? "game_slug, player_name, score, created_at, day" : "game_slug, player_name, score, created_at")
         .eq("game_slug", gameSlug)
@@ -121,7 +125,7 @@ export default function GameLeaderboard({ gameSlug }: { gameSlug: string }) {
       setStatus("idle");
     }
 
-    loadScores();
+    loadScores(client);
 
     return () => {
       cancelled = true;
@@ -168,7 +172,8 @@ export default function GameLeaderboard({ gameSlug }: { gameSlug: string }) {
       </div>
 
       {status === "loading" ? <p className="text-slate-400">Loading...</p> : null}
-      {status === "error" ? <p className="text-slate-400">Failed to load leaderboard.</p> : null}
+      {unavailable ? <p className="text-slate-400">Leaderboard unavailable.</p> : null}
+      {status === "error" && !unavailable ? <p className="text-slate-400">Failed to load leaderboard.</p> : null}
       {status === "idle" && scores.length === 0 ? <p className="text-slate-400">No scores yet.</p> : null}
 
       <div className="space-y-2">
