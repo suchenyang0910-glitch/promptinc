@@ -1,0 +1,30 @@
+{
+  "slug": "farminc",
+  "gameType": "idle",
+  "gameName": "FarmInc",
+  "description": "Plant crops, upgrade tools, and scale a modern farm business.",
+  "shortDescription": "Build a modern farming empire.",
+  "category": "Farming",
+  "tags": ["Farm", "Agriculture", "Tycoon", "Idle", "Clicker"],
+  "emoji": "🌾",
+  "currencyName": "Revenue",
+  "clickButtonText": "Harvest",
+  "seo": {
+    "title": "FarmInc - Free Farming Idle Game",
+    "description": "Play FarmInc, a free farming idle game. Harvest crops, upgrade equipment, and scale your farm in your browser."
+  },
+  "milestones": [
+    { "money": 1000, "title": "First Field" },
+    { "money": 10000, "title": "Barn Expansion" },
+    { "money": 100000, "title": "Tractor Fleet" },
+    { "money": 1000000, "title": "Agri Empire" }
+  ],
+  "upgrades": [
+    { "id": "seed_pack", "name": "Seed Pack", "baseCost": 40, "income": 1 },
+    { "id": "irrigation", "name": "Irrigation", "baseCost": 240, "income": 6 },
+    { "id": "tractor", "name": "Tractor", "baseCost": 1400, "income": 35 },
+    { "id": "greenhouse", "name": "Greenhouse", "baseCost": 9000, "income": 240 },
+    { "id": "distribution", "name": "Distribution Deal", "baseCost": 65000, "income": 1600 }
+  ]
+}
+

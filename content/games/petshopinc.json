@@ -1,0 +1,30 @@
+{
+  "slug": "petshopinc",
+  "gameType": "idle",
+  "gameName": "PetShopInc",
+  "description": "Stock supplies, care for pets, and build a friendly pet shop brand.",
+  "shortDescription": "Build a pet shop business.",
+  "category": "Pet Store",
+  "tags": ["Pets", "Retail", "Tycoon", "Idle", "Clicker"],
+  "emoji": "🐾",
+  "currencyName": "Profit",
+  "clickButtonText": "Help Customer",
+  "seo": {
+    "title": "PetShopInc - Free Pet Shop Idle Game",
+    "description": "Play PetShopInc, a free pet shop idle game. Stock supplies, care for pets, and grow your retail business."
+  },
+  "milestones": [
+    { "money": 800, "title": "First Adoption" },
+    { "money": 8000, "title": "Grooming Corner" },
+    { "money": 80000, "title": "Supply Warehouse" },
+    { "money": 800000, "title": "Pet Chain" }
+  ],
+  "upgrades": [
+    { "id": "pet_food", "name": "Pet Food", "baseCost": 40, "income": 1 },
+    { "id": "toys", "name": "Toys", "baseCost": 260, "income": 7 },
+    { "id": "grooming", "name": "Grooming", "baseCost": 1600, "income": 45 },
+    { "id": "vet_partner", "name": "Vet Partner", "baseCost": 11000, "income": 320 },
+    { "id": "chain_store", "name": "Chain Store", "baseCost": 76000, "income": 1950 }
+  ]
+}
+

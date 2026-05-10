@@ -1,0 +1,30 @@
+{
+  "slug": "factoryinc",
+  "gameType": "idle",
+  "gameName": "FactoryInc",
+  "description": "Automate lines, upgrade machines, and scale industrial production.",
+  "shortDescription": "Build an automated factory.",
+  "category": "Manufacturing",
+  "tags": ["Factory", "Automation", "Tycoon", "Idle", "Clicker"],
+  "emoji": "🏭",
+  "currencyName": "Output",
+  "clickButtonText": "Run Shift",
+  "seo": {
+    "title": "FactoryInc - Free Factory Idle Game",
+    "description": "Play FactoryInc, a free factory idle game. Automate production lines, upgrade machines, and scale output."
+  },
+  "milestones": [
+    { "money": 1500, "title": "Assembly Line" },
+    { "money": 15000, "title": "Automation" },
+    { "money": 150000, "title": "Smart Factory" },
+    { "money": 1500000, "title": "Industrial Giant" }
+  ],
+  "upgrades": [
+    { "id": "workbench", "name": "Workbench", "baseCost": 60, "income": 1 },
+    { "id": "conveyor", "name": "Conveyor Belt", "baseCost": 320, "income": 8 },
+    { "id": "robot_arm", "name": "Robot Arm", "baseCost": 1900, "income": 50 },
+    { "id": "quality_control", "name": "Quality Control", "baseCost": 14000, "income": 360 },
+    { "id": "supply_contract", "name": "Supply Contract", "baseCost": 98000, "income": 2400 }
+  ]
+}
+

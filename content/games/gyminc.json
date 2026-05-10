@@ -1,0 +1,30 @@
+{
+  "slug": "gyminc",
+  "gameType": "idle",
+  "gameName": "GymInc",
+  "description": "Sign up members, upgrade equipment, and scale a fitness brand.",
+  "shortDescription": "Build a fitness club empire.",
+  "category": "Fitness",
+  "tags": ["Gym", "Fitness", "Tycoon", "Idle", "Clicker"],
+  "emoji": "🏋️",
+  "currencyName": "Memberships",
+  "clickButtonText": "Sign Up",
+  "seo": {
+    "title": "GymInc - Free Gym Tycoon Idle Game",
+    "description": "Play GymInc, a free gym tycoon idle game. Sign up members, upgrade equipment, and grow your fitness business."
+  },
+  "milestones": [
+    { "money": 700, "title": "First Members" },
+    { "money": 7000, "title": "New Equipment" },
+    { "money": 70000, "title": "Personal Trainers" },
+    { "money": 700000, "title": "Fitness Franchise" }
+  ],
+  "upgrades": [
+    { "id": "basic_weights", "name": "Basic Weights", "baseCost": 35, "income": 1 },
+    { "id": "cardio_zone", "name": "Cardio Zone", "baseCost": 230, "income": 6 },
+    { "id": "trainer", "name": "Personal Trainer", "baseCost": 1500, "income": 40 },
+    { "id": "nutrition_bar", "name": "Nutrition Bar", "baseCost": 9800, "income": 280 },
+    { "id": "franchise", "name": "Franchise", "baseCost": 68000, "income": 1800 }
+  ]
+}
+

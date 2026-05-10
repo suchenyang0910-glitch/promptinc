@@ -1,0 +1,30 @@
+{
+  "slug": "themeparkinc",
+  "gameType": "idle",
+  "gameName": "ThemeParkInc",
+  "description": "Build rides, manage crowds, and scale a theme park business.",
+  "shortDescription": "Build a theme park empire.",
+  "category": "Theme Park",
+  "tags": ["Theme Park", "Rides", "Tycoon", "Idle", "Clicker"],
+  "emoji": "🎢",
+  "currencyName": "Tickets",
+  "clickButtonText": "Sell Ticket",
+  "seo": {
+    "title": "ThemeParkInc - Free Theme Park Idle Game",
+    "description": "Play ThemeParkInc, a free theme park idle game. Build rides, grow crowds, and scale your park."
+  },
+  "milestones": [
+    { "money": 1400, "title": "First Ride" },
+    { "money": 14000, "title": "Food Court" },
+    { "money": 140000, "title": "New Zone" },
+    { "money": 1400000, "title": "Park Empire" }
+  ],
+  "upgrades": [
+    { "id": "carousel", "name": "Carousel", "baseCost": 55, "income": 1 },
+    { "id": "rollercoaster", "name": "Roller Coaster", "baseCost": 420, "income": 12 },
+    { "id": "arcade", "name": "Arcade", "baseCost": 2400, "income": 65 },
+    { "id": "staff", "name": "Park Staff", "baseCost": 16000, "income": 400 },
+    { "id": "expansion", "name": "Park Expansion", "baseCost": 120000, "income": 2800 }
+  ]
+}
+
