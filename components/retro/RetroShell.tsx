@@ -87,14 +87,6 @@ export default function RetroShell({
         <div className="flex gap-3">
           <button
             type="button"
-            onClick={onPrimary}
-            data-testid="retro-primary"
-            className="flex-1 bg-blue-600 hover:bg-blue-500 rounded-xl py-3 font-bold"
-          >
-            {primaryLabel}
-          </button>
-          <button
-            type="button"
             onClick={() => {
               track("game_reset", { game_slug: game.slug });
               onReset();
@@ -102,6 +94,14 @@ export default function RetroShell({
             className="bg-red-900 hover:bg-red-800 rounded-xl px-4 py-3 font-bold"
           >
             Reset
+          </button>
+          <button
+            type="button"
+            onClick={onPrimary}
+            data-testid="retro-primary"
+            className="flex-1 bg-blue-600 hover:bg-blue-500 rounded-xl py-3 font-bold"
+          >
+            {primaryLabel}
           </button>
         </div>
 
