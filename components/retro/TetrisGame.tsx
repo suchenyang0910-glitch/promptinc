@@ -187,17 +187,17 @@ export default function TetrisGame({ game }: { game: GameConfig }) {
         </button>
         <button
           type="button"
-          onClick={() => tryMove("RIGHT")}
-          className="bg-slate-800 hover:bg-slate-700 rounded-xl py-3 text-xl"
-        >
-          →
-        </button>
-        <button
-          type="button"
           onClick={() => tryMove("DOWN")}
           className="bg-slate-800 hover:bg-slate-700 rounded-xl py-3 text-xl"
         >
           ↓
+        </button>
+        <button
+          type="button"
+          onClick={() => tryMove("RIGHT")}
+          className="bg-slate-800 hover:bg-slate-700 rounded-xl py-3 text-xl"
+        >
+          →
         </button>
         <button
           type="button"
