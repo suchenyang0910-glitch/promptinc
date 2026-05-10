@@ -177,7 +177,7 @@ export default function TetrisGame({ game }: { game: GameConfig }) {
         <canvas ref={canvasRef} width={W * CELL} height={H * CELL} className="block w-full h-auto" />
       </div>
 
-      <div className="grid grid-cols-5 gap-2 max-w-sm mx-auto">
+      <div className="grid grid-cols-4 gap-2 max-w-sm mx-auto">
         <button
           type="button"
           onClick={() => tryMove("LEFT")}
@@ -202,16 +202,9 @@ export default function TetrisGame({ game }: { game: GameConfig }) {
         <button
           type="button"
           onClick={rotate}
-          className="bg-slate-800 hover:bg-slate-700 rounded-xl py-3 text-sm font-bold"
+          className="bg-red-900 hover:bg-red-800 rounded-xl py-3 text-sm font-bold"
         >
           Rotate
-        </button>
-        <button
-          type="button"
-          onClick={hardDrop}
-          className="bg-purple-700 hover:bg-purple-600 rounded-xl py-3 text-sm font-bold"
-        >
-          Drop
         </button>
       </div>
     </RetroShell>
