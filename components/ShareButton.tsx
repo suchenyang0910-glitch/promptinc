@@ -1,6 +1,28 @@
 "use client";
 
 export default function ShareButton({ gameSlug }: { gameSlug: string }) {
+  async function fallbackShare(url: string) {
+    try {
+      await navigator.clipboard.writeText(url);
+      window.alert("Game link copied!");
+      return;
+    } catch {
+      // ignore
+    }
+
+    const tgUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(
+      "Play this game on PromptInc"
+    )}`;
+    try {
+      window.open(tgUrl, "_blank", "noreferrer");
+      return;
+    } catch {
+      // ignore
+    }
+
+    window.prompt("Copy this link:", url);
+  }
+
   async function shareGame() {
     const url = window.location.origin + `/games/${gameSlug}`;
     const shareData = {
@@ -9,21 +31,16 @@ export default function ShareButton({ gameSlug }: { gameSlug: string }) {
       url,
     };
 
-    if (navigator.share) {
+    if (navigator.share && (!navigator.canShare || navigator.canShare(shareData))) {
       try {
         await navigator.share(shareData);
       } catch {
-        return;
+        await fallbackShare(url);
       }
       return;
     }
 
-    try {
-      await navigator.clipboard.writeText(url);
-      window.alert("Game link copied!");
-    } catch {
-      window.prompt("Copy this link:", url);
-    }
+    await fallbackShare(url);
   }
 
   return (
