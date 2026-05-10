@@ -15,7 +15,7 @@ function isObject(v: unknown): v is Record<string, unknown> {
 export async function POST(req: Request) {
   const supabase = getServerSupabase();
   if (!supabase) {
-    return NextResponse.json({ error: "Leaderboard unavailable" }, { status: 503 });
+    return NextResponse.json({ error: "Leaderboard unavailable (missing Supabase env)" }, { status: 503 });
   }
 
   let body: unknown;
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
     .single();
 
   if (error) {
-    return NextResponse.json({ error: "Submit failed" }, { status: 500 });
+    return NextResponse.json({ error: "Submit failed", code: error.code }, { status: 500 });
   }
 
   return NextResponse.json({ id: data.id, created_at: data.created_at });

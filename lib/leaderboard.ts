@@ -13,21 +13,38 @@ export type ScoreEntry = {
   created_at: string;
 };
 
+export type SubmitScoreResult =
+  | { ok: true; id: number; created_at: string }
+  | { ok: false; error: string };
+
+type SubmitScoreErrorBody = { error?: unknown };
+type SubmitScoreOkBody = { id: number; created_at: string };
+
 export async function submitScore(
   gameSlug: string,
   playerName: string,
   score: number
-): Promise<{ id: number; created_at: string } | null> {
+): Promise<SubmitScoreResult> {
   try {
     const res = await fetch(`${API_BASE}/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ game_slug: gameSlug, player_name: playerName, score: Math.floor(score) }),
     });
-    if (!res.ok) return null;
-    return await res.json();
+    let data: SubmitScoreErrorBody | SubmitScoreOkBody | null = null;
+    try {
+      data = (await res.json()) as SubmitScoreErrorBody | SubmitScoreOkBody;
+    } catch {
+      data = null;
+    }
+    if (!res.ok) {
+      const msg = typeof data?.error === "string" ? data.error : `Submit failed (${res.status})`;
+      return { ok: false, error: msg };
+    }
+    const okBody = data as SubmitScoreOkBody | null;
+    return { ok: true, id: okBody?.id ?? 0, created_at: okBody?.created_at ?? new Date().toISOString() };
   } catch {
-    return null;
+    return { ok: false, error: "Submit failed (network error)" };
   }
 }
 

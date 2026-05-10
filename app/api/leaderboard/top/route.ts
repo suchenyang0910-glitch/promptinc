@@ -12,7 +12,7 @@ type TotalScoreRow = {
 export async function GET(req: Request) {
   const supabase = getServerSupabase();
   if (!supabase) {
-    return NextResponse.json({ error: "Leaderboard unavailable" }, { status: 503 });
+    return NextResponse.json({ error: "Leaderboard unavailable (missing Supabase env)" }, { status: 503 });
   }
 
   const { searchParams } = new URL(req.url);

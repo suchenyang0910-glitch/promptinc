@@ -38,8 +38,8 @@ export default function SubmitScore({
 
     const result = await submitScoreApi(gameSlug, name, score);
 
-    if (!result) {
-      setMessage("Submit failed.");
+    if (!result.ok) {
+      setMessage(result.error || "Submit failed.");
       setSubmitting(false);
       return;
     }
