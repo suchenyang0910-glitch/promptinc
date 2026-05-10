@@ -111,6 +111,19 @@ export default function TetrisGame({ game }: { game: GameConfig }) {
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
+      const key = e.key;
+
+      if (key === "r" || key === "R") {
+        doReset();
+        return;
+      }
+
+      if (key === "p" || key === "P") {
+        if (gameOver) doReset();
+        setRunning((v) => !v);
+        return;
+      }
+
       if (e.key === "Enter") {
         if (gameOver) doReset();
         setRunning((v) => !v);
@@ -118,11 +131,12 @@ export default function TetrisGame({ game }: { game: GameConfig }) {
       }
 
       if (!running) return;
-      if (e.key === "ArrowLeft") tryMove("LEFT");
-      if (e.key === "ArrowRight") tryMove("RIGHT");
-      if (e.key === "ArrowDown") tryMove("DOWN");
-      if (e.key === "ArrowUp") rotate();
-      if (e.key === " ") hardDrop();
+
+      if (key === "ArrowLeft" || key === "a" || key === "A") tryMove("LEFT");
+      if (key === "ArrowRight" || key === "d" || key === "D") tryMove("RIGHT");
+      if (key === "ArrowDown" || key === "s" || key === "S") tryMove("DOWN");
+      if (key === "ArrowUp" || key === "w" || key === "W") rotate();
+      if (key === " ") hardDrop();
     }
 
     window.addEventListener("keydown", onKey);
@@ -157,7 +171,7 @@ export default function TetrisGame({ game }: { game: GameConfig }) {
         setRunning((v) => !v);
       }}
       onReset={doReset}
-      hint="Desktop: arrows + space. Mobile: use buttons."
+      hint="Desktop: arrows/WASD + space. P: pause. R: reset. Mobile: use buttons."
     >
       <div className="mx-auto w-full max-w-[360px] overflow-hidden rounded-xl border border-slate-700">
         <canvas ref={canvasRef} width={W * CELL} height={H * CELL} className="block w-full h-auto" />
