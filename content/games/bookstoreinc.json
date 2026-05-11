@@ -5,26 +5,69 @@
   "description": "Stock bestsellers, host events, and grow a cozy bookstore business.",
   "shortDescription": "Build a cozy bookstore empire.",
   "category": "Retail",
-  "tags": ["Books", "Retail", "Tycoon", "Idle", "Clicker"],
-  "emoji": "📚",
+  "tags": [
+    "Books",
+    "Retail",
+    "Tycoon",
+    "Idle",
+    "Clicker"
+  ],
+  "emoji": "\ud83d\udcda",
   "currencyName": "Sales",
   "clickButtonText": "Sell Book",
   "seo": {
     "title": "BookstoreInc - Free Bookstore Idle Game",
-    "description": "Play BookstoreInc, a free bookstore idle game. Sell books, host events, and grow your retail business."
+    "description": "Play BookstoreInc, a free bookstore idle game. Sell books, host events, and grow your retail business.",
+    "keywords": "play BookstoreInc online free, Retail game, Books, Retail, Tycoon, Idle, Clicker, free online game, browser game"
   },
   "milestones": [
-    { "money": 900, "title": "First Shelf" },
-    { "money": 9000, "title": "Author Event" },
-    { "money": 90000, "title": "Second Floor" },
-    { "money": 900000, "title": "Book Chain" }
+    {
+      "money": 900,
+      "title": "First Shelf"
+    },
+    {
+      "money": 9000,
+      "title": "Author Event"
+    },
+    {
+      "money": 90000,
+      "title": "Second Floor"
+    },
+    {
+      "money": 900000,
+      "title": "Book Chain"
+    }
   ],
   "upgrades": [
-    { "id": "paperbacks", "name": "Paperbacks", "baseCost": 40, "income": 1 },
-    { "id": "bestsellers", "name": "Bestsellers", "baseCost": 260, "income": 7 },
-    { "id": "cafe_corner", "name": "Cafe Corner", "baseCost": 1700, "income": 44 },
-    { "id": "online_store", "name": "Online Store", "baseCost": 12000, "income": 320 },
-    { "id": "distribution", "name": "Distribution", "baseCost": 75000, "income": 1900 }
+    {
+      "id": "paperbacks",
+      "name": "Paperbacks",
+      "baseCost": 40,
+      "income": 1
+    },
+    {
+      "id": "bestsellers",
+      "name": "Bestsellers",
+      "baseCost": 260,
+      "income": 7
+    },
+    {
+      "id": "cafe_corner",
+      "name": "Cafe Corner",
+      "baseCost": 1700,
+      "income": 44
+    },
+    {
+      "id": "online_store",
+      "name": "Online Store",
+      "baseCost": 12000,
+      "income": 320
+    },
+    {
+      "id": "distribution",
+      "name": "Distribution",
+      "baseCost": 75000,
+      "income": 1900
+    }
   ]
 }
-

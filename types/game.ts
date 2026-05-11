@@ -38,6 +38,8 @@ export type LuckConfig = {
 export type SeoConfig = {
   title: string;
   description: string;
+  /** Comma-separated keywords for meta tags */
+  keywords?: string;
 };
 
 export type GameConfig = {

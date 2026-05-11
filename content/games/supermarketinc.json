@@ -5,26 +5,69 @@
   "description": "Stock aisles, optimize logistics, and build a supermarket chain.",
   "shortDescription": "Build a supermarket chain.",
   "category": "Grocery",
-  "tags": ["Grocery", "Retail", "Logistics", "Idle", "Tycoon"],
-  "emoji": "🛒",
+  "tags": [
+    "Grocery",
+    "Retail",
+    "Logistics",
+    "Idle",
+    "Tycoon"
+  ],
+  "emoji": "\ud83d\uded2",
   "currencyName": "Sales",
   "clickButtonText": "Checkout",
   "seo": {
     "title": "SupermarketInc - Free Supermarket Idle Game",
-    "description": "Play SupermarketInc, a free supermarket idle game. Stock aisles, optimize supply, and scale your chain."
+    "description": "Play SupermarketInc, a free supermarket idle game. Stock aisles, optimize supply, and scale your chain.",
+    "keywords": "play SupermarketInc online free, Grocery game, Grocery, Retail, Logistics, Idle, Tycoon, free online game, browser game"
   },
   "milestones": [
-    { "money": 1000, "title": "First Aisle" },
-    { "money": 10000, "title": "Fresh Produce" },
-    { "money": 100000, "title": "Warehouse" },
-    { "money": 1000000, "title": "National Chain" }
+    {
+      "money": 1000,
+      "title": "First Aisle"
+    },
+    {
+      "money": 10000,
+      "title": "Fresh Produce"
+    },
+    {
+      "money": 100000,
+      "title": "Warehouse"
+    },
+    {
+      "money": 1000000,
+      "title": "National Chain"
+    }
   ],
   "upgrades": [
-    { "id": "checkout_lane", "name": "Checkout Lane", "baseCost": 45, "income": 1 },
-    { "id": "fresh", "name": "Fresh Section", "baseCost": 300, "income": 8 },
-    { "id": "delivery", "name": "Home Delivery", "baseCost": 1800, "income": 50 },
-    { "id": "warehouse", "name": "Warehouse", "baseCost": 12000, "income": 320 },
-    { "id": "chain", "name": "New Store", "baseCost": 85000, "income": 2200 }
+    {
+      "id": "checkout_lane",
+      "name": "Checkout Lane",
+      "baseCost": 45,
+      "income": 1
+    },
+    {
+      "id": "fresh",
+      "name": "Fresh Section",
+      "baseCost": 300,
+      "income": 8
+    },
+    {
+      "id": "delivery",
+      "name": "Home Delivery",
+      "baseCost": 1800,
+      "income": 50
+    },
+    {
+      "id": "warehouse",
+      "name": "Warehouse",
+      "baseCost": 12000,
+      "income": 320
+    },
+    {
+      "id": "chain",
+      "name": "New Store",
+      "baseCost": 85000,
+      "income": 2200
+    }
   ]
 }
-

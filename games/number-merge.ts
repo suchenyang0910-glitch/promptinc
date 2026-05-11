@@ -17,6 +17,11 @@ export const numberMerge: GameConfig = {
     { q: "How do I score points?", a: "You gain points equal to the value created by each merge." },
     { q: "When does the game end?", a: "Game Over happens when no moves are possible." },
   ],
+  seo: {
+    title: "Number Merge - Free Online Puzzle Game",
+    description: "Play Number Merge online for free. Free browser-based game by PromptInc.",
+    keywords: "play Number Merge online free, Number Merge game, Puzzle game, free online game, browser game, promptinc",
+  },
   milestones: [
     { money: 200, title: "First Merge" },
     { money: 1000, title: "On a Roll" },

@@ -5,26 +5,69 @@
   "description": "Mine asteroids, buy drones, and scale a space mining corporation.",
   "shortDescription": "Build a space mining corporation.",
   "category": "Space Mining",
-  "tags": ["Space", "Mining", "Tycoon", "Idle", "Clicker"],
-  "emoji": "🪐",
+  "tags": [
+    "Space",
+    "Mining",
+    "Tycoon",
+    "Idle",
+    "Clicker"
+  ],
+  "emoji": "\ud83e\ude90",
   "currencyName": "Credits",
   "clickButtonText": "Mine Asteroid",
   "seo": {
     "title": "SpaceMinerInc - Free Space Miner Idle Game",
-    "description": "Play SpaceMinerInc, a free space miner idle game. Mine asteroids, unlock drones, upgrade ships, and grow your space tycoon empire."
+    "description": "Play SpaceMinerInc, a free space miner idle game. Mine asteroids, unlock drones, upgrade ships, and grow your space tycoon empire.",
+    "keywords": "play SpaceMinerInc online free, Space Mining game, Space, Mining, Tycoon, Idle, Clicker, free online game, browser game"
   },
   "milestones": [
-    { "money": 1500, "title": "First Ore" },
-    { "money": 15000, "title": "Drone Fleet" },
-    { "money": 150000, "title": "Orbital Refinery" },
-    { "money": 1500000, "title": "Interstellar Corp" }
+    {
+      "money": 1500,
+      "title": "First Ore"
+    },
+    {
+      "money": 15000,
+      "title": "Drone Fleet"
+    },
+    {
+      "money": 150000,
+      "title": "Orbital Refinery"
+    },
+    {
+      "money": 1500000,
+      "title": "Interstellar Corp"
+    }
   ],
   "upgrades": [
-    { "id": "mining_laser", "name": "Mining Laser", "baseCost": 60, "income": 1 },
-    { "id": "drone_swarm", "name": "Drone Swarm", "baseCost": 320, "income": 8 },
-    { "id": "cargo_ship", "name": "Cargo Ship", "baseCost": 1800, "income": 45 },
-    { "id": "orbital_refinery", "name": "Orbital Refinery", "baseCost": 12000, "income": 280 },
-    { "id": "deep_space_contracts", "name": "Deep Space Contracts", "baseCost": 80000, "income": 1800 }
+    {
+      "id": "mining_laser",
+      "name": "Mining Laser",
+      "baseCost": 60,
+      "income": 1
+    },
+    {
+      "id": "drone_swarm",
+      "name": "Drone Swarm",
+      "baseCost": 320,
+      "income": 8
+    },
+    {
+      "id": "cargo_ship",
+      "name": "Cargo Ship",
+      "baseCost": 1800,
+      "income": 45
+    },
+    {
+      "id": "orbital_refinery",
+      "name": "Orbital Refinery",
+      "baseCost": 12000,
+      "income": 280
+    },
+    {
+      "id": "deep_space_contracts",
+      "name": "Deep Space Contracts",
+      "baseCost": 80000,
+      "income": 1800
+    }
   ]
 }
-

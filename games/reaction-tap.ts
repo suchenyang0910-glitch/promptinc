@@ -17,6 +17,11 @@ export const reactionTap: GameConfig = {
     { q: "How do I score?", a: "Each hit adds points. Keeping a streak gives a small bonus." },
     { q: "When does the game end?", a: "The round ends when the timer reaches 0." },
   ],
+  seo: {
+    title: "Reaction Tap - Free Online Arcade Game",
+    description: "Play Reaction Tap online for free. Free browser-based game by PromptInc.",
+    keywords: "play Reaction Tap online free, Reaction Tap game, Arcade game, free online game, browser game, promptinc",
+  },
   milestones: [
     { money: 200, title: "Nice Reflex" },
     { money: 600, title: "Quick Hands" },

@@ -8,6 +8,8 @@ import Footer from "@/components/Footer";
 import GameMountClient from "@/components/GameMountClient";
 import GamePageStats from "@/components/GamePageStats";
 import GameSeoContent from "@/components/GameSeoContent";
+import NativeAdBar from "@/components/NativeAdBar";
+import TgPromoBar from "@/components/TgPromoBar";
 import { games } from "@/games";
 import { categoryToSlug } from "@/lib/categories";
 import { tagToSlug } from "@/lib/tags";
@@ -35,6 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description,
+    keywords: game.seo?.keywords ?? [...(game.tags ?? []), ...game.category.split(/[\s,/]+/), game.gameName].join(", "),
     alternates: {
       canonical: `/games/${game.slug}`,
     },
@@ -217,6 +220,12 @@ export default async function GameSlugPage({ params }: PageProps) {
 
         <AdSlot variant="banner" slot={`${game.slug}-bottom`} />
 
+        {/* Native ad below game */}
+        <NativeAdBar />
+
+        {/* TG channel promotion */}
+        <TgPromoBar gameName={game.gameName} />
+
         <section className="bg-slate-900 rounded-2xl p-6 space-y-4">
           <h2 className="text-2xl font-bold">About {game.gameName}</h2>
           <p className="text-slate-300">{game.description}</p>
@@ -274,6 +283,12 @@ export default async function GameSlugPage({ params }: PageProps) {
               ))}
           </div>
         </section>
+
+        {/* Native ad after related games */}
+        <NativeAdBar />
+
+        {/* TG channel promotion (second call-to-action) */}
+        <TgPromoBar gameName={game.gameName} />
 
         <AdSlot variant="inline" slot={`${game.slug}-after-related`} />
 

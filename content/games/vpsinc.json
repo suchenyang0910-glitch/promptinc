@@ -5,26 +5,70 @@
   "description": "Run a hosting company, deploy servers, and grow your cloud infrastructure business.",
   "shortDescription": "Build a hosting empire.",
   "category": "Hosting",
-  "tags": ["Hosting", "VPS", "Cloud", "Tycoon", "Idle", "Clicker"],
-  "emoji": "🖥️",
+  "tags": [
+    "Hosting",
+    "VPS",
+    "Cloud",
+    "Tycoon",
+    "Idle",
+    "Clicker"
+  ],
+  "emoji": "\ud83d\udda5\ufe0f",
   "currencyName": "ARR",
   "clickButtonText": "Provision Server",
   "seo": {
     "title": "VPSInc - Free Hosting Tycoon Idle Game",
-    "description": "Play VPSInc, a free hosting tycoon idle game. Provision servers, optimize uptime, and scale your cloud business in your browser."
+    "description": "Play VPSInc, a free hosting tycoon idle game. Provision servers, optimize uptime, and scale your cloud business in your browser.",
+    "keywords": "play VPSInc online free, Hosting game, Hosting, VPS, Cloud, Tycoon, Idle, Clicker, free online game, browser game"
   },
   "milestones": [
-    { "money": 2000, "title": "First Rack" },
-    { "money": 20000, "title": "Datacenter" },
-    { "money": 200000, "title": "Global CDN" },
-    { "money": 2000000, "title": "Cloud Giant" }
+    {
+      "money": 2000,
+      "title": "First Rack"
+    },
+    {
+      "money": 20000,
+      "title": "Datacenter"
+    },
+    {
+      "money": 200000,
+      "title": "Global CDN"
+    },
+    {
+      "money": 2000000,
+      "title": "Cloud Giant"
+    }
   ],
   "upgrades": [
-    { "id": "starter_vps", "name": "Starter VPS", "baseCost": 60, "income": 1 },
-    { "id": "automation", "name": "Automation Scripts", "baseCost": 360, "income": 9 },
-    { "id": "monitoring", "name": "Monitoring", "baseCost": 2200, "income": 55 },
-    { "id": "datacenter_deal", "name": "Datacenter Deal", "baseCost": 15000, "income": 340 },
-    { "id": "global_network", "name": "Global Network", "baseCost": 100000, "income": 2200 }
+    {
+      "id": "starter_vps",
+      "name": "Starter VPS",
+      "baseCost": 60,
+      "income": 1
+    },
+    {
+      "id": "automation",
+      "name": "Automation Scripts",
+      "baseCost": 360,
+      "income": 9
+    },
+    {
+      "id": "monitoring",
+      "name": "Monitoring",
+      "baseCost": 2200,
+      "income": 55
+    },
+    {
+      "id": "datacenter_deal",
+      "name": "Datacenter Deal",
+      "baseCost": 15000,
+      "income": 340
+    },
+    {
+      "id": "global_network",
+      "name": "Global Network",
+      "baseCost": 100000,
+      "income": 2200
+    }
   ]
 }
-

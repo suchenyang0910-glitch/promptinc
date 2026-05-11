@@ -17,6 +17,11 @@ export const wordConnect: GameConfig = {
     { q: "How do I score?", a: "Each new target word gives points. Finish early for a time bonus." },
     { q: "When does the game end?", a: "You win by finding all target words, or lose when the timer hits 0." },
   ],
+  seo: {
+    title: "Word Connect - Free Online Word Game",
+    description: "Play Word Connect online for free. Free browser-based game by PromptInc.",
+    keywords: "play Word Connect online free, Word Connect game, Word game, free online game, browser game, promptinc",
+  },
   milestones: [
     { money: 200, title: "First Word" },
     { money: 700, title: "Warm Up" },

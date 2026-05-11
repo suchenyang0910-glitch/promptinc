@@ -16,6 +16,11 @@ export const tileMatch: GameConfig = {
     { q: "Is it mobile-friendly?", a: "Yes. Tap tiles to flip them and match pairs." },
     { q: "How do I get a higher score?", a: "Match quickly and avoid mismatches to maximize your score." },
   ],
+  seo: {
+    title: "Tile Match - Free Online Retro Arcade Game",
+    description: "Play Tile Match online for free. Free browser-based game by PromptInc.",
+    keywords: "play Tile Match online free, Tile Match game, Retro Arcade game, free online game, browser game, promptinc",
+  },
   milestones: [
     { money: 50, title: "First Pairs" },
     { money: 150, title: "Good Memory" },

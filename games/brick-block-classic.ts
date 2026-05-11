@@ -17,6 +17,11 @@ export const brickBlockClassic: GameConfig = {
     { q: "Does it work on mobile?", a: "Yes. Use the on-screen buttons to move, rotate, and drop blocks." },
     { q: "How is score calculated?", a: "You gain points by placing blocks and clearing lines. More lines = more points." },
   ],
+  seo: {
+    title: "Block Stack - Free Online Retro Arcade Game",
+    description: "Play Block Stack online for free. Free browser-based game by PromptInc.",
+    keywords: "play Block Stack online free, Block Stack game, Retro Arcade game, free online game, browser game, promptinc",
+  },
   milestones: [
     { money: 200, title: "Warm Up" },
     { money: 800, title: "Line Cleaner" },

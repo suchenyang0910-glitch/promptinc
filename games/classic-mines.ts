@@ -16,6 +16,11 @@ export const classicMines: GameConfig = {
     { q: "How do I flag mines on mobile?", a: "Toggle Flag Mode, then tap tiles to place/remove flags." },
     { q: "How is score calculated?", a: "Score increases as you reveal safe tiles. Hitting a mine ends the run." },
   ],
+  seo: {
+    title: "Classic Mines - Free Online Retro Arcade Game",
+    description: "Play Classic Mines online for free. Free browser-based game by PromptInc.",
+    keywords: "play Classic Mines online free, Classic Mines game, Retro Arcade game, free online game, browser game, promptinc",
+  },
   milestones: [
     { money: 10, title: "Careful Start" },
     { money: 30, title: "Puzzle Solver" },

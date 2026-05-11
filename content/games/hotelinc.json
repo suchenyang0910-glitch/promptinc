@@ -5,26 +5,69 @@
   "description": "Manage rooms, upgrade amenities, and build a hotel chain.",
   "shortDescription": "Build a hotel chain.",
   "category": "Hospitality",
-  "tags": ["Hotel", "Hospitality", "Tycoon", "Idle", "Clicker"],
-  "emoji": "🏨",
+  "tags": [
+    "Hotel",
+    "Hospitality",
+    "Tycoon",
+    "Idle",
+    "Clicker"
+  ],
+  "emoji": "\ud83c\udfe8",
   "currencyName": "Cash",
   "clickButtonText": "Check In Guest",
   "seo": {
     "title": "HotelInc - Free Hotel Tycoon Idle Game",
-    "description": "Play HotelInc, a free hotel tycoon idle game. Upgrade rooms, improve service, and scale your hospitality business."
+    "description": "Play HotelInc, a free hotel tycoon idle game. Upgrade rooms, improve service, and scale your hospitality business.",
+    "keywords": "play HotelInc online free, Hospitality game, Hotel, Hospitality, Tycoon, Idle, Clicker, free online game, browser game"
   },
   "milestones": [
-    { "money": 1200, "title": "Grand Opening" },
-    { "money": 12000, "title": "Fully Booked" },
-    { "money": 120000, "title": "Luxury Suites" },
-    { "money": 1200000, "title": "Global Chain" }
+    {
+      "money": 1200,
+      "title": "Grand Opening"
+    },
+    {
+      "money": 12000,
+      "title": "Fully Booked"
+    },
+    {
+      "money": 120000,
+      "title": "Luxury Suites"
+    },
+    {
+      "money": 1200000,
+      "title": "Global Chain"
+    }
   ],
   "upgrades": [
-    { "id": "front_desk", "name": "Front Desk", "baseCost": 50, "income": 1 },
-    { "id": "housekeeping", "name": "Housekeeping", "baseCost": 280, "income": 7 },
-    { "id": "room_upgrade", "name": "Room Upgrades", "baseCost": 1600, "income": 42 },
-    { "id": "spa", "name": "Spa", "baseCost": 11000, "income": 310 },
-    { "id": "second_property", "name": "Second Property", "baseCost": 82000, "income": 2100 }
+    {
+      "id": "front_desk",
+      "name": "Front Desk",
+      "baseCost": 50,
+      "income": 1
+    },
+    {
+      "id": "housekeeping",
+      "name": "Housekeeping",
+      "baseCost": 280,
+      "income": 7
+    },
+    {
+      "id": "room_upgrade",
+      "name": "Room Upgrades",
+      "baseCost": 1600,
+      "income": 42
+    },
+    {
+      "id": "spa",
+      "name": "Spa",
+      "baseCost": 11000,
+      "income": 310
+    },
+    {
+      "id": "second_property",
+      "name": "Second Property",
+      "baseCost": 82000,
+      "income": 2100
+    }
   ]
 }
-

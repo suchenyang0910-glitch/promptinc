@@ -17,6 +17,11 @@ export const memoryFlip: GameConfig = {
     { q: "How do I score?", a: "Matching pairs gives points. Completing the board adds a time bonus." },
     { q: "When does the game end?", a: "You win when all pairs are matched, or lose when time runs out." },
   ],
+  seo: {
+    title: "Memory Flip - Free Online Memory Game",
+    description: "Play Memory Flip online for free. Free browser-based game by PromptInc.",
+    keywords: "play Memory Flip online free, Memory Flip game, Memory game, free online game, browser game, promptinc",
+  },
   milestones: [
     { money: 300, title: "First Pair" },
     { money: 900, title: "Good Memory" },

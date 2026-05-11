@@ -5,26 +5,70 @@
   "description": "Build a game studio, ship hits, and scale a creative business.",
   "shortDescription": "Build a game studio business.",
   "category": "Game Studio",
-  "tags": ["Games", "Studio", "Business", "Tycoon", "Idle", "Clicker"],
-  "emoji": "🎮",
+  "tags": [
+    "Games",
+    "Studio",
+    "Business",
+    "Tycoon",
+    "Idle",
+    "Clicker"
+  ],
+  "emoji": "\ud83c\udfae",
   "currencyName": "Revenue",
   "clickButtonText": "Ship Update",
   "seo": {
     "title": "GameStudioInc - Free Game Studio Idle Game",
-    "description": "Play GameStudioInc, a free game studio idle game. Ship updates, hire devs, market releases, and grow your studio like a tycoon."
+    "description": "Play GameStudioInc, a free game studio idle game. Ship updates, hire devs, market releases, and grow your studio like a tycoon.",
+    "keywords": "play GameStudioInc online free, Game Studio game, Games, Studio, Business, Tycoon, Idle, Clicker, free online game, browser game"
   },
   "milestones": [
-    { "money": 800, "title": "First Prototype" },
-    { "money": 8000, "title": "First Release" },
-    { "money": 80000, "title": "Hit Game" },
-    { "money": 800000, "title": "Studio Empire" }
+    {
+      "money": 800,
+      "title": "First Prototype"
+    },
+    {
+      "money": 8000,
+      "title": "First Release"
+    },
+    {
+      "money": 80000,
+      "title": "Hit Game"
+    },
+    {
+      "money": 800000,
+      "title": "Studio Empire"
+    }
   ],
   "upgrades": [
-    { "id": "prototype_team", "name": "Prototype Team", "baseCost": 45, "income": 1 },
-    { "id": "dev_team", "name": "Dev Team", "baseCost": 260, "income": 7 },
-    { "id": "qa_pipeline", "name": "QA Pipeline", "baseCost": 1700, "income": 44 },
-    { "id": "marketing_campaign", "name": "Marketing Campaign", "baseCost": 11000, "income": 300 },
-    { "id": "publisher_deal", "name": "Publisher Deal", "baseCost": 78000, "income": 1900 }
+    {
+      "id": "prototype_team",
+      "name": "Prototype Team",
+      "baseCost": 45,
+      "income": 1
+    },
+    {
+      "id": "dev_team",
+      "name": "Dev Team",
+      "baseCost": 260,
+      "income": 7
+    },
+    {
+      "id": "qa_pipeline",
+      "name": "QA Pipeline",
+      "baseCost": 1700,
+      "income": 44
+    },
+    {
+      "id": "marketing_campaign",
+      "name": "Marketing Campaign",
+      "baseCost": 11000,
+      "income": 300
+    },
+    {
+      "id": "publisher_deal",
+      "name": "Publisher Deal",
+      "baseCost": 78000,
+      "income": 1900
+    }
   ]
 }
-

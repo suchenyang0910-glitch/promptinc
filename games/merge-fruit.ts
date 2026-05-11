@@ -16,6 +16,11 @@ export const mergeFruit: GameConfig = {
     { q: "Is it mobile-friendly?", a: "Yes. Use swipe gestures or on-screen controls." },
     { q: "When does the game end?", a: "The game ends when the board is full and no moves remain." },
   ],
+  seo: {
+    title: "Merge Fruit - Free Online Retro Arcade Game",
+    description: "Play Merge Fruit online for free. Free browser-based game by PromptInc.",
+    keywords: "play Merge Fruit online free, Merge Fruit game, Retro Arcade game, free online game, browser game, promptinc",
+  },
   milestones: [
     { money: 200, title: "First Merge" },
     { money: 800, title: "Combo" },

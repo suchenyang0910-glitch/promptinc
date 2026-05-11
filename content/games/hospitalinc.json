@@ -5,26 +5,69 @@
   "description": "Manage staff, upgrade equipment, and build a modern hospital.",
   "shortDescription": "Build a modern hospital.",
   "category": "Healthcare",
-  "tags": ["Hospital", "Healthcare", "Simulation", "Idle", "Tycoon"],
-  "emoji": "🏥",
+  "tags": [
+    "Hospital",
+    "Healthcare",
+    "Simulation",
+    "Idle",
+    "Tycoon"
+  ],
+  "emoji": "\ud83c\udfe5",
   "currencyName": "Funds",
   "clickButtonText": "Treat Patient",
   "seo": {
     "title": "HospitalInc - Free Hospital Idle Game",
-    "description": "Play HospitalInc, a free hospital idle game. Treat patients, upgrade equipment, and expand departments."
+    "description": "Play HospitalInc, a free hospital idle game. Treat patients, upgrade equipment, and expand departments.",
+    "keywords": "play HospitalInc online free, Healthcare game, Hospital, Healthcare, Simulation, Idle, Tycoon, free online game, browser game"
   },
   "milestones": [
-    { "money": 1500, "title": "ER Open" },
-    { "money": 15000, "title": "New Ward" },
-    { "money": 150000, "title": "Specialists" },
-    { "money": 1500000, "title": "Medical Center" }
+    {
+      "money": 1500,
+      "title": "ER Open"
+    },
+    {
+      "money": 15000,
+      "title": "New Ward"
+    },
+    {
+      "money": 150000,
+      "title": "Specialists"
+    },
+    {
+      "money": 1500000,
+      "title": "Medical Center"
+    }
   ],
   "upgrades": [
-    { "id": "triage", "name": "Triage Desk", "baseCost": 60, "income": 1 },
-    { "id": "nurses", "name": "Nursing Team", "baseCost": 360, "income": 9 },
-    { "id": "lab", "name": "Lab Equipment", "baseCost": 2200, "income": 60 },
-    { "id": "surgery", "name": "Surgery Wing", "baseCost": 15000, "income": 360 },
-    { "id": "research", "name": "Research Grants", "baseCost": 110000, "income": 2500 }
+    {
+      "id": "triage",
+      "name": "Triage Desk",
+      "baseCost": 60,
+      "income": 1
+    },
+    {
+      "id": "nurses",
+      "name": "Nursing Team",
+      "baseCost": 360,
+      "income": 9
+    },
+    {
+      "id": "lab",
+      "name": "Lab Equipment",
+      "baseCost": 2200,
+      "income": 60
+    },
+    {
+      "id": "surgery",
+      "name": "Surgery Wing",
+      "baseCost": 15000,
+      "income": 360
+    },
+    {
+      "id": "research",
+      "name": "Research Grants",
+      "baseCost": 110000,
+      "income": 2500
+    }
   ]
 }
-

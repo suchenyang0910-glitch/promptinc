@@ -17,6 +17,11 @@ export const retroAirStrike: GameConfig = {
     { q: "How do I shoot?", a: "Shooting is automatic while playing. Focus on movement and dodging." },
     { q: "When does it end?", a: "A collision with an enemy ends the game." },
   ],
+  seo: {
+    title: "Space Shooter X - Free Online Retro Arcade Game",
+    description: "Play Space Shooter X online for free. Free browser-based game by PromptInc.",
+    keywords: "play Space Shooter X online free, Space Shooter X game, Retro Arcade game, free online game, browser game, promptinc",
+  },
   milestones: [
     { money: 10, title: "First Down" },
     { money: 40, title: "Ace" },

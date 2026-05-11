@@ -17,6 +17,11 @@ export const brickBreaker: GameConfig = {
     { q: "When does the game end?", a: "The game ends when you lose all lives or the ball drops below the paddle." },
     { q: "How do I score points?", a: "Each brick you break adds points. Clear more to climb the leaderboard." },
   ],
+  seo: {
+    title: "Brick Smash - Free Online Retro Arcade Game",
+    description: "Play Brick Smash online for free. Free browser-based game by PromptInc.",
+    keywords: "play Brick Smash online free, Brick Smash game, Retro Arcade game, free online game, browser game, promptinc",
+  },
   milestones: [
     { money: 10, title: "First Hit" },
     { money: 50, title: "Brick Cracker" },

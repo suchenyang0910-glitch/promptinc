@@ -5,31 +5,83 @@
   "description": "Run a coffee shop, optimize upgrades, and build a caffeine empire.",
   "shortDescription": "Build a coffee shop empire.",
   "category": "Coffee Shop",
-  "tags": ["Cafe", "Coffee", "Tycoon", "Idle", "Clicker"],
-  "emoji": "☕",
+  "tags": [
+    "Cafe",
+    "Coffee",
+    "Tycoon",
+    "Idle",
+    "Clicker"
+  ],
+  "emoji": "\u2615",
   "currencyName": "Revenue",
   "clickButtonText": "Serve Coffee",
   "seo": {
     "title": "CoffeeInc - Free Coffee Shop Idle Game",
-    "description": "Play CoffeeInc, a free coffee shop idle game in your browser. Serve drinks, upgrade machines, hire staff, and scale your cafe."
+    "description": "Play CoffeeInc, a free coffee shop idle game in your browser. Serve drinks, upgrade machines, hire staff, and scale your cafe.",
+    "keywords": "play CoffeeInc online free, Coffee Shop game, Cafe, Coffee, Tycoon, Idle, Clicker, free online game, browser game"
   },
   "faq": [
-    { "q": "Is CoffeeInc free to play?", "a": "Yes. CoffeeInc is free and runs directly in your browser." },
-    { "q": "What should I upgrade first?", "a": "Start with upgrades that increase income per second, then reduce costs and boost click income." },
-    { "q": "Does CoffeeInc work on mobile?", "a": "Yes. It supports touch controls and mobile-friendly layout." }
+    {
+      "q": "Is CoffeeInc free to play?",
+      "a": "Yes. CoffeeInc is free and runs directly in your browser."
+    },
+    {
+      "q": "What should I upgrade first?",
+      "a": "Start with upgrades that increase income per second, then reduce costs and boost click income."
+    },
+    {
+      "q": "Does CoffeeInc work on mobile?",
+      "a": "Yes. It supports touch controls and mobile-friendly layout."
+    }
   ],
   "milestones": [
-    { "money": 1000, "title": "First Rush" },
-    { "money": 10000, "title": "Neighborhood Favorite" },
-    { "money": 100000, "title": "Roastery" },
-    { "money": 1000000, "title": "Coffee Chain" }
+    {
+      "money": 1000,
+      "title": "First Rush"
+    },
+    {
+      "money": 10000,
+      "title": "Neighborhood Favorite"
+    },
+    {
+      "money": 100000,
+      "title": "Roastery"
+    },
+    {
+      "money": 1000000,
+      "title": "Coffee Chain"
+    }
   ],
   "upgrades": [
-    { "id": "espresso_machine", "name": "Espresso Machine", "baseCost": 50, "income": 1 },
-    { "id": "barista", "name": "Barista", "baseCost": 250, "income": 6 },
-    { "id": "cold_brew_station", "name": "Cold Brew Station", "baseCost": 1200, "income": 30 },
-    { "id": "delivery_partners", "name": "Delivery Partners", "baseCost": 6000, "income": 160 },
-    { "id": "second_location", "name": "Second Location", "baseCost": 30000, "income": 900 }
+    {
+      "id": "espresso_machine",
+      "name": "Espresso Machine",
+      "baseCost": 50,
+      "income": 1
+    },
+    {
+      "id": "barista",
+      "name": "Barista",
+      "baseCost": 250,
+      "income": 6
+    },
+    {
+      "id": "cold_brew_station",
+      "name": "Cold Brew Station",
+      "baseCost": 1200,
+      "income": 30
+    },
+    {
+      "id": "delivery_partners",
+      "name": "Delivery Partners",
+      "baseCost": 6000,
+      "income": 160
+    },
+    {
+      "id": "second_location",
+      "name": "Second Location",
+      "baseCost": 30000,
+      "income": 900
+    }
   ]
 }
-

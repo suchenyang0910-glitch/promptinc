@@ -16,6 +16,11 @@ export const coinCatcher: GameConfig = {
     { q: "What ends the game?", a: "Missing too many coins ends the game." },
     { q: "How do I score?", a: "Each caught coin adds points. Try to build streaks." },
   ],
+  seo: {
+    title: "Coin Catcher - Free Online Retro Arcade Game",
+    description: "Play Coin Catcher online for free. Free browser-based game by PromptInc.",
+    keywords: "play Coin Catcher online free, Coin Catcher game, Retro Arcade game, free online game, browser game, promptinc",
+  },
   milestones: [
     { money: 10, title: "First Coin" },
     { money: 50, title: "Collector" },

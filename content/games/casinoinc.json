@@ -5,26 +5,69 @@
   "description": "Run tables, upgrade floors, and scale a casino resort business.",
   "shortDescription": "Build a casino empire.",
   "category": "Casino",
-  "tags": ["Casino", "Resort", "Tycoon", "Idle", "Clicker"],
-  "emoji": "🎰",
+  "tags": [
+    "Casino",
+    "Resort",
+    "Tycoon",
+    "Idle",
+    "Clicker"
+  ],
+  "emoji": "\ud83c\udfb0",
   "currencyName": "Chips",
   "clickButtonText": "Open Table",
   "seo": {
     "title": "CasinoInc - Free Casino Tycoon Idle Game",
-    "description": "Play CasinoInc, a free casino tycoon idle game. Open tables, upgrade floors, and scale your resort business."
+    "description": "Play CasinoInc, a free casino tycoon idle game. Open tables, upgrade floors, and scale your resort business.",
+    "keywords": "play CasinoInc online free, Casino game, Casino, Resort, Tycoon, Idle, Clicker, free online game, browser game"
   },
   "milestones": [
-    { "money": 2000, "title": "First Tables" },
-    { "money": 20000, "title": "VIP Room" },
-    { "money": 200000, "title": "Resort Expansion" },
-    { "money": 2000000, "title": "Casino Empire" }
+    {
+      "money": 2000,
+      "title": "First Tables"
+    },
+    {
+      "money": 20000,
+      "title": "VIP Room"
+    },
+    {
+      "money": 200000,
+      "title": "Resort Expansion"
+    },
+    {
+      "money": 2000000,
+      "title": "Casino Empire"
+    }
   ],
   "upgrades": [
-    { "id": "blackjack", "name": "Blackjack Tables", "baseCost": 70, "income": 1 },
-    { "id": "slots", "name": "Slot Machines", "baseCost": 420, "income": 11 },
-    { "id": "poker", "name": "Poker Room", "baseCost": 2600, "income": 70 },
-    { "id": "vip", "name": "VIP Lounge", "baseCost": 18000, "income": 420 },
-    { "id": "resort", "name": "Resort Wing", "baseCost": 140000, "income": 3000 }
+    {
+      "id": "blackjack",
+      "name": "Blackjack Tables",
+      "baseCost": 70,
+      "income": 1
+    },
+    {
+      "id": "slots",
+      "name": "Slot Machines",
+      "baseCost": 420,
+      "income": 11
+    },
+    {
+      "id": "poker",
+      "name": "Poker Room",
+      "baseCost": 2600,
+      "income": 70
+    },
+    {
+      "id": "vip",
+      "name": "VIP Lounge",
+      "baseCost": 18000,
+      "income": 420
+    },
+    {
+      "id": "resort",
+      "name": "Resort Wing",
+      "baseCost": 140000,
+      "income": 3000
+    }
   ]
 }
-

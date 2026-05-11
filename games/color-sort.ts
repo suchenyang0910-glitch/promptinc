@@ -17,6 +17,11 @@ export const colorSort: GameConfig = {
     { q: "What are valid moves?", a: "You can pour onto an empty tube or onto the same top color, if there is space." },
     { q: "When does the game end?", a: "You win when all colors are sorted. Game Over happens when time runs out." },
   ],
+  seo: {
+    title: "Color Sort - Free Online Puzzle Game",
+    description: "Play Color Sort online for free. Free browser-based game by PromptInc.",
+    keywords: "play Color Sort online free, Color Sort game, Puzzle game, free online game, browser game, promptinc",
+  },
   milestones: [
     { money: 500, title: "First Sort" },
     { money: 1500, title: "Clean Setup" },

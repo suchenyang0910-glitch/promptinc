@@ -5,26 +5,69 @@
   "description": "Wash cars, upgrade stations, and scale a fast car wash business.",
   "shortDescription": "Build a car wash chain.",
   "category": "Automotive",
-  "tags": ["Car", "Service", "Tycoon", "Idle", "Clicker"],
-  "emoji": "🚗",
+  "tags": [
+    "Car",
+    "Service",
+    "Tycoon",
+    "Idle",
+    "Clicker"
+  ],
+  "emoji": "\ud83d\ude97",
   "currencyName": "Cash",
   "clickButtonText": "Wash Car",
   "seo": {
     "title": "CarWashInc - Free Car Wash Idle Game",
-    "description": "Play CarWashInc, a free car wash idle game. Upgrade stations, hire staff, and grow your car wash chain."
+    "description": "Play CarWashInc, a free car wash idle game. Upgrade stations, hire staff, and grow your car wash chain.",
+    "keywords": "play CarWashInc online free, Automotive game, Car, Service, Tycoon, Idle, Clicker, free online game, browser game"
   },
   "milestones": [
-    { "money": 900, "title": "First Bay" },
-    { "money": 9000, "title": "Auto Brushes" },
-    { "money": 90000, "title": "Detailing" },
-    { "money": 900000, "title": "Regional Chain" }
+    {
+      "money": 900,
+      "title": "First Bay"
+    },
+    {
+      "money": 9000,
+      "title": "Auto Brushes"
+    },
+    {
+      "money": 90000,
+      "title": "Detailing"
+    },
+    {
+      "money": 900000,
+      "title": "Regional Chain"
+    }
   ],
   "upgrades": [
-    { "id": "soap", "name": "Soap", "baseCost": 40, "income": 1 },
-    { "id": "vacuum", "name": "Vacuum Station", "baseCost": 240, "income": 6 },
-    { "id": "auto_brushes", "name": "Auto Brushes", "baseCost": 1500, "income": 42 },
-    { "id": "detail_team", "name": "Detail Team", "baseCost": 9800, "income": 280 },
-    { "id": "second_location", "name": "Second Location", "baseCost": 69000, "income": 1800 }
+    {
+      "id": "soap",
+      "name": "Soap",
+      "baseCost": 40,
+      "income": 1
+    },
+    {
+      "id": "vacuum",
+      "name": "Vacuum Station",
+      "baseCost": 240,
+      "income": 6
+    },
+    {
+      "id": "auto_brushes",
+      "name": "Auto Brushes",
+      "baseCost": 1500,
+      "income": 42
+    },
+    {
+      "id": "detail_team",
+      "name": "Detail Team",
+      "baseCost": 9800,
+      "income": 280
+    },
+    {
+      "id": "second_location",
+      "name": "Second Location",
+      "baseCost": 69000,
+      "income": 1800
+    }
   ]
 }
-
