@@ -5,7 +5,6 @@ import Link from "next/link";
 import AdSlot from "@/components/AdSlot";
 import Footer from "@/components/Footer";
 import { games } from "@/games";
-import { getSiteBaseUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "PromptInc - Free AI Startup Simulator Online",
@@ -14,8 +13,6 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const baseUrl = getSiteBaseUrl();
-
   const jsonLdWebSite = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -56,32 +53,32 @@ export default function HomePage() {
         </p>
 
         <div>
-          <a
-            href={`${baseUrl}/games/promptinc`}
+          <Link
+            href="/games/promptinc"
             className="inline-block bg-blue-600 hover:bg-blue-500 px-8 py-4 rounded-xl text-xl font-bold"
           >
             Play Now
-          </a>
-          <a
-            href={`${baseUrl}/games`}
+          </Link>
+          <Link
+            href="/games"
             className="inline-block border border-slate-700 hover:bg-slate-800 px-8 py-4 rounded-xl text-xl font-bold ml-3"
           >
             Browse Games
-          </a>
+          </Link>
         </div>
 
         <div className="flex items-center justify-center gap-4 text-sm text-slate-400">
-          <a href={`${baseUrl}/categories`} className="hover:text-white">
+          <Link href="/categories" className="hover:text-white">
             Categories
-          </a>
+          </Link>
           <span className="text-slate-700">•</span>
-          <a href={`${baseUrl}/top`} className="hover:text-white">
+          <Link href="/top" className="hover:text-white">
             Top
-          </a>
+          </Link>
           <span className="text-slate-700">•</span>
-          <a href={`${baseUrl}/leaderboards`} className="hover:text-white">
+          <Link href="/leaderboards" className="hover:text-white">
             Leaderboards
-          </a>
+          </Link>
         </div>
       </section>
 
