@@ -1,0 +1,11 @@
+{
+  "slug": "free-business-games",
+  "title": "Free Business Games",
+  "description": "Browse free business games online: tycoon, management, and idle business simulators you can play in the browser.",
+  "keywords": ["free business games", "business simulator", "tycoon business game"],
+  "rules": {
+    "textAny": ["business", "company", "management", "tycoon"],
+    "tagsAny": ["Tycoon"]
+  }
+}
+

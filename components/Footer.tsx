@@ -6,6 +6,8 @@ const links = [
   { href: "/game", label: "Play" },
   { href: "/about", label: "About" },
   { href: "/top", label: "Top" },
+  { href: "/guides", label: "Guides" },
+  { href: "/faq", label: "FAQ" },
   { href: "/tags", label: "Tags" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },

@@ -1,0 +1,11 @@
+{
+  "slug": "best-ai-games",
+  "title": "Best AI Games",
+  "description": "Play the best free AI games online, including AI startup and business simulator games you can run in your browser.",
+  "keywords": ["best ai games", "ai startup game", "ai business simulator"],
+  "rules": {
+    "tagsAny": ["AI"],
+    "textAny": ["ai", "agent", "prompt", "startup"]
+  }
+}
+

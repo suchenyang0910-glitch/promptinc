@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import AdSlot from "@/components/AdSlot";
+import ContinuePlaying from "@/components/ContinuePlaying";
 import Footer from "@/components/Footer";
 import { games } from "@/games";
 
@@ -85,6 +86,15 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+
+      <ContinuePlaying
+        games={Object.values(games).map((g) => ({
+          slug: g.slug,
+          gameName: g.gameName,
+          category: g.category,
+          emoji: g.emoji,
+        }))}
+      />
 
       <section className="max-w-4xl mx-auto px-6 pb-12">
         <AdSlot variant="banner" slot="home-top" />

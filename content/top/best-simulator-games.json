@@ -1,0 +1,11 @@
+{
+  "slug": "best-simulator-games",
+  "title": "Best Simulator Games",
+  "description": "Play the best free simulator games in your browser. Build, manage, and optimize virtual businesses and systems.",
+  "keywords": ["best simulator games", "free simulator games", "browser simulator"],
+  "rules": {
+    "textAny": ["simulator", "simulation", "manager", "tycoon"],
+    "tagsAny": ["Tycoon"]
+  }
+}
+

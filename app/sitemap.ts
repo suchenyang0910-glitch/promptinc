@@ -5,6 +5,8 @@ import { games } from "@/games";
 import { categoryToSlug } from "@/lib/categories";
 import { tagToSlug } from "@/lib/tags";
 import { topPages } from "@/lib/top";
+import { guidePages } from "@/lib/guides";
+import { faqPages } from "@/lib/faqPages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = getSiteBaseUrl();
@@ -53,6 +55,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
+  const globalGuideUrls = guidePages.map((p) => ({
+    url: `${baseUrl}/guides/${p.slug}`,
+    lastModified,
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
+  }));
+
+  const globalFaqUrls = faqPages.map((p) => ({
+    url: `${baseUrl}/faq/${p.slug}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.55,
+  }));
+
   return [
     {
       url: `${baseUrl}/`,
@@ -90,12 +106,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/guides`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.65,
+    },
+    {
+      url: `${baseUrl}/faq`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.6,
+    },
     ...gameUrls,
     ...leaderboardUrls,
     ...guideUrls,
     ...categoryUrls,
     ...tagUrls,
     ...topUrls,
+    ...globalGuideUrls,
+    ...globalFaqUrls,
     {
       url: `${baseUrl}/about`,
       lastModified,
