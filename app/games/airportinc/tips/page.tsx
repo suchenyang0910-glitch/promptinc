@@ -8,7 +8,7 @@ import { games } from "@/games";
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const slug = "airportinc";
   const g = games[slug];
   if (!g) return { title: "Not Found" };
   return {
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Page({ params }: Props) {
-  const { slug } = await params;
+  const slug = "airportinc";
   const g = games[slug];
   if (!g) notFound();
   const tips = [
