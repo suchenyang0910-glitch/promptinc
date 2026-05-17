@@ -7,6 +7,7 @@ import { tagToSlug } from "@/lib/tags";
 import { topPages } from "@/lib/top";
 import { guidePages } from "@/lib/guides";
 import { faqPages } from "@/lib/faqPages";
+import { getCompareCandidates } from "@/lib/compare";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = getSiteBaseUrl();
@@ -69,6 +70,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.55,
   }));
 
+  const comparePairs = getCompareCandidates(Object.values(games), 2, 200);
+  const compareUrls = comparePairs.map((pair) => ({
+    url: `${baseUrl}/compare/${pair}`,
+    lastModified,
+    changeFrequency: "weekly" as const,
+    priority: 0.5,
+  }));
+
   return [
     {
       url: `${baseUrl}/`,
@@ -118,6 +127,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.6,
     },
+    {
+      url: `${baseUrl}/compare`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.6,
+    },
     ...gameUrls,
     ...leaderboardUrls,
     ...guideUrls,
@@ -126,6 +141,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...topUrls,
     ...globalGuideUrls,
     ...globalFaqUrls,
+    ...compareUrls,
     {
       url: `${baseUrl}/about`,
       lastModified,

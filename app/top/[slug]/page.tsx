@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
 import Footer from "@/components/Footer";
 import { games } from "@/games";
+import { buildComparePair } from "@/lib/compare";
 import { getTopGames, getTopPage, topPages } from "@/lib/top";
 
 type PageProps = {
@@ -88,6 +89,21 @@ export default async function TopPage({ params }: PageProps) {
           <h1 className="text-4xl font-bold">{page.title.replace(" - PromptInc", "")}</h1>
           <p className="text-slate-300">{page.description}</p>
         </header>
+
+        {list.length > 1 ? (
+          <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-900 border border-slate-800 rounded-2xl p-5">
+            <div className="text-slate-300">
+              Compare the top picks: <span className="font-bold text-white">{list[0].gameName}</span> vs{" "}
+              <span className="font-bold text-white">{list[1].gameName}</span>
+            </div>
+            <Link
+              href={`/compare/${buildComparePair(list[0].slug, list[1].slug)}`}
+              className="rounded-xl bg-blue-600 hover:bg-blue-500 px-4 py-2 font-bold"
+            >
+              Compare
+            </Link>
+          </div>
+        ) : null}
 
         <AdSlot variant="banner" slot={`top-${page.slug}-top`} />
 

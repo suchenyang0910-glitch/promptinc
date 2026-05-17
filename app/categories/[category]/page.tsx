@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Footer from "@/components/Footer";
 import { games } from "@/games";
 import { categoryToSlug, findCategoryBySlug } from "@/lib/categories";
+import { buildComparePair } from "@/lib/compare";
 
 type PageProps = {
   params: Promise<{
@@ -82,6 +83,21 @@ export default async function CategoryPage({ params }: PageProps) {
           <p className="text-slate-400">{list.length} free games you can play instantly.</p>
         </header>
 
+        {list.length > 1 ? (
+          <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-900 border border-slate-800 rounded-2xl p-5">
+            <div className="text-slate-300">
+              Quick compare: <span className="font-bold text-white">{list[0].gameName}</span> vs{" "}
+              <span className="font-bold text-white">{list[1].gameName}</span>
+            </div>
+            <Link
+              href={`/compare/${buildComparePair(list[0].slug, list[1].slug)}`}
+              className="rounded-xl bg-blue-600 hover:bg-blue-500 px-4 py-2 font-bold"
+            >
+              Compare
+            </Link>
+          </div>
+        ) : null}
+
         <div className="grid md:grid-cols-2 gap-6">
           {list.map((g) => (
             <Link
@@ -105,4 +121,3 @@ export default async function CategoryPage({ params }: PageProps) {
     </main>
   );
 }
-

@@ -12,6 +12,7 @@ import NativeAdBar from "@/components/NativeAdBar";
 import TgPromoBar from "@/components/TgPromoBar";
 import { games } from "@/games";
 import { categoryToSlug } from "@/lib/categories";
+import { buildComparePair } from "@/lib/compare";
 import { tagToSlug } from "@/lib/tags";
 import type { FAQItem } from "@/types/game";
 
@@ -268,6 +269,20 @@ export default async function GameSlugPage({ params }: PageProps) {
               Browse all
             </Link>
           </div>
+
+          {related.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {related.slice(0, 3).map((g) => (
+                <Link
+                  key={g.slug}
+                  href={`/compare/${buildComparePair(game.slug, g.slug)}`}
+                  className="rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-2 text-sm"
+                >
+                  Compare with {g.gameName}
+                </Link>
+              ))}
+            </div>
+          ) : null}
 
           <div className="grid sm:grid-cols-2 gap-4">
             {related.map((g) => (

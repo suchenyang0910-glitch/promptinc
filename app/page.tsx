@@ -77,6 +77,10 @@ export default function HomePage() {
             Top
           </Link>
           <span className="text-slate-700">•</span>
+          <Link href="/compare" className="hover:text-white">
+            Compare
+          </Link>
+          <span className="text-slate-700">•</span>
           <Link href="/nes" className="hover:text-white">
             NES
           </Link>
