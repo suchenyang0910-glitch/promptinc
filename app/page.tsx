@@ -76,6 +76,10 @@ export default function HomePage() {
             Top
           </Link>
           <span className="text-slate-700">•</span>
+          <Link href="/nes" className="hover:text-white">
+            NES
+          </Link>
+          <span className="text-slate-700">•</span>
           <Link href="/leaderboards" className="hover:text-white">
             Leaderboards
           </Link>
@@ -110,6 +114,59 @@ export default function HomePage() {
               <div className="inline-block bg-blue-600 px-4 py-2 rounded-xl font-bold w-fit">Play</div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* NES模拟器专区 */}
+      <section className="max-w-4xl mx-auto px-6 py-12 space-y-6">
+        <div className="bg-gradient-to-r from-gray-900 to-[#1a0a0a] rounded-2xl p-8 border border-[#e60012]/30">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <span className="text-4xl">🎮</span>
+                <h2 className="text-3xl font-bold text-[#e60012]">NES经典游戏模拟器</h2>
+              </div>
+              <p className="text-gray-300 max-w-xl">
+                重温童年经典！在线畅玩FC/NES怀旧游戏，支持键盘和触屏操作，所有内置ROM均合规可自由分发。
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 shrink-0">
+              <Link
+                href="/roms"
+                className="inline-block bg-[#e60012] hover:bg-red-700 px-8 py-4 rounded-xl text-lg font-bold text-center transition-colors"
+              >
+                浏览游戏库
+              </Link>
+              <Link
+                href="/nes"
+                className="inline-block border border-gray-700 hover:bg-gray-800 px-8 py-3 rounded-xl text-center transition-colors"
+              >
+                进入模拟器
+              </Link>
+            </div>
+          </div>
+          
+          {/* 推荐的NES游戏预览 */}
+          <div className="mt-8 grid grid-cols-2 md:grid-cols-5 gap-4">
+            {[
+              { name: "NES Starter", id: "starter" },
+              { name: "NEStress", id: "nestress" },
+              { name: "nestest", id: "nestest" },
+              { name: "RasterDemo", id: "rasterdemo" },
+              { name: "RasterTest1", id: "rastertest1" },
+            ].map((rom) => (
+              <Link
+                key={rom.id}
+                href={`/play/${rom.id}`}
+                className="bg-black/50 hover:bg-black/80 rounded-xl p-4 text-center border border-gray-800 hover:border-[#e60012]/50 transition-all group"
+              >
+                <div className="text-2xl mb-2">🕹️</div>
+                <div className="text-xs text-gray-400 group-hover:text-white truncate transition-colors">
+                  {rom.name}
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

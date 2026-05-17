@@ -1,4 +1,4 @@
-﻿export function getSiteBaseUrl() {
+﻿﻿export function getSiteBaseUrl() {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL;
   if (explicit) return explicit.replace(/\/$/, "");
 
