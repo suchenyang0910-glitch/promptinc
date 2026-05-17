@@ -104,15 +104,15 @@ export default function NesEmulatorClient({ selectedRomId }: Props) {
   const statusLabel = useMemo(() => {
     switch (status) {
       case "idle":
-        return "未加载";
+        return "Not loaded";
       case "loading":
-        return "加载中";
+        return "Loading";
       case "running":
-        return "运行中";
+        return "Running";
       case "paused":
-        return "已暂停";
+        return "Paused";
       case "error":
-        return "出错";
+        return "Error";
     }
   }, [status]);
 
@@ -220,7 +220,7 @@ export default function NesEmulatorClient({ selectedRomId }: Props) {
 
         stopLoop();
         const nes = createNes();
-        if (!nes) throw new Error("Canvas 初始化失败");
+        if (!nes) throw new Error("Failed to initialize canvas");
 
         const romString = u8ToBinaryString(bytes);
         nes.loadROM(romString);
@@ -229,7 +229,7 @@ export default function NesEmulatorClient({ selectedRomId }: Props) {
         setStatus("running");
         startLoop();
       } catch (e) {
-        const msg = e instanceof Error ? e.message : "加载失败";
+        const msg = e instanceof Error ? e.message : "Failed to load";
         setStatus("error");
         setError(msg);
       }
@@ -242,7 +242,7 @@ export default function NesEmulatorClient({ selectedRomId }: Props) {
       if (!file) return;
       if (!isLikelyNesFile(file.name)) {
         setStatus("error");
-        setError("仅支持 .nes 文件");
+        setError("Only .nes files are supported");
         return;
       }
       const buf = await file.arrayBuffer();
@@ -260,11 +260,11 @@ export default function NesEmulatorClient({ selectedRomId }: Props) {
         setStatus("loading");
         setLoadedName(sample.title);
         const res = await fetch(sample.url, { cache: "force-cache" });
-        if (!res.ok) throw new Error(`下载失败 (${res.status})`);
+        if (!res.ok) throw new Error(`Download failed (${res.status})`);
         const buf = await res.arrayBuffer();
         await loadFromBytes(sample.title, new Uint8Array(buf));
       } catch (e) {
-        const msg = e instanceof Error ? e.message : "加载失败";
+        const msg = e instanceof Error ? e.message : "Failed to load";
         setStatus("error");
         setError(msg);
       }
@@ -336,7 +336,7 @@ export default function NesEmulatorClient({ selectedRomId }: Props) {
         {/* 控制按钮 */}
         <div className="w-full max-w-[768px] flex items-center justify-between gap-4">
           <div>
-            <div className="text-sm text-gray-400">状态</div>
+            <div className="text-sm text-gray-400">Status</div>
             <div className="font-bold" data-testid="nes-status">
               {statusLabel}{loadedName ? ` · ${loadedName}` : ""}
             </div>
@@ -349,14 +349,14 @@ export default function NesEmulatorClient({ selectedRomId }: Props) {
               disabled={status !== "running" && status !== "paused"}
               className="rounded-xl bg-gray-800 hover:bg-gray-700 disabled:opacity-60 px-4 py-2 text-sm font-semibold transition-colors"
             >
-              {status === "paused" ? "继续" : "暂停"}
+              {status === "paused" ? "Resume" : "Pause"}
             </button>
             <button
               type="button"
               onClick={reset}
               className="rounded-xl bg-gray-800 hover:bg-gray-700 px-4 py-2 text-sm font-semibold transition-colors"
             >
-              重置
+              Reset
             </button>
           </div>
         </div>
@@ -399,7 +399,7 @@ export default function NesEmulatorClient({ selectedRomId }: Props) {
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-4">
           <div className="flex items-center justify-between gap-3 flex-wrap">
             <div>
-              <div className="text-sm text-slate-400">状态</div>
+              <div className="text-sm text-slate-400">Status</div>
               <div className="font-bold" data-testid="nes-status">
                 {statusLabel}{loadedName ? ` · ${loadedName}` : ""}
               </div>
@@ -411,14 +411,14 @@ export default function NesEmulatorClient({ selectedRomId }: Props) {
                 disabled={status !== "running" && status !== "paused"}
                 className="rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-60 px-3 py-2 text-sm font-semibold"
               >
-                {status === "paused" ? "继续" : "暂停"}
+                {status === "paused" ? "Resume" : "Pause"}
               </button>
               <button
                 type="button"
                 onClick={reset}
                 className="rounded-xl bg-slate-800 hover:bg-slate-700 px-3 py-2 text-sm font-semibold"
               >
-                重置
+                Reset
               </button>
             </div>
           </div>
@@ -448,7 +448,7 @@ export default function NesEmulatorClient({ selectedRomId }: Props) {
 
       <aside className="space-y-4">
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-4 space-y-3">
-          <div className="font-bold">一键试玩（可自由分发示例 ROM）</div>
+          <div className="font-bold">Instant Play (Redistribution-Friendly ROMs)</div>
           <div className="space-y-3">
             {sampleRoms.map((s) => (
               <div key={s.id} className="rounded-xl bg-slate-950/40 border border-slate-800 p-3">
@@ -463,15 +463,15 @@ export default function NesEmulatorClient({ selectedRomId }: Props) {
                     className="shrink-0 rounded-xl bg-blue-600 hover:bg-blue-500 px-3 py-2 text-sm font-bold"
                     data-testid={`nes-sample-${s.id}`}
                   >
-                    试玩
+                    Play
                   </button>
                 </div>
                 <div className="mt-2 text-xs text-slate-400">
-                  许可：{" "}
+                  License: {" "}
                   <a href={s.licenseUrl} target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300">
                     {s.licenseName}
                   </a>
-                  {" · 来源："}
+                  {" · Source: "}
                   <a href={s.sourceUrl} target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300">
                     {s.sourceLabel}
                   </a>
@@ -482,10 +482,10 @@ export default function NesEmulatorClient({ selectedRomId }: Props) {
         </div>
 
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-4 space-y-3">
-          <div className="font-bold">上传你本地的 ROM</div>
-          <div className="text-sm text-slate-300">选择你本地的 .nes 文件（不会上传到服务器）。</div>
+          <div className="font-bold">Upload a Local ROM</div>
+          <div className="text-sm text-slate-300">Select a local .nes file (not uploaded to any server).</div>
           <label className="block">
-            <span className="sr-only">选择 ROM 文件</span>
+            <span className="sr-only">Select ROM file</span>
             <input
               type="file"
               accept=".nes,.NES"
@@ -496,15 +496,15 @@ export default function NesEmulatorClient({ selectedRomId }: Props) {
         </div>
 
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-4 space-y-3">
-          <div className="font-bold">操作说明</div>
+          <div className="font-bold">Controls</div>
           <NesKeyboardHelp />
           <div className="text-xs text-slate-400">
-            提示：为避免网页滚动，方向键/空格等输入会被此页面拦截。
+            Tip: to prevent page scrolling, arrow keys and other inputs are captured by this page.
           </div>
         </div>
 
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-4 text-sm text-slate-300 leading-6">
-          本页不提供商业 ROM 下载。示例 ROM 均来自上游项目并标注许可与来源；你上传的 ROM 仅在浏览器本地读取与运行。
+          This page does not provide commercial ROM downloads. Sample ROMs include license/source links. Uploaded ROMs are read and run locally in your browser.
         </div>
       </aside>
     </section>

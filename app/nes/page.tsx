@@ -6,8 +6,8 @@ import Footer from "@/components/Footer";
 import NesEmulatorClient from "@/components/nes/NesEmulatorClient";
 
 export const metadata: Metadata = {
-  title: "NES 模拟器",
-  description: "上传你本地的 .nes ROM，或一键试玩可自由分发示例 ROM（附许可来源）。",
+  title: "NES Emulator - PromptInc",
+  description: "Upload a local .nes ROM, or instantly try free-to-redistribute sample ROMs with license sources.",
   alternates: {
     canonical: "/nes",
   },
@@ -32,9 +32,9 @@ export default function NesPage() {
         </nav>
 
         <header className="bg-slate-900 rounded-2xl p-6 border border-slate-800 space-y-2">
-          <h1 className="text-3xl font-bold">NES 模拟器</h1>
+          <h1 className="text-3xl font-bold">NES Emulator</h1>
           <p className="text-slate-300">
-            支持上传你本地的 <span className="font-semibold">.nes</span> ROM，或一键试玩可自由分发示例 ROM（附许可与来源）。
+            Upload a local <span className="font-semibold">.nes</span> ROM, or instantly try sample ROMs that are free to redistribute.
           </p>
         </header>
 
@@ -49,4 +49,3 @@ export default function NesPage() {
     </main>
   );
 }
-

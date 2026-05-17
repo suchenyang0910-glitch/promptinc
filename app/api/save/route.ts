@@ -5,7 +5,7 @@ export async function POST(request: Request) {
   try {
     if (!supabase) {
       return NextResponse.json(
-        { error: "Supabase客户端未初始化" },
+        { error: "Supabase client is not initialized" },
         { status: 500 }
       );
     }
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     const { data: { user }, error: authError } = await supabase.auth.getUser();
     if (authError || !user) {
       return NextResponse.json(
-        { error: "请先登录后再保存游戏进度" },
+        { error: "Please sign in to save progress" },
         { status: 401 }
       );
     }
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 
     if (!romId || !saveData) {
       return NextResponse.json(
-        { error: "缺少必要参数：romId 或 saveData" },
+        { error: "Missing required parameters: romId or saveData" },
         { status: 400 }
       );
     }
@@ -65,9 +65,9 @@ export async function POST(request: Request) {
     }
 
     if (result.error) {
-      console.error("保存存档失败:", result.error);
+      console.error("Failed to save:", result.error);
       return NextResponse.json(
-        { error: "保存游戏进度失败" },
+        { error: "Failed to save progress" },
         { status: 500 }
       );
     }
@@ -75,12 +75,12 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       save: result.data,
-      message: existingSave ? "游戏进度已更新" : "游戏进度已保存",
+      message: existingSave ? "Progress updated" : "Progress saved",
     });
   } catch (error) {
-    console.error("服务器错误:", error);
+    console.error("Server error:", error);
     return NextResponse.json(
-      { error: "服务器内部错误" },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }

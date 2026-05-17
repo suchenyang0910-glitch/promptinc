@@ -1,6 +1,5 @@
 "use client";
 
-import type { Metadata } from "next";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
@@ -48,9 +47,9 @@ export default function PlayPage() {
       <main className="min-h-screen bg-gray-950 text-white flex items-center justify-center">
         <div className="text-center space-y-4">
           <div className="text-6xl">🎮</div>
-          <h1 className="text-2xl font-bold">加载中...</h1>
+          <h1 className="text-2xl font-bold">Loading...</h1>
           <Link href="/roms" className="text-[#e60012] hover:text-red-400">
-            返回游戏列表
+            Back to ROM library
           </Link>
         </div>
       </main>
@@ -68,7 +67,7 @@ export default function PlayPage() {
                 href="/roms"
                 className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
               >
-                ← 返回列表
+                ← Back
               </Link>
               <div className="h-4 w-px bg-gray-700" />
               <h1 className="font-bold truncate max-w-xs">{rom.title}</h1>
@@ -78,13 +77,13 @@ export default function PlayPage() {
                 onClick={toggleFullscreen}
                 className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-sm font-medium transition-colors"
               >
-                {isFullscreen ? "退出全屏" : "全屏模式"}
+                {isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
               </button>
               <Link
                 href="/compliance"
                 className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-sm font-medium transition-colors"
               >
-                合规说明
+                Compliance
               </Link>
             </div>
           </div>
@@ -101,8 +100,8 @@ export default function PlayPage() {
         <div className="fixed bottom-0 left-0 right-0 bg-gray-950/95 backdrop-blur border-t border-gray-800 px-4 py-3">
           <div className="max-w-7xl mx-auto flex items-center justify-between text-sm text-gray-400">
             <div className="flex items-center gap-4">
-              <span>来源：{rom.sourceLabel}</span>
-              <span>许可证：{rom.licenseName}</span>
+              <span>Source: {rom.sourceLabel}</span>
+              <span>License: {rom.licenseName}</span>
             </div>
             <div className="flex items-center gap-4">
               <a
@@ -111,7 +110,7 @@ export default function PlayPage() {
                 rel="noreferrer"
                 className="hover:text-white transition-colors"
               >
-                查看项目源码 →
+                View source →
               </a>
             </div>
           </div>

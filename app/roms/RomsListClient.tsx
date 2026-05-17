@@ -18,13 +18,31 @@ type RomItem = {
   coverImage: string;
 };
 
+function normalizeGenre(genre: string) {
+  const g = genre.trim();
+  if (!g) return "";
+  if (g === "测试") return "Test";
+  if (g === "动作") return "Action";
+  if (g === "射击") return "Shooter";
+  if (g === "益智") return "Puzzle";
+  if (g === "冒险") return "Adventure";
+  return g;
+}
+
+function normalizeLicense(license: string) {
+  const l = license.trim();
+  if (!l) return "";
+  if (l === "见上游") return "See upstream";
+  return l;
+}
+
 export default function RomsListClient() {
   const [roms, setRoms] = useState<RomItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedGenre, setSelectedGenre] = useState("全部");
+  const [selectedGenre, setSelectedGenre] = useState("All");
   
-  const genres = ["全部", "动作", "射击", "益智", "冒险", "测试"];
+  const genres = ["All", "Action", "Shooter", "Puzzle", "Adventure", "Test"];
 
   useEffect(() => {
     // 从API加载ROM数据
@@ -37,33 +55,33 @@ export default function RomsListClient() {
           const formattedRoms: RomItem[] = data.roms.map((rom: any) => ({
             id: rom.id.slice(0, 8), // 使用UUID的前8位作为ID
             title: rom.name,
-            description: `${rom.year}年发布 - ${rom.genre}类型游戏`,
+            description: `${rom.year} · ${rom.genre}`,
             url: rom.rom_path,
-            sourceLabel: "内置示例ROM",
+            sourceLabel: "Built-in sample ROM",
             sourceUrl: "#",
-            licenseName: rom.license_type,
+            licenseName: normalizeLicense(rom.license_type ?? ""),
             licenseUrl: "#",
-            genre: rom.genre,
+            genre: normalizeGenre(rom.genre ?? ""),
             year: rom.year,
             coverImage: rom.cover_image,
           }));
           setRoms(formattedRoms);
         } else {
           // 数据库为空，使用本地sampleRoms数据
-          const localRoms: RomItem[] = sampleRoms.map(rom => ({
+          const localRoms: RomItem[] = sampleRoms.map((rom) => ({
             ...rom,
-            genre: rom.id.includes("test") || rom.id.includes("demo") ? "测试" : "动作",
+            genre: rom.id.includes("test") || rom.id.includes("demo") ? "Test" : "Action",
             year: "1985",
             coverImage: `https://picsum.photos/seed/${rom.id}/400/300`,
           }));
           setRoms(localRoms);
         }
       } catch (error) {
-        console.error("获取ROM列表失败，使用本地数据:", error);
+        console.error("Failed to load ROM list, using local data:", error);
         // API调用失败，使用本地sampleRoms数据
-        const localRoms: RomItem[] = sampleRoms.map(rom => ({
+        const localRoms: RomItem[] = sampleRoms.map((rom) => ({
           ...rom,
-          genre: rom.id.includes("test") || rom.id.includes("demo") ? "测试" : "动作",
+          genre: rom.id.includes("test") || rom.id.includes("demo") ? "Test" : "Action",
           year: "1985",
           coverImage: `https://picsum.photos/seed/${rom.id}/400/300`,
         }));
@@ -79,7 +97,7 @@ export default function RomsListClient() {
   // 过滤ROM
   const filteredRoms = roms.filter(rom => {
     const matchesSearch = rom.title.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesGenre = selectedGenre === "全部" || rom.genre === selectedGenre;
+    const matchesGenre = selectedGenre === "All" || rom.genre === selectedGenre;
     return matchesSearch && matchesGenre;
   });
 
@@ -108,7 +126,7 @@ export default function RomsListClient() {
           <div className="w-full md:w-auto">
             <input
               type="text"
-              placeholder="搜索游戏..."
+              placeholder="Search ROMs..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full md:w-64 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:border-[#e60012] focus:outline-none transition-colors"
@@ -167,14 +185,14 @@ export default function RomsListClient() {
                     href={`/play/${rom.id}`}
                     className="flex-1 py-2.5 bg-[#e60012] hover:bg-red-700 rounded-xl text-center font-bold transition-colors"
                   >
-                    立即游玩
+                  Play Now
                   </Link>
                   <a
                     href={rom.sourceUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 rounded-xl transition-colors"
-                    title="查看来源"
+                  title="View source"
                   >
                     ℹ️
                   </a>
@@ -187,7 +205,7 @@ export default function RomsListClient() {
                     rel="noreferrer"
                     className="text-xs text-blue-400 hover:text-blue-300 transition-colors"
                   >
-                    {rom.licenseName} 许可证 · {rom.sourceLabel}
+                  {rom.licenseName} · {rom.sourceLabel}
                   </a>
                 </div>
               </div>

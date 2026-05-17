@@ -16,7 +16,7 @@ test("key routes respond", async ({ page }) => {
   await expect(page.getByRole("heading", { name: /leaderboards/i })).toBeVisible();
 
   await page.goto("/nes");
-  await expect(page.getByRole("heading", { name: "NES 模拟器" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "NES Emulator" })).toBeVisible();
 
   for (const slug of slugs) {
     await page.goto(`/games/${slug}`);
