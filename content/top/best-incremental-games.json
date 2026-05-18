@@ -1,0 +1,11 @@
+{
+  "slug": "best-incremental-games",
+  "title": "Best Incremental Games",
+  "description": "Play the best free incremental games online. Start small, unlock automation, and scale with compounding upgrades.",
+  "keywords": ["incremental games", "best incremental games", "incremental browser game"],
+  "rules": {
+    "gameTypes": ["idle"],
+    "textAny": ["incremental", "automation", "multiplier", "prestige"]
+  }
+}
+

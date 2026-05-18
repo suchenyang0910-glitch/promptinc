@@ -1,0 +1,11 @@
+{
+  "slug": "free-idle-games",
+  "title": "Free Idle Games",
+  "description": "Browse free idle games online. Earn while away, automate your loop, and compound upgrades over time.",
+  "keywords": ["free idle games", "idle games online", "idle browser game"],
+  "rules": {
+    "gameTypes": ["idle"],
+    "textAny": ["idle", "offline", "automation", "incremental"]
+  }
+}
+

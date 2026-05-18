@@ -1,0 +1,11 @@
+{
+  "slug": "best-management-games",
+  "title": "Best Management Games",
+  "description": "Play free management games online. Run a company, allocate resources, and upgrade systems to scale faster.",
+  "keywords": ["management games", "best management games", "free management game"],
+  "rules": {
+    "textAny": ["management", "manager", "business", "company", "upgrade"],
+    "tagsAny": ["Tycoon"]
+  }
+}
+

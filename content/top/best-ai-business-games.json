@@ -1,0 +1,11 @@
+{
+  "slug": "best-ai-business-games",
+  "title": "Best AI Business Games",
+  "description": "Play the best free AI business games online. Build AI startups, automate workflows, and scale your company.",
+  "keywords": ["ai business game", "ai startup simulator", "best ai games"],
+  "rules": {
+    "tagsAny": ["AI", "Startup"],
+    "textAny": ["ai", "startup", "business", "agent", "automation"]
+  }
+}
+

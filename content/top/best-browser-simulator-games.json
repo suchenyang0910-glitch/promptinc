@@ -1,0 +1,11 @@
+{
+  "slug": "best-browser-simulator-games",
+  "title": "Best Browser Simulator Games",
+  "description": "Discover the best simulator games you can play directly in your browser. No downloads, instant gameplay.",
+  "keywords": ["browser simulator", "simulator games online", "no download simulator"],
+  "rules": {
+    "textAny": ["simulator", "simulation", "manager", "tycoon"],
+    "tagsAny": ["Tycoon"]
+  }
+}
+

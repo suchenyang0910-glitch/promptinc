@@ -1,0 +1,11 @@
+{
+  "slug": "free-simulator-games",
+  "title": "Free Simulator Games",
+  "description": "Browse free simulator games online. Build systems, run businesses, and play instantly in your browser.",
+  "keywords": ["free simulator games", "simulator games online", "browser simulator"],
+  "rules": {
+    "textAny": ["simulator", "simulation", "tycoon", "manager"],
+    "tagsAny": ["Tycoon"]
+  }
+}
+

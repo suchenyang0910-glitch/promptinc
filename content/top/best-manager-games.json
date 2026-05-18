@@ -1,0 +1,11 @@
+{
+  "slug": "best-manager-games",
+  "title": "Best Manager Games",
+  "description": "Play the best free manager games online. Make upgrade decisions, manage resources, and optimize your strategy.",
+  "keywords": ["manager games", "best manager games", "free manager game"],
+  "rules": {
+    "textAny": ["manager", "management", "optimize", "strategy", "upgrade"],
+    "tagsAny": ["Tycoon"]
+  }
+}
+

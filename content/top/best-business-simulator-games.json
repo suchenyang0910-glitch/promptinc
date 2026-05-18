@@ -1,0 +1,11 @@
+{
+  "slug": "best-business-simulator-games",
+  "title": "Best Business Simulator Games",
+  "description": "Browse the best free business simulator games you can play online. Optimize upgrades, automate systems, and grow revenue.",
+  "keywords": ["business simulator games", "best business games", "business simulation"],
+  "rules": {
+    "textAny": ["business", "simulator", "simulation", "company", "management"],
+    "tagsAny": ["Tycoon"]
+  }
+}
+
