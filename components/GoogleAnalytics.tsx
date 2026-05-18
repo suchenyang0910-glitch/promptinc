@@ -3,8 +3,7 @@
 import Script from "next/script";
 
 export default function GoogleAnalytics() {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
-  if (!gaId) return null;
+  const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-KHW9QC8PK3";
 
   return (
     <>
@@ -20,4 +19,3 @@ gtag('config', '${gaId}');
     </>
   );
 }
-
