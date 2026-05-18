@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { games } from "@/games";
 import { buildComparePair, getCompareCandidates, parseComparePair } from "@/lib/compare";
 import { categoryToSlug } from "@/lib/categories";
+import { buildFaqJsonLd, inferGuideLinks, tldrForTopic } from "@/lib/seoBlocks";
 import { tagToSlug } from "@/lib/tags";
 
 type PageProps = {
@@ -68,6 +69,24 @@ export default async function ComparePairPage({ params }: PageProps) {
   }
 
   const sharedTags = intersectTags(a.tags, b.tags).slice(0, 8);
+
+  const topic = `${a.gameName} vs ${b.gameName} ${a.category} ${b.category} ${(sharedTags ?? []).join(" ")}`;
+  const tldr = tldrForTopic(topic);
+  const guideLinks = inferGuideLinks(topic);
+  const faqItems = [
+    {
+      q: `Which is better: ${a.gameName} or ${b.gameName}?`,
+      a: "It depends on your preferred gameplay loop. Use categories and shared tags as a quick filter, then try both games for a few minutes.",
+    },
+    {
+      q: "Are both games free to play?",
+      a: "Yes. Games on PromptInc are free to play in your browser.",
+    },
+    {
+      q: "How do I find more similar games?",
+      a: "Browse the shared tags, open a related Top list, or compare with other games from the same category.",
+    },
+  ];
   const jsonLdBreadcrumbs = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -91,6 +110,7 @@ export default async function ComparePairPage({ params }: PageProps) {
       <section className="max-w-5xl mx-auto px-6 py-12 space-y-8">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumbs) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqJsonLd(faqItems)) }} />
 
         <nav className="flex items-center justify-between flex-wrap gap-3">
           <Link href="/compare" className="text-slate-400 hover:text-white">
@@ -121,6 +141,32 @@ export default async function ComparePairPage({ params }: PageProps) {
           </h1>
           <p className="text-slate-300">Compare categories, tags, and gameplay vibe — then pick what to play next.</p>
         </header>
+
+        <section className="bg-slate-900 rounded-2xl p-6 space-y-4 border border-slate-800">
+          <div className="text-sm text-slate-400">TL;DR</div>
+          <div className="space-y-2 text-slate-300">
+            {tldr.map((b) => (
+              <p key={b}>• {b}</p>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {guideLinks.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-2 text-sm"
+              >
+                {l.label}
+              </Link>
+            ))}
+            <Link
+              href="/compare"
+              className="rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-2 text-sm"
+            >
+              More comparisons
+            </Link>
+          </div>
+        </section>
 
         <div className="grid md:grid-cols-2 gap-6">
           {[a, b].map((g) => (
@@ -183,6 +229,18 @@ export default async function ComparePairPage({ params }: PageProps) {
             </div>
           </section>
         ) : null}
+
+        <section className="bg-slate-900 rounded-2xl p-6 space-y-4 border border-slate-800">
+          <h2 className="text-2xl font-bold">FAQ</h2>
+          <div className="space-y-3">
+            {faqItems.map((item) => (
+              <div key={item.q} className="rounded-xl bg-slate-800 p-4">
+                <div className="font-bold">{item.q}</div>
+                <div className="mt-2 text-slate-300">{item.a}</div>
+              </div>
+            ))}
+          </div>
+        </section>
       </section>
 
       <Footer />
