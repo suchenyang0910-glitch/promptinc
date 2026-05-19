@@ -29,10 +29,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const canonicalPair = buildComparePair(a.slug, b.slug);
   const title = `${a.gameName} vs ${b.gameName} - PromptInc`;
   const description = `Compare ${a.gameName} and ${b.gameName}: categories, tags, and what to play next.`;
+  const keywords = [
+    `${a.gameName} vs ${b.gameName}`,
+    `compare ${a.gameName} and ${b.gameName}`,
+    `${a.gameName} game`,
+    `${b.gameName} game`,
+  ];
 
   return {
     title,
     description,
+    keywords,
     alternates: {
       canonical: `/compare/${canonicalPair}`,
     },

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import GaPageView from "@/components/GaPageView";
 import MicrosoftClarity from "@/components/MicrosoftClarity";
 
 function resolveBaseUrl() {
@@ -73,6 +74,7 @@ export default function RootLayout({
         <GoogleAnalytics />
       </head>
       <body className="min-h-full bg-slate-950 text-white">
+        <GaPageView />
         <MicrosoftClarity />
         {children}
       </body>

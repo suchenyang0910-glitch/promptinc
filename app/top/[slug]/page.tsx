@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: page.title,
     description: page.description,
+    keywords: page.keywords,
     alternates: {
       canonical: `/top/${page.slug}`,
     },
@@ -86,10 +87,26 @@ export default async function TopPage({ params }: PageProps) {
     })),
   };
 
+  const jsonLdBreadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "/" },
+      { "@type": "ListItem", position: 2, name: "Top", item: "/top" },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: page.title.replace(" - PromptInc", ""),
+        item: `/top/${page.slug}`,
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <section className="max-w-5xl mx-auto px-6 py-16 space-y-8">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumbs) }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqJsonLd(faqItems)) }}

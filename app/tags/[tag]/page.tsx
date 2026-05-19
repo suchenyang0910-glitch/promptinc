@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${name} Games - PromptInc`,
     description: `Play free online games tagged with ${name}.`,
+    keywords: [`${name} games`, `${name.toLowerCase()} games online`, `games tagged ${name}`],
     alternates: {
       canonical: `/tags/${tagToSlug(name)}`,
     },
@@ -64,10 +65,26 @@ export default async function TagPage({ params }: PageProps) {
     },
   ];
 
+  const jsonLdBreadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "/" },
+      { "@type": "ListItem", position: 2, name: "Tags", item: "/tags" },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: name,
+        item: `/tags/${tagToSlug(name)}`,
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <section className="max-w-5xl mx-auto px-6 py-16 space-y-8">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqJsonLd(faqItems)) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumbs) }} />
         <div className="flex items-end justify-between gap-4 flex-wrap">
           <div>
             <div className="text-sm text-slate-400">Tag</div>

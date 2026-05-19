@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${name} Games - PromptInc`,
     description: `Play free online ${name} games in your browser.`,
+    keywords: [`${name} games`, `free ${name} games`, `${name.toLowerCase()} games online`],
     alternates: {
       canonical: `/categories/${categoryToSlug(name)}`,
     },
@@ -84,6 +85,21 @@ export default async function CategoryPage({ params }: PageProps) {
     })),
   };
 
+  const jsonLdBreadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "/" },
+      { "@type": "ListItem", position: 2, name: "Categories", item: "/categories" },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: `${categoryName} Games`,
+        item: `/categories/${categoryToSlug(categoryName)}`,
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <script
@@ -92,6 +108,7 @@ export default async function CategoryPage({ params }: PageProps) {
           __html: JSON.stringify(jsonLdCollection),
         }}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqJsonLd(faqItems)) }} />
 
       <section className="max-w-5xl mx-auto px-6 py-16 space-y-8">
