@@ -4,7 +4,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 
 import Footer from "@/components/Footer";
 import { games } from "@/games";
-import { buildComparePair, getCompareCandidates, parseComparePair } from "@/lib/compare";
+import { buildComparePair, getCompareCandidates, getSimilarSlugs, parseComparePair } from "@/lib/compare";
 import { categoryToSlug } from "@/lib/categories";
 import { buildFaqJsonLd, inferGuideLinks, tldrForTopic } from "@/lib/seoBlocks";
 import { tagToSlug } from "@/lib/tags";
@@ -76,6 +76,27 @@ export default async function ComparePairPage({ params }: PageProps) {
   }
 
   const sharedTags = intersectTags(a.tags, b.tags).slice(0, 8);
+
+  const allGames = Object.values(games);
+  const similarA = getSimilarSlugs(a, allGames, 4);
+  const similarB = getSimilarSlugs(b, allGames, 4);
+  const morePairs = Array.from(
+    new Set(
+      [
+        ...similarA.map((s) => buildComparePair(b.slug, s)),
+        ...similarB.map((s) => buildComparePair(a.slug, s)),
+      ].filter((p) => p !== canonicalPair)
+    )
+  )
+    .slice(0, 8)
+    .map((p) => ({
+      pair: p,
+      parsed: parseComparePair(p),
+    }))
+    .filter((x) => x.parsed && games[x.parsed.a] && games[x.parsed.b]) as Array<{
+    pair: string;
+    parsed: { a: string; b: string };
+  }>;
 
   const topic = `${a.gameName} vs ${b.gameName} ${a.category} ${b.category} ${(sharedTags ?? []).join(" ")}`;
   const tldr = tldrForTopic(topic);
@@ -233,6 +254,30 @@ export default async function ComparePairPage({ params }: PageProps) {
                   #{t}
                 </Link>
               ))}
+            </div>
+          </section>
+        ) : null}
+
+        {morePairs.length > 0 ? (
+          <section className="bg-slate-900 rounded-2xl p-6 border border-slate-800 space-y-3">
+            <h2 className="text-2xl font-bold">More Comparisons</h2>
+            <div className="grid md:grid-cols-2 gap-3">
+              {morePairs.map((x) => {
+                const left = games[x.parsed.a];
+                const right = games[x.parsed.b];
+                return (
+                  <Link
+                    key={x.pair}
+                    href={`/compare/${x.pair}`}
+                    className="rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 px-4 py-3"
+                  >
+                    <div className="font-semibold">
+                      {left.emoji} {left.gameName} vs {right.emoji} {right.gameName}
+                    </div>
+                    <div className="text-sm text-slate-300">Open →</div>
+                  </Link>
+                );
+              })}
             </div>
           </section>
         ) : null}

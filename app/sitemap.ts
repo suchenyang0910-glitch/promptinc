@@ -70,7 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.55,
   }));
 
-  const comparePairs = getCompareCandidates(Object.values(games), 2, 200);
+  const comparePairs = getCompareCandidates(Object.values(games), 2, 800);
   const compareUrls = comparePairs.map((pair) => ({
     url: `${baseUrl}/compare/${pair}`,
     lastModified,

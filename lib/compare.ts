@@ -32,6 +32,15 @@ export function compareScore(a: GameConfig, b: GameConfig) {
   return score;
 }
 
+export function getSimilarSlugs(target: GameConfig, allGames: GameConfig[], limit = 6) {
+  return allGames
+    .filter((g) => g.slug !== target.slug)
+    .map((g) => ({ g, s: compareScore(target, g) }))
+    .sort((a, b) => (b.s !== a.s ? b.s - a.s : a.g.gameName.localeCompare(b.g.gameName)))
+    .slice(0, limit)
+    .map((x) => x.g.slug);
+}
+
 export function getCompareCandidates(allGames: GameConfig[], perGame = 2, maxPairs = 200) {
   const pairs = new Map<string, { pair: ComparePair; score: number }>();
   const list = allGames.slice();
@@ -61,4 +70,3 @@ export function getCompareCandidates(allGames: GameConfig[], perGame = 2, maxPai
     .slice(0, maxPairs)
     .map(([key]) => key);
 }
-
