@@ -4,6 +4,9 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import { games } from "@/games";
 import { getCompareCandidates, parseComparePair } from "@/lib/compare";
+import { topTags } from "@/lib/seoBlocks";
+import { tagToSlug } from "@/lib/tags";
+import { topPages } from "@/lib/top";
 
 export const metadata: Metadata = {
   title: "Compare Games - PromptInc",
@@ -16,6 +19,8 @@ export const metadata: Metadata = {
 export default function CompareIndexPage() {
   const all = Object.values(games);
   const pairs = getCompareCandidates(all, 2, 60);
+  const tags = topTags(all, 12);
+  const featuredTop = topPages.slice(0, 6);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -59,6 +64,47 @@ export default function CompareIndexPage() {
           <p className="text-slate-400">Side-by-side pages that help players choose what to play next.</p>
         </header>
 
+        <section className="bg-slate-900 rounded-2xl p-6 border border-slate-800 space-y-4">
+          <div className="flex items-center justify-between gap-3 flex-wrap">
+            <h2 className="text-2xl font-bold">Explore More</h2>
+            <div className="flex gap-3 text-sm">
+              <Link href="/top" className="text-slate-400 hover:text-white">
+                Top
+              </Link>
+              <Link href="/tags" className="text-slate-400 hover:text-white">
+                Tags
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-3">
+            {featuredTop.map((p) => (
+              <Link
+                key={p.slug}
+                href={`/top/${p.slug}`}
+                className="rounded-2xl border border-slate-800 bg-slate-950/20 hover:bg-slate-800 p-4"
+              >
+                <div className="font-bold">{p.title.replace(" - PromptInc", "")}</div>
+                <div className="text-slate-400 text-sm">Open →</div>
+              </Link>
+            ))}
+          </div>
+
+          {tags.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {tags.map((t) => (
+                <Link
+                  key={t}
+                  href={`/tags/${tagToSlug(t)}`}
+                  className="rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-2 text-sm"
+                >
+                  #{t}
+                </Link>
+              ))}
+            </div>
+          ) : null}
+        </section>
+
         <div className="grid md:grid-cols-2 gap-6">
           {pairs.map((pair) => {
             const parsed = parseComparePair(pair);
@@ -91,4 +137,3 @@ export default function CompareIndexPage() {
     </main>
   );
 }
-

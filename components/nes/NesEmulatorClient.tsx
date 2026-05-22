@@ -94,13 +94,6 @@ export default function NesEmulatorClient({ selectedRomId }: Props) {
   const [error, setError] = useState<string>("");
   const [isTouchUI] = useState(() => (navigator.maxTouchPoints ?? 0) > 0);
 
-  // 如果有传入的ROM ID，自动加载该ROM
-  useEffect(() => {
-    if (selectedRomId && status === "idle") {
-      onLoadSample(selectedRomId);
-    }
-  }, [selectedRomId]);
-
   const statusLabel = useMemo(() => {
     switch (status) {
       case "idle":
@@ -271,6 +264,13 @@ export default function NesEmulatorClient({ selectedRomId }: Props) {
     },
     [loadFromBytes]
   );
+
+  useEffect(() => {
+    if (selectedRomId && status === "idle") {
+      const t = window.setTimeout(() => onLoadSample(selectedRomId), 0);
+      return () => window.clearTimeout(t);
+    }
+  }, [onLoadSample, selectedRomId, status]);
 
   const togglePause = useCallback(() => {
     if (status === "running") {

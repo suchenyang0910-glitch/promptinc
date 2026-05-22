@@ -2,7 +2,7 @@
 
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import NesEmulatorClient from "@/components/nes/NesEmulatorClient";
 import { sampleRoms } from "@/lib/nes/sampleRoms";
 
@@ -10,19 +10,15 @@ export default function PlayPage() {
   const params = useParams();
   const router = useRouter();
   const romId = params.romId as string;
-  
-  const [rom, setRom] = useState<typeof sampleRoms[0] | null>(null);
+
+  const rom = useMemo(() => sampleRoms.find((r) => r.id === romId) ?? null, [romId]);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
-    const foundRom = sampleRoms.find(r => r.id === romId);
-    if (foundRom) {
-      setRom(foundRom);
-    } else {
-      // 如果找不到对应的ROM，重定向到ROM列表页
+    if (!rom) {
       router.push("/roms");
     }
-  }, [romId, router]);
+  }, [rom, router]);
 
   const toggleFullscreen = useCallback(() => {
     if (!document.fullscreenElement) {

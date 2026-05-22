@@ -16,6 +16,8 @@ import { reactionTap } from "./reaction-tap";
 import { retroSnake } from "./retro-snake";
 import { retroAirStrike } from "./retro-air-strike";
 import { tileMatch } from "./tile-match";
+import { skyHop } from "./sky-hop";
+import { meteorDodge } from "./meteor-dodge";
 
 const contentGames = Object.fromEntries(
   Object.values(gameContentV1).map((c) => {
@@ -41,4 +43,6 @@ export const games = {
   [wordConnect.slug]: wordConnect,
   [memoryFlip.slug]: memoryFlip,
   [reactionTap.slug]: reactionTap,
+  [skyHop.slug]: skyHop,
+  [meteorDodge.slug]: meteorDodge,
 };

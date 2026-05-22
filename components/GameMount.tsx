@@ -15,8 +15,10 @@ import MergeFruitGame from "@/components/retro/MergeFruitGame";
 import MinesGame from "@/components/retro/MinesGame";
 import NumberMergeGame from "@/components/retro/NumberMergeGame";
 import ReactionTapGame from "@/components/retro/ReactionTapGame";
+import SkyHopGame from "@/components/retro/SkyHopGame";
 import TetrisGame from "@/components/retro/TetrisGame";
 import TileMatchGame from "@/components/retro/TileMatchGame";
+import MeteorDodgeGame from "@/components/retro/MeteorDodgeGame";
 import WordConnectGame from "@/components/retro/WordConnectGame";
 
 export default function GameMount({ game }: { game: GameConfig }) {
@@ -37,6 +39,8 @@ export default function GameMount({ game }: { game: GameConfig }) {
     word_connect: <WordConnectGame game={game} />,
     memory_flip: <MemoryFlipGame game={game} />,
     reaction_tap: <ReactionTapGame game={game} />,
+    sky_hop: <SkyHopGame game={game} />,
+    meteor_dodge: <MeteorDodgeGame game={game} />,
   };
 
   return renderers[game.gameType];

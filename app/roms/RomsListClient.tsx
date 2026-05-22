@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { sampleRoms } from "@/lib/nes/sampleRoms";
 
 type RomItem = {
@@ -16,6 +17,20 @@ type RomItem = {
   genre: string;
   year: string;
   coverImage: string;
+};
+
+type DbRom = {
+  id: string;
+  name: string;
+  year: string | number | null;
+  genre: string | null;
+  rom_path: string;
+  license_type: string | null;
+  cover_image: string | null;
+};
+
+type RomsApiResponse = {
+  roms?: DbRom[];
 };
 
 function normalizeGenre(genre: string) {
@@ -49,10 +64,11 @@ export default function RomsListClient() {
     const fetchRoms = async () => {
       try {
         const res = await fetch("/api/roms");
-        const data = await res.json();
-        if (data.roms && data.roms.length > 0) {
+        const data = (await res.json()) as RomsApiResponse;
+        const dbRoms = Array.isArray(data.roms) ? data.roms : [];
+        if (dbRoms.length > 0) {
           // 数据库中有数据，使用数据库数据
-          const formattedRoms: RomItem[] = data.roms.map((rom: any) => ({
+          const formattedRoms: RomItem[] = dbRoms.map((rom) => ({
             id: rom.id.slice(0, 8), // 使用UUID的前8位作为ID
             title: rom.name,
             description: `${rom.year} · ${rom.genre}`,
@@ -62,8 +78,8 @@ export default function RomsListClient() {
             licenseName: normalizeLicense(rom.license_type ?? ""),
             licenseUrl: "#",
             genre: normalizeGenre(rom.genre ?? ""),
-            year: rom.year,
-            coverImage: rom.cover_image,
+            year: String(rom.year ?? ""),
+            coverImage: rom.cover_image ?? `https://picsum.photos/seed/${rom.id}/400/300`,
           }));
           setRoms(formattedRoms);
         } else {
@@ -158,10 +174,14 @@ export default function RomsListClient() {
             >
               {/* 游戏封面 */}
               <div className="relative aspect-video overflow-hidden">
-                <img
+                <Image
                   src={rom.coverImage}
                   alt={rom.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  loader={({ src }) => src}
+                  unoptimized
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
                 <div className="absolute top-3 right-3">

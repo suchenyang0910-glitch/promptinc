@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 type GameInfo = {
   slug: string;
@@ -11,17 +11,16 @@ type GameInfo = {
 };
 
 export default function ContinuePlaying({ games }: { games: GameInfo[] }) {
-  const [recentSlugs, setRecentSlugs] = useState<string[]>([]);
-
-  useEffect(() => {
+  const [recentSlugs] = useState<string[]>(() => {
+    if (typeof window === "undefined") return [];
     try {
       const raw = window.localStorage.getItem("recent_games");
       const arr = raw ? (JSON.parse(raw) as string[]) : [];
-      setRecentSlugs(arr.slice(0, 8));
+      return arr.slice(0, 8);
     } catch {
-      setRecentSlugs([]);
+      return [];
     }
-  }, []);
+  });
 
   const recentGames = useMemo(() => {
     const map = new Map(games.map((g) => [g.slug, g] as const));
@@ -74,4 +73,3 @@ export default function ContinuePlaying({ games }: { games: GameInfo[] }) {
     </section>
   );
 }
-

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import { games } from "@/games";
 import { categoryToSlug } from "@/lib/categories";
+import { topPages } from "@/lib/top";
 
 export const metadata: Metadata = {
   title: "Free Online Simulator Games - PromptInc",
@@ -36,6 +37,8 @@ export default async function GamesPage({ searchParams }: PageProps) {
     const matchCategory = !category || g.category === category;
     return matchQ && matchCategory;
   });
+
+  const featuredTop = topPages.slice(0, 6);
 
   const jsonLdCollection = {
     "@context": "https://schema.org",
@@ -88,6 +91,27 @@ export default async function GamesPage({ searchParams }: PageProps) {
               {c}
             </Link>
           ))}
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <Link
+            href="/top"
+            className="rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 px-4 py-2 text-sm"
+          >
+            Curated top lists
+          </Link>
+          <Link
+            href="/compare"
+            className="rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 px-4 py-2 text-sm"
+          >
+            Compare games
+          </Link>
+          <Link
+            href="/tags"
+            className="rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 px-4 py-2 text-sm"
+          >
+            Browse tags
+          </Link>
         </div>
 
         <form className="flex flex-col gap-3 md:flex-row md:items-end" action="/games">
@@ -153,6 +177,27 @@ export default async function GamesPage({ searchParams }: PageProps) {
         {gameList.length === 0 ? (
           <div className="text-center text-slate-400">No games found.</div>
         ) : null}
+
+        <section className="bg-slate-900 rounded-2xl p-6 border border-slate-800 space-y-4">
+          <div className="flex items-center justify-between gap-3 flex-wrap">
+            <h2 className="text-2xl font-bold">Try a Curated List</h2>
+            <Link href="/top" className="text-slate-400 hover:text-white">
+              Browse all
+            </Link>
+          </div>
+          <div className="grid md:grid-cols-2 gap-3">
+            {featuredTop.map((p) => (
+              <Link
+                key={p.slug}
+                href={`/top/${p.slug}`}
+                className="rounded-2xl border border-slate-800 bg-slate-950/20 hover:bg-slate-800 p-4"
+              >
+                <div className="font-bold">{p.title.replace(" - PromptInc", "")}</div>
+                <div className="text-slate-400 text-sm">Open →</div>
+              </Link>
+            ))}
+          </div>
+        </section>
       </section>
 
       <Footer />

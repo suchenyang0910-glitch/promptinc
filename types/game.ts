@@ -21,7 +21,9 @@ export type GameType =
   | "color_sort"
   | "word_connect"
   | "memory_flip"
-  | "reaction_tap";
+  | "reaction_tap"
+  | "sky_hop"
+  | "meteor_dodge";
 
 export type FAQItem = {
   q: string;

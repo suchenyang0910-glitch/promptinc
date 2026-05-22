@@ -125,7 +125,7 @@ export default function CompliancePage() {
           <div className="prose prose-invert max-w-none space-y-4 text-gray-300">
             <h3 className="text-xl font-semibold text-white">Disclaimer</h3>
             <p>
-              This site is provided "as is" without warranties of any kind. We are not liable for any direct or indirect damages arising from use of the site.
+              This site is provided &quot;as is&quot; without warranties of any kind. We are not liable for any direct or indirect damages arising from use of the site.
             </p>
             
             <h3 className="text-xl font-semibold text-white mt-6">Intellectual Property</h3>

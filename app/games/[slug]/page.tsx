@@ -14,6 +14,7 @@ import { games } from "@/games";
 import { categoryToSlug } from "@/lib/categories";
 import { buildComparePair } from "@/lib/compare";
 import { tagToSlug } from "@/lib/tags";
+import { topPages } from "@/lib/top";
 import type { FAQItem } from "@/types/game";
 
 type PageProps = {
@@ -88,6 +89,8 @@ export default async function GameSlugPage({ params }: PageProps) {
       { q: "Does it work on mobile?", a: "Yes. This game supports touch controls and mobile-friendly UI." },
       { q: "How do I get on the leaderboard?", a: "Finish a run, submit your score, then check the leaderboard." },
     ];
+
+  const relatedTop = topPages.filter((p) => p.pick(game)).slice(0, 6);
 
   const jsonLdVideoGame = {
     "@context": "https://schema.org",
@@ -256,6 +259,23 @@ export default async function GameSlugPage({ params }: PageProps) {
                   #{t}
                 </Link>
               ))}
+            </div>
+          ) : null}
+
+          {relatedTop.length > 0 ? (
+            <div className="pt-2">
+              <div className="text-sm text-slate-400">Related top lists</div>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {relatedTop.map((p) => (
+                  <Link
+                    key={p.slug}
+                    href={`/top/${p.slug}`}
+                    className="rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-2 text-sm"
+                  >
+                    {p.title.replace(" - PromptInc", "")}
+                  </Link>
+                ))}
+              </div>
             </div>
           ) : null}
         </section>
