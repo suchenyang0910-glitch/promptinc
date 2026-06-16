@@ -12,9 +12,9 @@ import { tagToSlug } from "@/lib/tags";
 import { topPages } from "@/lib/top";
 
 export const metadata: Metadata = {
-  title: "PromptInc - Free AI Startup Simulator Online",
+  title: "PromptInc - Free AI Startup Simulator & Idle Game Online",
   description:
-    "Play PromptInc online for free. Build your AI startup, hire AI workers, upgrade GPU servers, and grow your digital empire.",
+    "Play PromptInc, a free AI startup idle simulator game in your browser. Build your company, hire AI agents, buy GPU servers. Also play NES retro games, arcade classics, and more — no download.",
 };
 
 export default function HomePage() {
@@ -25,6 +25,53 @@ export default function HomePage() {
     url: "/",
     description:
       "Free online games you can play instantly in your browser: idle, retro arcade, puzzle, and more.",
+  };
+
+  const jsonLdFAQ = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Is PromptInc free?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. PromptInc is free to play directly in your browser.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Do I need to download anything to play PromptInc?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. You can play PromptInc online without downloading or installing anything. It works in your browser on desktop and mobile.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is PromptInc a real investment or gambling game?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. PromptInc is only a simulation game for entertainment. It does not involve real money, gambling, or financial services.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What kind of game is PromptInc?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "PromptInc is an idle/incremental startup simulation game. You build an AI company by clicking to generate valuation, hiring AI workers, and upgrading GPU servers.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I play NES games on PromptInc?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. PromptInc includes a built-in NES Classic Emulator with keyboard and touch controls. Multiple built-in ROMs are included.",
+        },
+      },
+    ],
   };
 
   const featured = [
@@ -46,6 +93,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFAQ) }} />
 
       <section className="max-w-4xl mx-auto px-6 py-20 text-center space-y-6">
         <div className="flex justify-center">

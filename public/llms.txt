@@ -1,0 +1,42 @@
+# PromptInc
+> Free online browser games — idle simulator, arcade, retro NES emulator
+> https://promptinc.app
+
+## About
+PromptInc is a free browser-based game portal featuring:
+- AI startup idle simulation game (the flagship game)
+- NES Classic Emulator with built-in ROMs
+- 22+ arcade and casual games (snake, brick breaker, bubble shooter, etc.)
+- All playable instantly in browser — no download required
+
+## Pages
+- Home (game portal): https://promptinc.app
+- PromptInc Idle Game: https://promptinc.app/games/promptinc
+- NES Emulator: https://promptinc.app/nes
+- NES ROMs: https://promptinc.app/roms
+- Browse All Games: https://promptinc.app/games
+- Game Categories: https://promptinc.app/categories
+- Top Games: https://promptinc.app/top
+- Compare Games: https://promptinc.app/compare
+- Leaderboards: https://promptinc.app/leaderboards
+- Guides: https://promptinc.app/guides
+- FAQ: https://promptinc.app/faq
+- About: https://promptinc.app/about
+
+## Features
+- Free to play, no download
+- AI startup simulation: hire workers, buy GPUs, grow valuation
+- NES retro gaming in browser
+- Idle/clicker/incremental game mechanics
+- Mobile and desktop compatible
+- Ads-supported (free)
+
+## Preferred Topics
+- Idle games
+- Browser games
+- AI startup games
+- Business simulation games
+- Free online games
+- NES retro gaming
+- Clicker games
+- Incremental games
