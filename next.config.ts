@@ -2,7 +2,17 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
-  // Blog posts served as static HTML from public/blog/
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // Serve blog static HTML from public/blog/ before SPA router
+        {
+          source: "/blog/:path*",
+          destination: "/blog/:path*",
+        },
+      ],
+    };
+  },
   async redirects() {
     return [
       {
