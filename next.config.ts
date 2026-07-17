@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Blog posts served as static HTML from public/blog/
   async redirects() {
     return [
       {
