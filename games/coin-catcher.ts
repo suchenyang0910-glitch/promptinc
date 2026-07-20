@@ -18,7 +18,7 @@ export const coinCatcher: GameConfig = {
   ],
   seo: {
     title: "Coin Catcher - Free Online Retro Arcade Game",
-    description: "Play Coin Catcher online for free. Free browser-based game by PromptInc.",
+    description: "Play Coin Catcher for free online. Catch falling coins, dodge traps, and rack up high scores in this fast-paced arcade reflex game in your browser.",
     keywords: "play Coin Catcher online free, Coin Catcher game, Retro Arcade game, free online game, browser game, promptinc",
   },
   milestones: [

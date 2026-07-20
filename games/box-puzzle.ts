@@ -18,7 +18,7 @@ export const boxPuzzle: GameConfig = {
   ],
   seo: {
     title: "Box Puzzle - Free Online Retro Arcade Game",
-    description: "Play Box Puzzle online for free. Free browser-based game by PromptInc.",
+    description: "Play Box Puzzle for free online. A challenging Sokoban-style puzzle game — push boxes onto targets and clear every level in your browser.",
     keywords: "play Box Puzzle online free, Box Puzzle game, Retro Arcade game, free online game, browser game, promptinc",
   },
   milestones: [

@@ -18,7 +18,7 @@ export const mergeFruit: GameConfig = {
   ],
   seo: {
     title: "Merge Fruit - Free Online Retro Arcade Game",
-    description: "Play Merge Fruit online for free. Free browser-based game by PromptInc.",
+    description: "Play Merge Fruit for free online. Drop and merge matching fruits to create bigger combinations in this addictive casual puzzle game in your browser.",
     keywords: "play Merge Fruit online free, Merge Fruit game, Retro Arcade game, free online game, browser game, promptinc",
   },
   milestones: [

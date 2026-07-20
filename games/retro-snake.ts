@@ -13,7 +13,7 @@ export const retroSnake: GameConfig = {
   clickButtonText: "Start Game",
   seo: {
     title: "Retro Snake - Free Online Retro Arcade Game",
-    description: "Play Retro Snake online for free. Free browser-based game by PromptInc.",
+    description: "Play Retro Snake for free online. Guide the snake, eat food, grow longer, and avoid crashing — the classic arcade game revived in your browser with leaderboard support.",
     keywords: "play Retro Snake online free, Retro Snake game, Retro Arcade game, free online game, browser game, promptinc",
   },
   milestones: [

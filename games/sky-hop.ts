@@ -19,7 +19,7 @@ export const skyHop: GameConfig = {
   ],
   seo: {
     title: "Sky Hop - Free Online One-Button Arcade Game",
-    description: "Play Sky Hop online for free. Tap to hop and dodge pipes in your browser.",
+    description: "Play Sky Hop for free online. Tap to hop across platforms and dodge obstacles in this sky-high endless runner — addictive one-tap gameplay in your browser.",
     keywords: "Sky Hop, one button game, free online arcade game, browser game, tap to play",
   },
   milestones: [

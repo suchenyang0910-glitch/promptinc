@@ -18,7 +18,7 @@ export const classicMines: GameConfig = {
   ],
   seo: {
     title: "Classic Mines - Free Online Retro Arcade Game",
-    description: "Play Classic Mines online for free. Free browser-based game by PromptInc.",
+    description: "Play Classic Mines for free online. The original minesweeper logic puzzle — flag hidden mines, clear the board, and beat your best time in your browser.",
     keywords: "play Classic Mines online free, Classic Mines game, Retro Arcade game, free online game, browser game, promptinc",
   },
   milestones: [

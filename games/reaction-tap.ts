@@ -19,7 +19,7 @@ export const reactionTap: GameConfig = {
   ],
   seo: {
     title: "Reaction Tap - Free Online Arcade Game",
-    description: "Play Reaction Tap online for free. Free browser-based game by PromptInc.",
+    description: "Play Reaction Tap for free online. Test your reflexes by tapping targets before they disappear — a quick-fire reaction game that gets faster every round in your browser.",
     keywords: "play Reaction Tap online free, Reaction Tap game, Arcade game, free online game, browser game, promptinc",
   },
   milestones: [

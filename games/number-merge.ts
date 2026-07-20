@@ -19,7 +19,7 @@ export const numberMerge: GameConfig = {
   ],
   seo: {
     title: "Number Merge - Free Online Puzzle Game",
-    description: "Play Number Merge online for free. Free browser-based game by PromptInc.",
+    description: "Play Number Merge for free online. Slide and combine matching numbers in this 2048-style puzzle game — high scores get addictive fast in your browser.",
     keywords: "play Number Merge online free, Number Merge game, Puzzle game, free online game, browser game, promptinc",
   },
   milestones: [

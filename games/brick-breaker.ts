@@ -19,7 +19,7 @@ export const brickBreaker: GameConfig = {
   ],
   seo: {
     title: "Brick Smash - Free Online Retro Arcade Game",
-    description: "Play Brick Smash online for free. Free browser-based game by PromptInc.",
+    description: "Play Brick Smash for free online. Break all the bricks with your paddle and ball in this addictive breakout-style arcade game in your browser.",
     keywords: "play Brick Smash online free, Brick Smash game, Retro Arcade game, free online game, browser game, promptinc",
   },
   milestones: [

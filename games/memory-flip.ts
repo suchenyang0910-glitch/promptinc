@@ -19,7 +19,7 @@ export const memoryFlip: GameConfig = {
   ],
   seo: {
     title: "Memory Flip - Free Online Memory Game",
-    description: "Play Memory Flip online for free. Free browser-based game by PromptInc.",
+    description: "Play Memory Flip for free online. Test your memory by flipping and matching pairs of cards — classic brain training fun with multiple difficulty levels in your browser.",
     keywords: "play Memory Flip online free, Memory Flip game, Memory game, free online game, browser game, promptinc",
   },
   milestones: [

@@ -19,7 +19,7 @@ export const brickBlockClassic: GameConfig = {
   ],
   seo: {
     title: "Block Stack - Free Online Retro Arcade Game",
-    description: "Play Block Stack online for free. Free browser-based game by PromptInc.",
+    description: "Play Block Stack for free online. Stack bricks carefully in this classic arcade block puzzle — test your timing and balance in your browser.",
     keywords: "play Block Stack online free, Block Stack game, Retro Arcade game, free online game, browser game, promptinc",
   },
   milestones: [

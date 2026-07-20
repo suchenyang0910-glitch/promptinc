@@ -19,7 +19,7 @@ export const retroAirStrike: GameConfig = {
   ],
   seo: {
     title: "Space Shooter X - Free Online Retro Arcade Game",
-    description: "Play Space Shooter X online for free. Free browser-based game by PromptInc.",
+    description: "Play Space Shooter X for free online. Blast enemy ships, dodge incoming fire, and survive wave after wave in this retro arcade space shooter in your browser.",
     keywords: "play Space Shooter X online free, Space Shooter X game, Retro Arcade game, free online game, browser game, promptinc",
   },
   milestones: [

@@ -18,7 +18,7 @@ export const tileMatch: GameConfig = {
   ],
   seo: {
     title: "Tile Match - Free Online Retro Arcade Game",
-    description: "Play Tile Match online for free. Free browser-based game by PromptInc.",
+    description: "Play Tile Match for free online. Find and match identical tiles before time runs out — a classic Mahjong-style matching puzzle with beautiful layouts in your browser.",
     keywords: "play Tile Match online free, Tile Match game, Retro Arcade game, free online game, browser game, promptinc",
   },
   milestones: [

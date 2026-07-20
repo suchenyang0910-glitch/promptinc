@@ -19,7 +19,7 @@ export const bubbleShooter: GameConfig = {
   ],
   seo: {
     title: "Bubble Pop - Free Online Retro Arcade Game",
-    description: "Play Bubble Pop online for free. Free browser-based game by PromptInc.",
+    description: "Play Bubble Pop for free online. Aim, match, and pop colorful bubbles in this addictive puzzle shooter — challenging levels with no download needed.",
     keywords: "play Bubble Pop online free, Bubble Pop game, Retro Arcade game, free online game, browser game, promptinc",
   },
   milestones: [

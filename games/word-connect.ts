@@ -19,7 +19,7 @@ export const wordConnect: GameConfig = {
   ],
   seo: {
     title: "Word Connect - Free Online Word Game",
-    description: "Play Word Connect online for free. Free browser-based game by PromptInc.",
+    description: "Play Word Connect for free online. Swipe letters to form hidden words and solve crossword-style puzzles — a fun vocabulary brain game in your browser.",
     keywords: "play Word Connect online free, Word Connect game, Word game, free online game, browser game, promptinc",
   },
   milestones: [

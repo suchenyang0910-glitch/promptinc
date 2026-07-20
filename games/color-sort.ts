@@ -19,7 +19,7 @@ export const colorSort: GameConfig = {
   ],
   seo: {
     title: "Color Sort - Free Online Puzzle Game",
-    description: "Play Color Sort online for free. Free browser-based game by PromptInc.",
+    description: "Play Color Sort for free online. Sort colored water into matching tubes in this relaxing yet tricky logic puzzle — satisfying gameplay in your browser.",
     keywords: "play Color Sort online free, Color Sort game, Puzzle game, free online game, browser game, promptinc",
   },
   milestones: [

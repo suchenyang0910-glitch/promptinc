@@ -19,7 +19,7 @@ export const meteorDodge: GameConfig = {
   ],
   seo: {
     title: "Meteor Dodge - Free Online Survival Arcade Game",
-    description: "Play Meteor Dodge online for free. Dodge falling meteors and climb the leaderboard.",
+    description: "Play Meteor Dodge for free online. Dodge falling space rocks, survive as long as you can, and climb the global leaderboard in this high-intensity arcade game.",
     keywords: "Meteor Dodge, dodge game, survival arcade, free online game, browser game",
   },
   milestones: [
