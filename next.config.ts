@@ -5,11 +5,7 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
-        // Serve blog static HTML from public/blog/ before SPA router
-        {
-          source: "/blog/:path*",
-          destination: "/blog/:path*",
-        },
+        // Blog static HTML handled by public/blog/
       ],
     };
   },
