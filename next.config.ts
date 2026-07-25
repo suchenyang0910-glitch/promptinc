@@ -2,13 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
-  async rewrites() {
-    return {
-      beforeFiles: [
-        // Blog static HTML handled by public/blog/
-      ],
-    };
-  },
   async redirects() {
     return [
       {
