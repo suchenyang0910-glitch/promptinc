@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = "force-dynamic";
+
 export default function NesPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-white">
