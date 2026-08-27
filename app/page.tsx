@@ -5,6 +5,7 @@ import Link from "next/link";
 import AdSlot from "@/components/AdSlot";
 import ContinuePlaying from "@/components/ContinuePlaying";
 import Footer from "@/components/Footer";
+import SamewavePromo from "@/components/SamewavePromo";
 import { games } from "@/games";
 import { getCompareCandidates, parseComparePair } from "@/lib/compare";
 import { topTags } from "@/lib/seoBlocks";
@@ -396,7 +397,7 @@ export default function HomePage() {
       </section>
 
       <section className="max-w-4xl mx-auto px-6 py-12">
-        <AdSlot variant="banner" slot="home-bottom" />
+        <SamewavePromo slot="home-bottom" />
       </section>
 
       <Footer />

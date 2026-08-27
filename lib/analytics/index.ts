@@ -7,6 +7,9 @@ export type AnalyticsEvent =
   | "score_submit"
   | "ad_impression"
   | "ad_interstitial_shown"
+  | "samewave_promo_impression"
+  | "samewave_promo_click"
+  | "samewave_promo_dismiss"
   | "daily_bonus_claim";
 
 export type AnalyticsParams = Record<string, string | number | boolean | null | undefined>;
