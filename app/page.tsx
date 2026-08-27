@@ -161,7 +161,7 @@ export default function HomePage() {
       />
 
       <section className="max-w-4xl mx-auto px-6 pb-12">
-        <AdSlot variant="banner" slot="home-top" />
+        <SamewavePromo slot="home-top" />
       </section>
 
       <section className="max-w-4xl mx-auto px-6 py-12 space-y-6">
@@ -397,7 +397,7 @@ export default function HomePage() {
       </section>
 
       <section className="max-w-4xl mx-auto px-6 py-12">
-        <SamewavePromo slot="home-bottom" />
+        <AdSlot variant="banner" slot="home-bottom" />
       </section>
 
       <Footer />

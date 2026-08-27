@@ -33,7 +33,7 @@ export default function SamewavePromo({ slot }: SamewavePromoProps) {
           slot,
           creative: CREATIVE,
           format: "banner",
-          placement: "home_bottom",
+          placement: "home_top",
         });
         observer.disconnect();
       },
