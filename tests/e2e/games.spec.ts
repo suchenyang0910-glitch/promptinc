@@ -17,6 +17,22 @@ test("retro shell start/pause toggles playing state", async ({ page }) => {
   await expect(page.getByTestId("retro-playing")).toBeHidden();
 });
 
+test("new arcade games load and accept a player action", async ({ page }) => {
+  await page.goto("/games/mole-rush");
+  await page.getByTestId("retro-primary").click();
+  await page.getByTestId("mole-target").click();
+
+  await page.goto("/games/math-sprint");
+  await page.getByTestId("retro-primary").click();
+  await expect(page.getByTestId("math-question")).toBeVisible();
+  await page.getByTestId("math-answer").first().click();
+
+  await page.goto("/games/target-blaster");
+  await page.getByTestId("retro-primary").click();
+  await page.getByTestId("blaster-target").click();
+  await expect(page.getByTestId("retro-playing")).toBeVisible();
+});
+
 test("snake reaches game over when hitting wall", async ({ page }) => {
   await page.goto("/games/retro-snake");
   await page.getByTestId("snake-primary").click();

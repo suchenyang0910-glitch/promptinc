@@ -23,7 +23,10 @@ export type GameType =
   | "memory_flip"
   | "reaction_tap"
   | "sky_hop"
-  | "meteor_dodge";
+  | "meteor_dodge"
+  | "mole_rush"
+  | "math_sprint"
+  | "target_blaster";
 
 export type FAQItem = {
   q: string;

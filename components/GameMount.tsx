@@ -5,6 +5,7 @@ import type { GameConfig, GameType } from "@/types/game";
 import GameEngine from "@/components/GameEngine";
 import SnakeGame from "@/components/SnakeGame";
 import AirStrikeGame from "@/components/retro/AirStrikeGame";
+import ArcadeChallengeGame from "@/components/retro/ArcadeChallengeGame";
 import BoxPuzzleGame from "@/components/retro/BoxPuzzleGame";
 import BrickBreakerGame from "@/components/retro/BrickBreakerGame";
 import BubbleShooterGame from "@/components/retro/BubbleShooterGame";
@@ -41,6 +42,9 @@ export default function GameMount({ game }: { game: GameConfig }) {
     reaction_tap: <ReactionTapGame game={game} />,
     sky_hop: <SkyHopGame game={game} />,
     meteor_dodge: <MeteorDodgeGame game={game} />,
+    mole_rush: <ArcadeChallengeGame game={game} />,
+    math_sprint: <ArcadeChallengeGame game={game} />,
+    target_blaster: <ArcadeChallengeGame game={game} />,
   };
 
   return renderers[game.gameType];
