@@ -11,6 +11,7 @@ import BrickBreakerGame from "@/components/retro/BrickBreakerGame";
 import BubbleShooterGame from "@/components/retro/BubbleShooterGame";
 import CoinCatcherGame from "@/components/retro/CoinCatcherGame";
 import ColorSortGame from "@/components/retro/ColorSortGame";
+import DinoRunGame from "@/components/retro/DinoRunGame";
 import MemoryFlipGame from "@/components/retro/MemoryFlipGame";
 import MergeFruitGame from "@/components/retro/MergeFruitGame";
 import MinesGame from "@/components/retro/MinesGame";
@@ -45,6 +46,7 @@ export default function GameMount({ game }: { game: GameConfig }) {
     mole_rush: <ArcadeChallengeGame game={game} />,
     math_sprint: <ArcadeChallengeGame game={game} />,
     target_blaster: <ArcadeChallengeGame game={game} />,
+    dino_run: <DinoRunGame game={game} />,
   };
 
   return renderers[game.gameType];

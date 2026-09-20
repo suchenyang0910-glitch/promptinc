@@ -26,7 +26,8 @@ export type GameType =
   | "meteor_dodge"
   | "mole_rush"
   | "math_sprint"
-  | "target_blaster";
+  | "target_blaster"
+  | "dino_run";
 
 export type FAQItem = {
   q: string;

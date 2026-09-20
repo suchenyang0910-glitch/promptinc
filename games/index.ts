@@ -7,6 +7,7 @@ import { brickBlockClassic } from "./brick-block-classic";
 import { brickBreaker } from "./brick-breaker";
 import { classicMines } from "./classic-mines";
 import { coinCatcher } from "./coin-catcher";
+import { dinoRun } from "./dino-run";
 import { mergeFruit } from "./merge-fruit";
 import { numberMerge } from "./number-merge";
 import { colorSort } from "./color-sort";
@@ -51,4 +52,5 @@ export const games = {
   [moleRush.slug]: moleRush,
   [mathSprint.slug]: mathSprint,
   [targetBlaster.slug]: targetBlaster,
+  [dinoRun.slug]: dinoRun,
 };
